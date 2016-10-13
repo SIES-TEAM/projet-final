@@ -3,6 +3,10 @@
         <title>JSP Page</title>
     </head>
     <body>
-    ${person.id}&nbsp;${person.name}&nbsp;${person.surname}
+        <table>
+            <tr>
+                <td>${person.id}</td></td>${person.name}</td></td>${person.surname}</td>
+            </tr>
+        </table>
     </body>
 </html>
