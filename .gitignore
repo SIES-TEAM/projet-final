@@ -1,0 +1,10 @@
+/target/
+.classpath
+.project
+.settings
+.idea
+*.iml
+/bin/
+/src/main/webapp/node_modules/
+/src/main/webapp/typings/
+*.log
