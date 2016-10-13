@@ -18,6 +18,10 @@ public class PersonService {
 		return personRepository.findAll();
 	}
 
+	public Person findById(Integer id) {
+		return personRepository.findOne(id);
+	}
+
 	public Person addOrUpdate(Person person) {
 		return personRepository.save(person);
 	}

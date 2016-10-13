@@ -3,43 +3,27 @@ package co.simplon.exercise.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
 
 import co.simplon.exercise.core.model.Person;
 import co.simplon.exercise.core.service.PersonService;
+import org.springframework.web.servlet.ModelAndView;
 
-@RestController
-@CrossOrigin
-@RequestMapping("/api/person")
+@Controller
+@RequestMapping("/person")
 public class PersonController {
 
 	@Autowired
 	private PersonService personService;
 
-	@RequestMapping(method = RequestMethod.GET)
-	public @ResponseBody List<Person> get() {
-		return personService.getAll();
-	}
-
-	@RequestMapping(method = RequestMethod.POST)
-	public @ResponseBody Person post(@RequestBody Person person) {
-		return personService.addOrUpdate(person);
-	}
-
-	@RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
-	public @ResponseBody void delete(@PathVariable Integer id) {
-		personService.delete(id);
-	}
-
-	@RequestMapping(method = RequestMethod.PUT)
-	public @ResponseBody Person update(@RequestBody Person person) {
-		return personService.addOrUpdate(person);
+	@RequestMapping
+	public ModelAndView get(@RequestParam Integer id, ModelMap model) {
+		Person person = personService.findById(id);
+		model.addAttribute("person", person);
+		return new ModelAndView("persons-page", model);
 	}
 
 }
