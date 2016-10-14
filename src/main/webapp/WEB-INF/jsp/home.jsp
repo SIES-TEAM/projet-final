@@ -1,8 +1,8 @@
 <html>
     <head>
-        <title>JSP Page</title>
+        <title>Home Page</title>
     </head>
     <body>
-        ${message}&nbsp;
+        ${message}&nbsp;       
     </body>
 </html>
