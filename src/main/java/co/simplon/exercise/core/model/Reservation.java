@@ -13,16 +13,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Entity;
-//import org.hibernate.annotations.Table;
 
 @Entity
 @Table(name = "Reservation")
-public abstract class Reservation implements Serializable {
-
-	private static final long serialVersionUID = 5798277718846300001L;
+public abstract class Reservation {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @Column(name = "reserv_id")
     private int id;
 	
