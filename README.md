@@ -1,4 +1,6 @@
 # projet-final
+Merci de lire attentivement avant de commencer le projet.
+
 Projet de fin d'année, il s'agit d'un outil de gestion des ressources (salles et ordis) de Simpoln.
 
 Les membres de ce team peuvent forker(Fork) et puller (git pull) sur le projet mais ne peuvent pas pusher (git push)
