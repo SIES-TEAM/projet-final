@@ -1,30 +1,27 @@
 package co.simplon.exercise.core.model;
 
-import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Entity;
 
 @Entity
-@Table(name = "Reservation")
-public abstract class Reservation {
+@Table(name="Reservation")
+public class Reservation {
 	
 	@Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reserv_id")
     private int id;
 	
 	@Column(name = "user_id")
-	private Long user_id; 
+	private Long userId; 
 	
 	/*@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="ressource_id")
@@ -43,14 +40,14 @@ public abstract class Reservation {
     private Date dateEnd;
 
 	public Reservation() {
-		super();
+		
 	}
 
 	
-	public Reservation(int id, Long user_id, Date creationDate, Date dateBegin, Date dateEnd) {
+	public Reservation(int id, Long userId, Date creationDate, Date dateBegin, Date dateEnd) {
 		super();
 		this.id = id;
-		this.user_id = user_id;
+		this.userId = userId;
 		this.creationDate = creationDate;
 		this.dateBegin = dateBegin;
 		this.dateEnd = dateEnd;
@@ -67,16 +64,15 @@ public abstract class Reservation {
 	}
 
 
-	public Long getUser_id() {
-		return user_id;
+	public Long getUserId() {
+		return userId;
 	}
 
 
-	public void setUser_id(Long user_id) {
-		this.user_id = user_id;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
-	
-	
+
 
 	public Date getCreationDate() {
 		return creationDate;
@@ -107,5 +103,4 @@ public abstract class Reservation {
 		this.dateEnd = dateEnd;
 	}
 
-	
 }

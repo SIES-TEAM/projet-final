@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import co.simplon.exercise.core.model.Reservation;
 
-@Resource 
-public interface ReservationRpository extends JpaRepository<Reservation, Integer>{
+@Resource
+public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
 
 }
