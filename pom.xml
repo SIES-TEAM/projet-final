@@ -104,7 +104,6 @@
 			<version>5.1.40</version>
 		</dependency>
 
-
 		<!-- hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -147,7 +146,12 @@
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
             <version>3.3.7</version>
-        </dependency>
+        </dependency>      
+	    <dependency>
+	        <groupId>org.webjars</groupId>
+	        <artifactId>webjars-locator</artifactId>
+	        <version>0.30</version>
+	    </dependency>
         <dependency>
 		    <groupId>org.webjars</groupId>
 		    <artifactId>jquery</artifactId>
