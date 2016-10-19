@@ -13,12 +13,12 @@
     <link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     
     <!-- Custom styles for this template -->
-    <link href="ressources/css/home.css">
+    <link href="../../ressources/css/home.css" rel="stylesheet">
        
   </head>
 
   <body>
-
+	<div class="container">
     <div class="site-wrapper">
 
       <div class="site-wrapper-inner">
@@ -33,6 +33,10 @@
                   <li class="active"><a href="#">Home</a></li>
                   <li><a href="#">Planning réservation</a></li>
                   <li><a href="#">Profil</a></li>
+                  <div>
+	                  <button type="submit" class="btn btn">Sign up</button>
+	                  <button type="submit" class="btn btn-success">Sign in</button>
+                  </div>
                 </ul>
               </nav>
             </div>
@@ -57,6 +61,7 @@
 
       </div>
 
+    </div>
     </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
