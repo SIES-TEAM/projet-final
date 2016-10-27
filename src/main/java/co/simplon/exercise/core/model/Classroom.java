@@ -10,7 +10,22 @@ public class Classroom extends Resources{
 	
 	@Column(name = "capacity")
 	private int Capacity;
-	
-	
+
+	public Classroom() {
+		super();
+	}
+
+	public Classroom(int capacity) {
+		super();
+		Capacity = capacity;
+	}
+
+	public int getCapacity() {
+		return Capacity;
+	}
+
+	public void setCapacity(int capacity) {
+		Capacity = capacity;
+	}
 
 }
