@@ -21,7 +21,7 @@ public class Reservation {
     private int id;
 	
 	@Column(name = "user_id")
-	private Long userId; 
+	private int userId; 
 	
 	/*@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="ressource_id")
@@ -44,9 +44,8 @@ public class Reservation {
 	}
 
 	
-	public Reservation(int id, Long userId, Date creationDate, Date dateBegin, Date dateEnd) {
+	public Reservation(int userId, Date creationDate, Date dateBegin, Date dateEnd) {
 		super();
-		this.id = id;
 		this.userId = userId;
 		this.creationDate = creationDate;
 		this.dateBegin = dateBegin;
@@ -64,12 +63,12 @@ public class Reservation {
 	}
 
 
-	public Long getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 
 
-	public void setUserId(Long userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 

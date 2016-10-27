@@ -22,5 +22,11 @@ public class PersonController {
 		model.addAttribute("person", person);
 		return new ModelAndView("persons-page", model);
 	}
+	
+	@RequestMapping(path = "/addPerson")
+	public ModelAndView addPerson(@RequestParam String name, @RequestParam String surname, ModelMap model) {
+		personService.addOrUpdate(new Person(name, surname));
+		return new ModelAndView("redirect:/person");
+	}
 
 }
