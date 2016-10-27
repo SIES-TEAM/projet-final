@@ -67,6 +67,12 @@ body {
   margin-bottom: 10px;
 }
 
+.clearfix{
+	padding-bottom:30px;
+	background-color:#17232A;
+}
+
+
 .masthead-nav > li {
   display: inline-block;
 }
@@ -158,6 +164,6 @@ body {
   .masthead,
   .mastfoot,
   .cover-container {
-    width: 700px;
+    width: 100%;
   }
 }
