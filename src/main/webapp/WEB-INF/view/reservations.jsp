@@ -24,6 +24,7 @@
 		      <th>Date de création </th>
 		      <th>Date début</th>
 		      <th>Date fin</th>
+		      <th>Action</th>
 		    </tr>
 		  </thead>
 		  <tbody>
@@ -33,6 +34,7 @@
 		      <th>${reservation.creationDate }</th>
 		      <th>${reservation.dateBegin }</th>
 		      <th>${reservation.dateEnd }</th>
+		      <th><a href="/reservations/delete?id=${reservation.id}">Supprimer</a></th>
 		    </tr>
 		    </c:forEach>
 		   </tbody>
