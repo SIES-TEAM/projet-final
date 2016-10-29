@@ -8,7 +8,7 @@
 	<body>
 		<h1>Persons :</h1>
 		<h2>Add a person :</h2>
-		<form action="/addPerson">
+		<form action="/person/addPerson">
 			<input type="text" name="name" placeholder="name" />
 			<input type="text" name="surname" placeholder="surname" />
 			<input type="submit" value="Add" />
