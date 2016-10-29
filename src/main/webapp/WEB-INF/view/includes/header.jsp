@@ -24,7 +24,7 @@
               <h3 class="masthead-brand">LOGO HERE</h3>
               <nav>
                 <ul class="nav masthead-nav">
-                  <li class="active"><a href="../home.jsp">Home</a></li>
+                  <li class="active"><a href="/">Home</a></li>
                   <li><a href="#">Planning</a></li>
                   <li><a href="/reservations/formAdd">Add reservation</a></>
                   <li><a href="#">Profil</a></li>
