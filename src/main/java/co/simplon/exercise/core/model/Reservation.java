@@ -47,7 +47,7 @@ public class Reservation {
 	public Reservation(int userId, Date creationDate, Date dateBegin, Date dateEnd) {
 		super();
 		this.userId = userId;
-		this.creationDate = creationDate;
+		this.creationDate = new Date();
 		this.dateBegin = dateBegin;
 		this.dateEnd = dateEnd;
 	}

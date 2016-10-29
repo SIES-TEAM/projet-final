@@ -52,7 +52,7 @@ public class ReservationService {
 	 * 
 	 * @param id
 	 */
-	public void delete(Integer id) {
+	public void deleteReservation(Integer id) {
 		reservationRepository.delete(id);
 	}
 }
