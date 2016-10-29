@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import co.simplon.exercise.core.model.Reservation;
 import co.simplon.exercise.core.repository.ReservationRepository;
@@ -20,6 +21,7 @@ public class ReservationService {
 	 * 
 	 * @return
 	 */
+	@Transactional(readOnly=true)
 	public List<Reservation> getAllReservations()
 	{
 		return reservationRepository.findAll();	
@@ -31,6 +33,7 @@ public class ReservationService {
 	 * @param id
 	 * @return
 	 */
+	@Transactional(readOnly=true)
 	public Reservation findReservationById(Integer id)
 	{
 		return reservationRepository.findOne(id);
@@ -42,6 +45,7 @@ public class ReservationService {
 	 * @param reservation
 	 * @return
 	 */
+	@Transactional
 	public Reservation addOrUpdateReservation(Reservation reservation)
 	{
 		return reservationRepository.save(reservation);
@@ -52,6 +56,7 @@ public class ReservationService {
 	 * 
 	 * @param id
 	 */
+	@Transactional
 	public void deleteReservation(Integer id) {
 		reservationRepository.delete(id);
 	}
