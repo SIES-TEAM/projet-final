@@ -6,7 +6,10 @@
 	</head>
 
 	<body>
-		<jsp:include page="includes/header.jsp"></jsp:include>
+		 <div class="site-wrapper">
+            <div class="site-wrapper-inner">
+             <div class="cover-container">
+		        <jsp:include page="includes/header.jsp"></jsp:include>
 		<h1>GESTION RESERVATIONS :</h1>
 		<%-- <security:authorize access="isAuthenticated()"> --%>
 			<h2>Ajouter une réservation</h2>
@@ -26,5 +29,8 @@
 			</form> --%>
 		<%-- </security:authorize> --%>
 		<br/>
+		</div>
+		</div>
+		</div>
 	</body>
 </html>
