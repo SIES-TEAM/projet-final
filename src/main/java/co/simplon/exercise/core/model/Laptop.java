@@ -2,23 +2,54 @@ package co.simplon.exercise.core.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-@PrimaryKeyJoinColumn(name = "resource_id")
-public class Laptop extends Resources{
-	
-	@Column(name = "brand")
+@Table(name = "laptop")
+public class Laptop {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "laptop_id")
+	private int id;
+
+	@Column(name = "laptop_nom")
+	private String name;
+
+	@Column(name = "laptop_marque")
 	private String brand;
-	
+
 	// Constructors
-	public Laptop() {
+
+	public Laptop(String name, String brand) {
 		super();
+
+		this.name = name;
+		this.brand = brand;
 	}
 
-	public Laptop(String brand) {
+	public Laptop() {
 		super();
-		this.brand = brand;
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getBrand() {
