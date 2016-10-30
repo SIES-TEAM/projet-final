@@ -11,6 +11,9 @@
         http://www.springframework.org/schema/context/spring-context.xsd ">
 
 	<context:component-scan base-package="co.simplon.exercise.web" />
+	<mvc:resources mapping="/webjars/**" location="/webjars/" />
+	<mvc:resources mapping="/resources/**" location="/resources/"/>
+
 
 	<mvc:annotation-driven />
 
@@ -18,7 +21,7 @@
 		  class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass"
 				  value="org.springframework.web.servlet.view.JstlView" />
-		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="prefix" value="/WEB-INF/view/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 
