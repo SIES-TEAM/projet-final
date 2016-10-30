@@ -1,31 +1,56 @@
 package co.simplon.exercise.core.model;
 
-import javax.persistence.Column;
+//import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-@Entity(name = "Classroom")
-@PrimaryKeyJoinColumn(name = "resource_id")
-public class Classroom extends Resources{
+
+@Entity
+public class Classroom{
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 	
-	@Column(name = "capacity")
-	private int Capacity;
+	//private int classroom_id;
+	private String name;
+	private int capacity;
 
 	public Classroom() {
 		super();
 	}
 
-	public Classroom(int capacity) {
+	public Classroom(int capacity, String name) {
 		super();
-		Capacity = capacity;
+		//classroom_id = classroom_id;
+		this.capacity = capacity;
+		this.name = name;
+		
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public int getCapacity() {
-		return Capacity;
+		return capacity;
 	}
 
 	public void setCapacity(int capacity) {
-		Capacity = capacity;
+		this.capacity = capacity;
 	}
 
 }

@@ -8,12 +8,10 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
-@Entity(name = "Resources")
-@Inheritance(strategy = InheritanceType.JOINED)
+
 public class Resources {
 			
-		@Id
-		@GeneratedValue
+		
 		private Long resource_id; 
 		
 		@Column(name = "name")

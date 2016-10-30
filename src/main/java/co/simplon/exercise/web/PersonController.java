@@ -24,22 +24,12 @@ public class PersonController {
 		return new ModelAndView("persons-page", model);
 	}
 	
-	/*@RequestMapping(path = "/addPerson")
+	@RequestMapping(path = "/addPerson")
 	public ModelAndView addPerson(@RequestParam String name, @RequestParam String surname, ModelMap model) {
 		personService.addOrUpdate(new Person(name, surname));
 		return new ModelAndView("redirect:/person");
-	}*/
-	
-	@RequestMapping(path = "/addPerson", method = RequestMethod.POST)
-	public String addPerson(@ModelAttribute("person")Person person,
-		                    BindingResult result, ModelMap model){
-			/*if(result.hasErrors()){
-				return "erreur";
-			}
-			model.addAttribute("name", person.getName());
-			model.addAttribute("surname", person.getSurname());*/
-		
-		return "person";
 	}
+	
+	
 
 }

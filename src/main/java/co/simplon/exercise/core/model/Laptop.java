@@ -4,9 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 
-@Entity
-@PrimaryKeyJoinColumn(name = "resource_id")
-public class Laptop extends Resources{
+
+public class Laptop{
 	
 	@Column(name = "brand")
 	private String brand;
