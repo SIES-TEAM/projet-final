@@ -9,7 +9,7 @@
 		 <div class="site-wrapper">
             <div class="site-wrapper-inner">
              <div class="cover-container">
-		        <jsp:include page="includes/header.jsp"></jsp:include>
+		        <jsp:include page="../includes/header.jsp"></jsp:include>
 		<h1>Supprimer un ordinateur</h1>
 		<%-- <security:authorize access="isAuthenticated()"> --%>
 			<h2>Veillez indiquer le model de l'ordinateur</h2>

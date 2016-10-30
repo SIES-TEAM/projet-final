@@ -21,6 +21,7 @@ public class LaptopController {
 
 	@RequestMapping
 	public ModelAndView showLaptops(ModelMap model) {
+
 		model.addAttribute("laptop", laptopService.getAllLaptops());
 
 		return new ModelAndView("laptop", model);
@@ -35,7 +36,7 @@ public class LaptopController {
 	public ModelAndView getAddLaptopForm(ModelMap model) {
 
 		// model.addAttribute("message", "Hello");
-		return new ModelAndView("add-laptop", model);
+		return new ModelAndView("laptop/add-laptop", model);
 
 	}
 

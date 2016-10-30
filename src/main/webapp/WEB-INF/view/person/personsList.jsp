@@ -23,7 +23,7 @@
 				      <th>${person.name }</th>
 				      <th>${person.surname}</th>
 				      <th><a href="/person/delete?id=${person.id}">Delete</a>
-				          <a href="/person" class="btn btn-info" role="button">Update</a>
+				          <a href="/person/update?id=${person.id}" class="btn btn-info" role="button">Update</a>
 				      </th>
 				    </tr>
 		    </c:forEach>

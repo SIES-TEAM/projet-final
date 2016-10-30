@@ -2,15 +2,15 @@
 <%-- <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %> --%>
 <html>
 	<head>
-		<title>Réserver un ordinateur</title>
+		<title>Rï¿½server un ordinateur</title>
 	</head>
 
 	<body>
 		 <div class="site-wrapper">
             <div class="site-wrapper-inner">
              <div class="cover-container">
-		        <jsp:include page="includes/header.jsp"></jsp:include>
-		<h1>Réserver un ordinateur</h1>
+		        <jsp:include page="../includes/header.jsp"></jsp:include>
+		<h1>Rï¿½server un ordinateur</h1>
 		<%-- <security:authorize access="isAuthenticated()"> --%>
 			<h2>Veillez indiquer le model de l'ordinateur</h2>
 			<form class="form-inline" action="/laptop/add">
