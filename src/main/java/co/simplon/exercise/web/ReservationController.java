@@ -39,28 +39,35 @@ public class ReservationController {
 	 * @return
 	 */
 	@RequestMapping(value = "/formAdd", method = RequestMethod.GET)
-	public ModelAndView welcome(ModelMap model) {
-
-		//model.addAttribute("message", "Hello");
+	public ModelAndView getFormAddReservation(ModelMap model) {
+		
 		return new ModelAndView("add-reservation", model);
 
 	}
 	
 	@RequestMapping(path = "/add")
 	public ModelAndView addReservation(@RequestParam int userId,
-			                           @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd")Date creationDate,
 			                           @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd")Date dateBegin,
 			                           @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd")Date dateEnd,
-			                           ModelMap model
-			                           
+			                           ModelMap model,
+			                           final RedirectAttributes redirectAttribute
 			                          )
 	{
 		//if(result.hasError)
+		Date creationDate = new Date();
 		reservationService.addOrUpdateReservation(new Reservation(userId, creationDate, dateBegin, dateEnd));
 		
-		//redirectAttribute.addFlashAttribute("success", "Réservation ajoutée avec succès !");
+		redirectAttribute.addFlashAttribute("message", "Réservation ajoutée avec succès !");
 		return new ModelAndView("redirect:/reservations/formAdd");
 		
+	}
+	
+	// Modifier une réservation
+	
+	@RequestMapping(path= "/updateForm")
+	public ModelAndView updateReservation(ModelMap model)
+	{
+		return new ModelAndView("updateReservationForm", model);
 	}
 	
 	@RequestMapping(path = "/delete")
