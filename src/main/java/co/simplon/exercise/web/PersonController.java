@@ -1,9 +1,10 @@
 package co.simplon.exercise.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import co.simplon.exercise.core.model.Person;
@@ -17,29 +18,37 @@ public class PersonController {
 	@Autowired
 	private PersonService personService;
 
-	@RequestMapping
-	public ModelAndView get(@RequestParam Integer id, ModelMap model) {
-		Person person = personService.findById(id);
-		model.addAttribute("person", person);
-		return new ModelAndView("persons-page", model);
+	@RequestMapping()
+	public ModelAndView get(ModelMap model) {
+		List<Person> person = personService.getAll();
+		model.addAttribute("persons", person);
+		return new ModelAndView("person/personsList", model);
 	}
 	
-	/*@RequestMapping(path = "/addPerson")
+	@RequestMapping(path = "/addPerson")
 	public ModelAndView addPerson(@RequestParam String name, @RequestParam String surname, ModelMap model) {
 		personService.addOrUpdate(new Person(name, surname));
 		return new ModelAndView("redirect:/person");
-	}*/
+	}
 	
-	@RequestMapping(path = "/addPerson", method = RequestMethod.POST)
-	public String addPerson(@ModelAttribute("person")Person person,
-		                    BindingResult result, ModelMap model){
-			/*if(result.hasErrors()){
-				return "erreur";
-			}
-			model.addAttribute("name", person.getName());
-			model.addAttribute("surname", person.getSurname());*/
+	@RequestMapping(path="/updatePerson")
+	public ModelAndView getUpdatePersonForm(@RequestParam Integer id, ModelMap model)
+	{
+		Person ps = personService.findById(id);
+		model.addAttribute(ps);
 		
-		return "person";
+		return new ModelAndView("updatePersonForm", model);		
+	}
+	
+	@RequestMapping(path="/update")
+	public ModelAndView updatePerson(Integer id, String name, String surname, ModelMap model)
+	{
+		Person pu = personService.findById(id);
+		pu.setName(name);
+		pu.setSurname(surname);
+		personService.addOrUpdate(pu);
+		return new ModelAndView("redirect:/person", model);
+		
 	}
 
 }

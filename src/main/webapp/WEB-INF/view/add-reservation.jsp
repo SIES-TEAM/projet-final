@@ -2,7 +2,15 @@
 <%-- <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %> --%>
 <html>
 	<head>
+		<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<meta name="description" content="">
+    	<meta name="author" content="">
+    	
 		<title>Gestion des réservations</title>
+		
+		 <!-- Bootstrap core CSS -->
+   		 <link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 	</head>
 
 	<body>
@@ -10,16 +18,22 @@
             <div class="site-wrapper-inner">
              <div class="cover-container">
 		        <jsp:include page="includes/header.jsp"></jsp:include>
+		        <!--  -->
+		        <c:if test="${message != null}">
+				<div class="alert alert-succes">${message }</div>
+			    </c:if>
 		<h1>GESTION RESERVATIONS :</h1>
 		<%-- <security:authorize access="isAuthenticated()"> --%>
+			
 			<h2>Ajouter une réservation</h2>
 			<form class="form-inline" action="/reservations/add">
 				<input type="text" name="userId" placeholder="userId" />
-				<input type="date" name="creationDate" placeholder="Date de création" />
-				<input type="date" name="dateBegin" placeholder="Date début" />
-				<input type="date" name="dateEnd" placeholder="Date fin" />
+				
+				<input type="datetime-local" name="dateBegin" placeholder="Date début" />
+				<input type="datetime-local" name="dateEnd" placeholder="Date fin" />
 				<input type="submit" value="Ajouter" />
 			</form>
+			
 		<%-- </security:authorize>
 		
 		<security:authorize access="isAuthenticated()"> --%>
@@ -32,5 +46,11 @@
 		</div>
 		</div>
 		</div>
+		
+		<!-- Bootstrap core JavaScript
+        ================================================== -->
+    	<!-- Placed at the end of the document so the pages load faster -->
+    	<script src="webjars/jquery/3.1.1/jquery.min.js"></script>
+    	<script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</body>
 </html>
