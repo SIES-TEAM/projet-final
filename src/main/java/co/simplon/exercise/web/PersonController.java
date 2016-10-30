@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import co.simplon.exercise.core.model.Person;
@@ -23,7 +22,7 @@ public class PersonController {
 	public ModelAndView get(ModelMap model) {
 		List<Person> person = personService.getAll();
 		model.addAttribute("persons", person);
-		return new ModelAndView("person", model);
+		return new ModelAndView("person/personsList", model);
 	}
 	
 	@RequestMapping(path = "/addPerson")
@@ -32,24 +31,24 @@ public class PersonController {
 		return new ModelAndView("redirect:/person");
 	}
 	
-	@RequestMapping(path="/updateForm")
+	@RequestMapping(path="/updatePerson")
 	public ModelAndView getUpdatePersonForm(@RequestParam Integer id, ModelMap model)
 	{
-		personService.findById(id);
-		return new ModelAndView("updateReservationForm");
+		Person ps = personService.findById(id);
+		model.addAttribute(ps);
 		
+		return new ModelAndView("updatePersonForm", model);		
 	}
 	
-	/*@RequestMapping(path = "/addPerson", method = RequestMethod.POST)
-	public String addPerson(@ModelAttribute("person")Person person,
-		                    BindingResult result, ModelMap model){
-			if(result.hasErrors()){
-				return "erreur";
-			}
-			model.addAttribute("name", person.getName());
-			model.addAttribute("surname", person.getSurname());
+	@RequestMapping(path="/update")
+	public ModelAndView updatePerson(Integer id, String name, String surname, ModelMap model)
+	{
+		Person pu = personService.findById(id);
+		pu.setName(name);
+		pu.setSurname(surname);
+		personService.addOrUpdate(pu);
+		return new ModelAndView("redirect:/person", model);
 		
-		return "person";
-	}*/
+	}
 
 }

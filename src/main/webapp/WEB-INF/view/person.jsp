@@ -28,7 +28,9 @@
 		<h1>Persons in database :</h1>
 		<ul>
 			 <c:forEach items="${persons}" var="person">
-			 	<li>${person.name}&nbsp;${person.surname}&nbsp;<a href="/person/deletePerson?id=${person.id}">Delete</a></li>
+			 	<li>${person.name}&nbsp;${person.surname}&nbsp;<a href="/person/deletePerson?id=${person.id}">Delete</a>
+			 		<a href="/person/updatePerson?id=${person.id }">Update</a>
+			 	</li>
 			 </c:forEach>
 		</ul>
 	</body>

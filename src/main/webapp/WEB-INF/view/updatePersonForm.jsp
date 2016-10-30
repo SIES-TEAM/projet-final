@@ -7,9 +7,8 @@
 
 	<body>
 		<h1></h1>
-		<h2>Modifier une réservation :</h2>
-		<form action="/resrvations/updateForm">
-			<input></input>
+		<h2>Modifier le profil :</h2>
+		<form action="/person/update">
 			<input type="hidden" name="id" value="${person.id }"/>
 			<input type="text" name="name" placeholder="name" value="${person.name }" />
 			<input type="text" name="surname" placeholder="surname" value="${person.surname }"/>
