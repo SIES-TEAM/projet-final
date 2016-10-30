@@ -5,11 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import co.simplon.exercise.core.model.Person;
 import co.simplon.exercise.core.service.PersonService;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/person")
@@ -29,6 +30,7 @@ public class PersonController {
 	public ModelAndView addPerson(@RequestParam String name, @RequestParam String surname, ModelMap model) {
 		personService.addOrUpdate(new Person(name, surname));
 		return new ModelAndView("redirect:/person");
+
 	}
 	
 	@RequestMapping(path="/updatePerson")
@@ -50,5 +52,7 @@ public class PersonController {
 		return new ModelAndView("redirect:/person", model);
 		
 	}
+	
+	
 
 }

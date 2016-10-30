@@ -19,7 +19,7 @@ public class Laptop {
 	@Column(name = "laptop_nom")
 	private String name;
 
-	@Column(name = "laptop_marque")
+	@Column(name = "brand")
 	private String brand;
 
 	// Constructors
