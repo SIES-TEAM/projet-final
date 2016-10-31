@@ -12,8 +12,8 @@ import co.simplon.exercise.core.service.UserService;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/person")
-public class PersonController {
+@RequestMapping("/users")
+public class UserController {
 
 	@Autowired
 	private UserService userService;
@@ -21,34 +21,59 @@ public class PersonController {
 	@RequestMapping()
 	public ModelAndView get(ModelMap model) {
 		List<User> user = userService.getAll();
-		model.addAttribute("persons", user);
-		return new ModelAndView("user/personsList", model);
+		model.addAttribute("users", user);
+		return new ModelAndView("user/usersList", model);
 	}
 	
-	@RequestMapping(path = "/addPerson")
-	public ModelAndView addPerson(@RequestParam String name, @RequestParam String surname, ModelMap model) {
-		userService.addOrUpdate(new User(name, surname));
-		return new ModelAndView("redirect:/person");
+	@RequestMapping(path = "/addUser")
+	public ModelAndView addUser(@RequestParam String name,
+								  @RequestParam String surname,
+								  @RequestParam String password,
+								  @RequestParam String email,
+								  @RequestParam String role,
+								  ModelMap model) {
+		userService.addOrUpdate(new User(name, surname, password, email, role));
+		return new ModelAndView("redirect:/addUser");
 	}
-	
-	@RequestMapping(path="/updatePerson")
-	public ModelAndView getUpdatePersonForm(@RequestParam Integer id, ModelMap model)
+
+	/**
+	 * get a form to update a user by id
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(path="/updateUserForm")
+	public ModelAndView getUpdateForm(@RequestParam Integer id, ModelMap model)
 	{
 		User ps = userService.findById(id);
 		model.addAttribute(ps);
 		
-		return new ModelAndView("updatePersonForm", model);		
+		return new ModelAndView("updateUserForm", model);
 	}
 	
 	@RequestMapping(path="/update")
-	public ModelAndView updatePerson(Integer id, String name, String surname, ModelMap model)
+	public ModelAndView updateUser(@RequestParam Integer id,
+								   @RequestParam String name,
+								   @RequestParam String surname,
+									 String password,
+									 String email,
+									 ModelMap model)
 	{
-		User pu = userService.findById(id);
-		pu.setName(name);
-		pu.setSurname(surname);
-		userService.addOrUpdate(pu);
+		User userToUpdate = userService.findById(id);
+		userToUpdate.setName(name);
+		userToUpdate.setSurname(surname);
+		userToUpdate.setPassword(password);
+		userToUpdate.setEmail(email);
+		userService.addOrUpdate(userToUpdate);
+
 		return new ModelAndView("redirect:/person", model);
-		
 	}
+
+//	@RequestMapping(path = "/delete")
+//	public ModelAndView deleteUser(Integer id)
+//	{
+//
+//
+//	}
 
 }
