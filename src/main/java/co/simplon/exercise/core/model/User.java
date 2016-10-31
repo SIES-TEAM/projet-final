@@ -6,7 +6,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Person {
+public class User {
+
+	public enum Role {
+		USER, ADMIN
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,19 +20,28 @@ public class Person {
 
 	private String surname;
 
-	public Person() {
+	private String password;
+
+	private String email;
+
+	private String role;
+
+	public User() {
 		// FOR HIBERNATE
 	}
 
-	public Person(String name, String surname) {
+	public User(String name, String surname, String password, String email, String role) {
 		this.name = name;
 		this.surname = surname;
+		this.password = password;
+		this.email = email;
+		this.role = role;
 	}
 
 	public Integer getId() {
 		return id;
 	}
-	
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -44,9 +57,32 @@ public class Person {
 	public String getSurname() {
 		return surname;
 	}
-	
+
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 }
