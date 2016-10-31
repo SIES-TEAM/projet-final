@@ -2,13 +2,13 @@ package co.simplon.exercise.web;
 
 import java.util.List;
 
+import co.simplon.exercise.core.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import co.simplon.exercise.core.model.Person;
-import co.simplon.exercise.core.service.PersonService;
+import co.simplon.exercise.core.service.UserService;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -16,25 +16,25 @@ import org.springframework.web.servlet.ModelAndView;
 public class PersonController {
 
 	@Autowired
-	private PersonService personService;
+	private UserService userService;
 
 	@RequestMapping()
 	public ModelAndView get(ModelMap model) {
-		List<Person> person = personService.getAll();
-		model.addAttribute("persons", person);
-		return new ModelAndView("person/personsList", model);
+		List<User> user = userService.getAll();
+		model.addAttribute("persons", user);
+		return new ModelAndView("user/personsList", model);
 	}
 	
 	@RequestMapping(path = "/addPerson")
 	public ModelAndView addPerson(@RequestParam String name, @RequestParam String surname, ModelMap model) {
-		personService.addOrUpdate(new Person(name, surname));
+		userService.addOrUpdate(new User(name, surname));
 		return new ModelAndView("redirect:/person");
 	}
 	
 	@RequestMapping(path="/updatePerson")
 	public ModelAndView getUpdatePersonForm(@RequestParam Integer id, ModelMap model)
 	{
-		Person ps = personService.findById(id);
+		User ps = userService.findById(id);
 		model.addAttribute(ps);
 		
 		return new ModelAndView("updatePersonForm", model);		
@@ -43,10 +43,10 @@ public class PersonController {
 	@RequestMapping(path="/update")
 	public ModelAndView updatePerson(Integer id, String name, String surname, ModelMap model)
 	{
-		Person pu = personService.findById(id);
+		User pu = userService.findById(id);
 		pu.setName(name);
 		pu.setSurname(surname);
-		personService.addOrUpdate(pu);
+		userService.addOrUpdate(pu);
 		return new ModelAndView("redirect:/person", model);
 		
 	}

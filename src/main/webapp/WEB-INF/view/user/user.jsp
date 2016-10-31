@@ -7,8 +7,8 @@
 
 	<body>
 		<h1>Persons :</h1>
-		<h2>Add a person :</h2>
-		<form action="/person/addPerson">
+		<h2>Add a user :</h2>
+		<form action="/user/addPerson">
 			<input type="text" name="name" placeholder="name" />
 			<input type="text" name="surname" placeholder="surname" />
 			<input type="submit" value="Add" />
@@ -16,20 +16,20 @@
 		<!-- Formulaire en JSP -->
 		
 		<%-- <form:form method="POST" action="addPerson"
-        modelAttribute="person">
+        modelAttribute="user">
         <form:label path="name">Nom</form:label>
         <form:input path="name" />
      
-        <form:label path="surname">Prénom</form:label>
+        <form:label path="surname">Prï¿½nom</form:label>
         <form:input path="surname" />
      
         <input type="submit" value="Submit" />
         </form:form> --%>
 		<h1>Persons in database :</h1>
 		<ul>
-			 <c:forEach items="${persons}" var="person">
-			 	<li>${person.name}&nbsp;${person.surname}&nbsp;<a href="/person/deletePerson?id=${person.id}">Delete</a>
-			 		<a href="/person/updatePerson?id=${person.id }">Update</a>
+			 <c:forEach items="${persons}" var="user">
+			 	<li>${user.name}&nbsp;${user.surname}&nbsp;<a href="/user/deletePerson?id=${user.id}">Delete</a>
+			 		<a href="/user/updatePerson?id=${user.id }">Update</a>
 			 	</li>
 			 </c:forEach>
 		</ul>
