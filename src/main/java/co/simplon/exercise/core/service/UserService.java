@@ -2,32 +2,32 @@ package co.simplon.exercise.core.service;
 
 import java.util.List;
 
+import co.simplon.exercise.core.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import co.simplon.exercise.core.model.Person;
-import co.simplon.exercise.core.repository.PersonRepository;
+import co.simplon.exercise.core.repository.UserRepository;
 
 @Repository
-public class PersonService {
+public class UserService {
 
 	@Autowired
-	public PersonRepository personRepository;
+	public UserRepository userRepository;
 
-	public List<Person> getAll() {
-		return personRepository.findAll();
+	public List<User> getAll() {
+		return userRepository.findAll();
 	}
 
-	public Person findById(Integer id) {
-		return personRepository.findOne(id);
+	public User findById(Integer id) {
+		return userRepository.findOne(id);
 	}
 
-	public Person addOrUpdate(Person person) {
-		return personRepository.save(person);
+	public User addOrUpdate(User user) {
+		return userRepository.save(user);
 	}
 
 	public void delete(Integer id) {
-		personRepository.delete(id);
+		userRepository.delete(id);
 	}
 
 }
