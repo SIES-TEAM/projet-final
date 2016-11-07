@@ -21,10 +21,9 @@ public class LaptopController {
 
 	@RequestMapping
 	public ModelAndView showLaptops(ModelMap model) {
+		model.addAttribute("laptop", laptopService.getAll());
 
-		model.addAttribute("laptops", laptopService.getAllLaptops());
-
-		return new ModelAndView("laptop/laptops", model);
+		return new ModelAndView("laptop", model);
 	}
 
 	/**
@@ -47,7 +46,7 @@ public class LaptopController {
 			                      ModelMap model
 			                      ) {
 		// if(result.hasError)
-		laptopService.addOrUpdateLaptop(new Laptop(name, brand));
+		laptopService.addOrUpdate(new Laptop(name, brand));
 
 		// redirectAttribute.addFlashAttribute("success", "Ordinateur réservé
 		// avec succès !");
@@ -59,7 +58,7 @@ public class LaptopController {
 	public ModelAndView  deleteLaptop(@RequestParam Integer id, 
 									  ModelMap model
 									){
-		laptopService.deleteLaptop(id);
+		laptopService.delete(id);
 		return new ModelAndView("redirect:/laptop");
 		
 	}

@@ -1,10 +1,11 @@
 package co.simplon.exercise.core.service;
 
+import org.springframework.stereotype.Service;
 
-import org.springframework.stereotype.Repository;
+import co.simplon.exercise.core.model.Reservation;
+import co.simplon.exercise.core.repository.ReservationRepository;
 
-
-@Repository
-public class ReservationService extends GenericService{
+@Service
+public class ReservationService extends GenericService< Reservation, ReservationRepository >{
 
 }

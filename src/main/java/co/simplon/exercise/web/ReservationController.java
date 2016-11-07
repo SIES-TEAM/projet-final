@@ -72,8 +72,6 @@ public class ReservationController {
 	{
 		return new ModelAndView("updateReservationForm", model);
 	}
-
-
 	
 	@RequestMapping(path = "/delete")
 	public ModelAndView  deleteReservation(@RequestParam Integer id, ModelMap model)

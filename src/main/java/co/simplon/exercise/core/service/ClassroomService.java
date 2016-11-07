@@ -1,8 +1,13 @@
 package co.simplon.exercise.core.service;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
-@Repository
-public class ClassroomService {
+import co.simplon.exercise.core.model.Classroom;
+import co.simplon.exercise.core.repository.ClassroomRepository;
+
+@Service
+public class ClassroomService extends GenericService< Classroom, ClassroomRepository >{
+
 
 }
+
