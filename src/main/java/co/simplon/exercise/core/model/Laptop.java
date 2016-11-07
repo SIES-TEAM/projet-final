@@ -27,6 +27,11 @@ public class Laptop {
 		super();
 	}
 
+	public Laptop(String name, String brand) {
+		this.name = name;
+		this.brand = brand;
+	}
+
 	public Laptop(String name, String brand, List<Reservation> reservations) {
 		this.name = name;
 		this.brand = brand;
