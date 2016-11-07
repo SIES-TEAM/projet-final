@@ -12,7 +12,7 @@
 		        <jsp:include page="includes/header.jsp"></jsp:include>
 		<h1>Supprimer un ordinateur</h1>
 		<%-- <security:authorize access="isAuthenticated()"> --%>
-			<h2>Veillez indiquer le model de l'ordinateur</h2>
+			<h2>Choissir le model de l'ordinateur</h2>
 			<form class="form-inline" action="/laptop/delete">
 				<!-- <input type="text" name="id" placeholder="Identifiant de l'ordinateur" /> -->
 				<input type="text" name="name" placeholder="Nom de l'ordinateur" />

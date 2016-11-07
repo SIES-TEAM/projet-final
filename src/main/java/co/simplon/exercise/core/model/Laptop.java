@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "laptop")
+@Table(name = "Laptop")
 public class Laptop {
 
 	@Id
@@ -16,10 +16,10 @@ public class Laptop {
 	@Column(name = "laptop_id")
 	private int id;
 
-	@Column(name = "laptop_nom")
+	@Column(name = "name")
 	private String name;
 
-	@Column(name = "laptop_marque")
+	@Column(name = "brand")
 	private String brand;
 
 	// Constructors
