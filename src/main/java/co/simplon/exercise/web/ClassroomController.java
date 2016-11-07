@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.simplon.exercise.core.model.Classroom;
-import co.simplon.exercise.core.model.Person;
 import co.simplon.exercise.core.service.ClassroomService;
-import co.simplon.exercise.core.service.PersonService;
 
 
 @Controller

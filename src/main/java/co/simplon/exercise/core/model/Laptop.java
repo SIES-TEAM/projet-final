@@ -1,11 +1,8 @@
 package co.simplon.exercise.core.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Laptop")
@@ -21,18 +18,19 @@ public class Laptop {
 
 	@Column(name = "brand")
 	private String brand;
+
+	@ManyToMany(mappedBy = "laptops")
+	private List<Reservation> reservations = new ArrayList<>();
+
 	// Constructors
-
-	public Laptop(String name, String brand) {
-		super();
-
-		this.name = name;
-		this.brand = brand;
-	}
-
 	public Laptop() {
 		super();
-		// TODO Auto-generated constructor stub
+	}
+
+	public Laptop(String name, String brand, List<Reservation> reservations) {
+		this.name = name;
+		this.brand = brand;
+		this.reservations = reservations;
 	}
 
 	public int getId() {
@@ -59,4 +57,11 @@ public class Laptop {
 		this.brand = brand;
 	}
 
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
+	}
 }

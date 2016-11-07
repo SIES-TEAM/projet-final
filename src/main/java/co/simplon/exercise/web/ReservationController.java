@@ -3,6 +3,8 @@ package co.simplon.exercise.web;
 import java.util.Date;
 import java.util.List;
 
+import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -28,9 +30,9 @@ public class ReservationController {
 	@RequestMapping
 	public ModelAndView showReservations(ModelMap model)
 	{
-		model.addAttribute("reservations", reservationService.getAllReservations());
+		model.addAttribute("reservations", reservationService.getAll());
 		
-		return new ModelAndView("reservations", model);	
+		return new ModelAndView("reservation/reservations", model);
 	}
 	
 	/**
@@ -41,39 +43,42 @@ public class ReservationController {
 	@RequestMapping(value = "/formAdd", method = RequestMethod.GET)
 	public ModelAndView getFormAddReservation(ModelMap model) {
 		
-		return new ModelAndView("add-reservation", model);
+		return new ModelAndView("reservation/add-reservation", model);
 
 	}
 	
 	@RequestMapping(path = "/add")
 	public ModelAndView addReservation(@RequestParam int userId,
-			                           @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd")Date dateBegin,
-			                           @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd")Date dateEnd,
+			                           @RequestParam LocalDate dateBegin,
+			                           @RequestParam LocalDate dateEnd,
+									   @RequestParam LocalTime startTime,
+									   @RequestParam LocalTime endTime,
 			                           ModelMap model,
 			                           final RedirectAttributes redirectAttribute
 			                          )
 	{
-		//if(result.hasError)
-		Date creationDate = new Date();
-		reservationService.addOrUpdateReservation(new Reservation(userId, creationDate, dateBegin, dateEnd));
+		LocalDate creationDate = new LocalDate();
+		//Date trueDateDebut(dateBegin.getYear(), dateBegin.getMonth(), dateBegin.getDay(), hourBegin.getHout)
+		reservationService.addOrUpdate(new Reservation(userId, creationDate, dateBegin, dateEnd, startTime, endTime));
 		
 		redirectAttribute.addFlashAttribute("message", "Réservation ajoutée avec succès !");
 		return new ModelAndView("redirect:/reservations/formAdd");
 		
 	}
 	
-	// Modifier une réservation
-	
+	// Afficher le formulaire pour modifier une réservation
 	@RequestMapping(path= "/updateForm")
 	public ModelAndView updateReservation(ModelMap model)
 	{
 		return new ModelAndView("updateReservationForm", model);
 	}
+
+
 	
 	@RequestMapping(path = "/delete")
 	public ModelAndView  deleteReservation(@RequestParam Integer id, ModelMap model)
 	{
-		reservationService.deleteReservation(id);
+		reservationService.delete(id);
 		return new ModelAndView("redirect:/reservations");
 		
 	}

@@ -22,9 +22,9 @@ public class LaptopController {
 	@RequestMapping
 	public ModelAndView showLaptops(ModelMap model) {
 
-		model.addAttribute("laptop", laptopService.getAllLaptops());
+		model.addAttribute("laptops", laptopService.getAllLaptops());
 
-		return new ModelAndView("laptop", model);
+		return new ModelAndView("laptop/laptops", model);
 	}
 
 	/**

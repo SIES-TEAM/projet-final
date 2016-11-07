@@ -1,9 +1,8 @@
 package co.simplon.exercise.core.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User {
@@ -25,6 +24,9 @@ public class User {
 	private String email;
 
 	private String role;
+
+	@OneToMany
+	private List<Reservation> reservations = new ArrayList<>();
 
 	public User() {
 		// FOR HIBERNATE
