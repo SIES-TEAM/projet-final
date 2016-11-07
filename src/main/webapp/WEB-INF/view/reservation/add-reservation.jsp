@@ -7,7 +7,7 @@
     	<meta name="description" content="">
     	<meta name="author" content="">
     	
-		<title>Gestion des réservations</title>
+		<title>Gestion des rï¿½servations</title>
 		
 		 <!-- Bootstrap core CSS -->
    		 <link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -25,12 +25,21 @@
 		<h1>GESTION RESERVATIONS :</h1>
 		<%-- <security:authorize access="isAuthenticated()"> --%>
 			
-			<h2>Ajouter une réservation</h2>
+			<h2>Ajouter une rÃ©servation</h2>
 			<form class="form-inline" action="/reservations/add">
-				<input type="text" name="userId" placeholder="userId" />
-				
-				<input type="datetime-local" name="dateBegin" placeholder="Date début" />
-				<input type="datetime-local" name="dateEnd" placeholder="Date fin" />
+				<input type="text" name="user" placeholder="Selevt a user" />
+				<label for="sel2">Mutiple select list (hold shift to select more than one):</label>
+				<select multiple class="form-control" id="sel2">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+				</select
+				<input type="datetime" name="dateBegin" placeholder="Date dÃ©but" />
+				<input type="datetime" name="dateEnd" placeholder="Date fin" />
+				<input type="time" name="startTime" placeholder="Heure de dÃ©but">
+				<input type="time" name="endTime" placeholder="Heure de fin">
 				<input type="submit" value="Ajouter" />
 			</form>
 			

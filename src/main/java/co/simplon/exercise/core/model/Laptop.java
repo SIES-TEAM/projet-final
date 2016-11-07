@@ -27,6 +27,7 @@ public class Laptop {
 		super();
 	}
 
+	// Pour l'ajout d'un ordi à la base
 	public Laptop(String name, String brand) {
 		this.name = name;
 		this.brand = brand;
