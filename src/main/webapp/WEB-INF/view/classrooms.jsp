@@ -31,6 +31,8 @@
 		      <td>${classroom.name }</td>
 		      <th>${classroom.capacity }</th>
 		      <th><a href="/classroom/delete?id=${classroom.id}">Supprimer</a></th>
+		      
+		      <th><a href="/classroom/updateClassroom?id=${classroom.id}">Modifier</a></th>
 		    </tr>
 		    </c:forEach>
 		   </tbody>

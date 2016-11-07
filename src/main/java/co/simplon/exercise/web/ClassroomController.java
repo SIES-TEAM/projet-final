@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.simplon.exercise.core.model.Classroom;
-import co.simplon.exercise.core.model.Person;
 import co.simplon.exercise.core.service.ClassroomService;
-import co.simplon.exercise.core.service.PersonService;
 
 
 @Controller
@@ -25,7 +23,7 @@ public class ClassroomController {
 //
 	@RequestMapping
 	public ModelAndView get( ModelMap model) {
-		List<Classroom> classroom = classroomService.getAllClassroom();
+		List<Classroom> classroom = classroomService.getAll();
 		model.addAttribute("classrooms", classroom);
 		return new ModelAndView("classrooms", model);
 	}
@@ -40,7 +38,7 @@ public class ClassroomController {
 	@RequestMapping("/add")
 	public ModelAndView add(@RequestParam int capacity,@RequestParam String name, ModelMap model)
 	{
-		classroomService.addOrUpdateClassroom(new Classroom(capacity, name));
+		classroomService.addOrUpdate(new Classroom(capacity, name));
 		return new ModelAndView("redirect:/classroom/formAdd");
 	}
 	
@@ -51,5 +49,31 @@ public class ClassroomController {
 		classroomService.delete(id);
 		return new ModelAndView("redirect:/classroom");
 	}
+	
+	@RequestMapping(path="/updateClassroom")
+	public ModelAndView getUpdateClassroomForm(@RequestParam Integer id, ModelMap model)
+	{
+		Classroom cl = classroomService.findById(id);
+		model.addAttribute(cl);
+		
+		return new ModelAndView("updateClassroomForm", model);		
+	}
+	
+	@RequestMapping(path="/update")
+	public ModelAndView updateClassroom(Integer id, String name, int capacity, ModelMap model)
+	{
+		Classroom cl = classroomService.findById(id);
+		cl.setName(name);
+		cl.setCapacity(capacity);
+		classroomService.addOrUpdate(cl);
+		return new ModelAndView("redirect:/classroom", model);
+		
+	}
+	
+	
+	
+	
+	
+	
 	
 }

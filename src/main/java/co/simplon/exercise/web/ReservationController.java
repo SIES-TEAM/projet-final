@@ -1,14 +1,11 @@
 package co.simplon.exercise.web;
 
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,7 +25,7 @@ public class ReservationController {
 	@RequestMapping
 	public ModelAndView showReservations(ModelMap model)
 	{
-		model.addAttribute("reservations", reservationService.getAllReservations());
+		model.addAttribute("reservations", reservationService.getAll());
 		
 		return new ModelAndView("reservations", model);	
 	}
@@ -55,7 +52,7 @@ public class ReservationController {
 	{
 		//if(result.hasError)
 		Date creationDate = new Date();
-		reservationService.addOrUpdateReservation(new Reservation(userId, creationDate, dateBegin, dateEnd));
+		reservationService.addOrUpdate(new Reservation(userId, creationDate, dateBegin, dateEnd));
 		
 		redirectAttribute.addFlashAttribute("message", "Réservation ajoutée avec succès !");
 		return new ModelAndView("redirect:/reservations/formAdd");
@@ -71,9 +68,9 @@ public class ReservationController {
 	}
 	
 	@RequestMapping(path = "/delete")
-	public ModelAndView  deleteReservation(@RequestParam Integer id, ModelMap model)
+	public ModelAndView  delete(@RequestParam Integer id, ModelMap model)
 	{
-		reservationService.deleteReservation(id);
+		reservationService.delete(id);
 		return new ModelAndView("redirect:/reservations");
 		
 	}
