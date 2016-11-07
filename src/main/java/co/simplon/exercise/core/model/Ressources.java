@@ -1,7 +1,5 @@
 package co.simplon.exercise.core.model;
 
-
-
 public class Ressources {
 
 		private Long resource_id; 
