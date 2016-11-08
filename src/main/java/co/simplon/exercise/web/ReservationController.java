@@ -63,7 +63,7 @@ public class ReservationController {
 			                           final RedirectAttributes redirectAttribute
 			                          )
 	{
-		 Date creationDate = new Date();
+		Date creationDate = new Date();
 //		DateTime startTime = new DateTime(dateBegin.getHourOfDay(), dateBegin.getMinuteOfHour(), dateBegin.getSecondOfMinute());
 //		DateTime endTime = new DateTime(dateEnd.getHourOfDay());
 		Date startTime = new Date(dateBegin.getHours());
