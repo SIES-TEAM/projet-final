@@ -23,15 +23,6 @@ public class LaptopService {
 		return laptopRepository.findAll();
 	}
 	
-	/**
-	 * Get un laptop à partir d'un Id
-	 * 
-	 * @param id
-	 * @return
-	 */
-	public Laptop getLaptop(Integer id) {
-		return laptopRepository.getOne(id);
-	}
 	
 	/**
 	 * Trouver un laptop à partir d'un Id
@@ -43,27 +34,7 @@ public class LaptopService {
 		return laptopRepository.findOne(id);
 	}
 	
-	/**
-	 * Trouver un laptop à partir d'un nom
-	 * 
-	 * @param id
-	 * @return
-	 */
-	public Laptop findLaptopByName(Integer name) {
-		return laptopRepository.findOne(name);
-	}
 	
-
-	/**
-	 * Trouver un laptop à partir d'une marque
-	 * 
-	 * @param id
-	 * @return
-	 */
-	public Laptop findLaptopByBrand(Integer brand) {
-		return laptopRepository.findOne(brand);
-	}
-
 	/**
 	 * Ajouter ou modifier un laptop
 	 * 

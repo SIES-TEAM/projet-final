@@ -13,10 +13,10 @@
 		<h1>Modifier un ordinateur</h1>
 		<%-- <security:authorize access="isAuthenticated()"> --%>
 			<h2>Choissir le model de l'ordinateur</h2>
-			<form class="form-inline" action="/laptop/update">
-				<!-- <input type="text" name="id" placeholder="Identifiant de l'ordinateur" /> -->
-				<input type="text" name="name" placeholder="Nom de l'ordinateur" />
-				<input type="text" name="brand" placeholder="Marque de l'ordinateur" />
+			<form class="form-inline" action="/laptops/update">
+				<input type="hidden" name="id" value="${laptop.id }" placeholder="Identifiant de l'ordinateur"/>
+				<input type="text" name="name" value="${laptop.name}" placeholder="Nom de l'ordinateur" />
+				<input type="text" name="brand" value="${laptop.brand}" placeholder="Marque de l'ordinateur" />
 			
 				<input type="submit" value="Modifier" />
 			</form>
