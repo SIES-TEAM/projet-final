@@ -7,8 +7,7 @@ import co.simplon.exercise.core.repository.ClassroomRepository;
 
 @Service
 public class ClassroomService extends GenericService< Classroom, ClassroomRepository >{
-	
-	
+
+
 }
 
- 

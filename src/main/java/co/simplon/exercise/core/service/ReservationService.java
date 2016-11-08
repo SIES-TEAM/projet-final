@@ -7,5 +7,5 @@ import co.simplon.exercise.core.repository.ReservationRepository;
 
 @Service
 public class ReservationService extends GenericService< Reservation, ReservationRepository >{
-	
+
 }

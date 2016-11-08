@@ -46,14 +46,12 @@
             <h1 class="cover-heading"><c:out value="${message }"></c:out></h1>
             <p class="lead">Bienvenue dans l'outil de gestion des ressources de Simplon</p>
             <p class="lead">
+            
+             <a href="/classroom/formAdd" class="btn btn-lg btn-default">RÃ©server une salle</a>
 
-              <a href="/classroom/formAdd" class="btn btn-lg btn-default">Réserver une salle</a>      
-
-              
-	          <a href="/laptop/formAdd" class="btn btn-lg btn-default">Réserver un ordinateur</a>
+	         <a href="/laptops/formAdd" class="btn btn-lg btn-default">RÃ©server un ordinateur</a>
 
 
-	      
             </p>
           </div>
 

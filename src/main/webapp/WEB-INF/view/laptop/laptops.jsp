@@ -6,7 +6,7 @@
 	    <meta name="description" content="">
 	    <meta name="author" content="">
 	    
-        <title>List of reservations</title>
+        <title>List of laptops </title>
         
         <!-- Bootstrap core CSS -->
     <link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -14,27 +14,25 @@
     <body>
     	<div class="container">
     	<div class="jumbotron">
-    	<h2>Réservations </h2>
+    	<h2> Ordinateurs </h2>
     	
     	</div>
     	<table class="table">
 		  <thead class="thead-inverse">
 		    <tr>
 		      <th>Identifiant</th>
-		      <th>Date de création </th>
-		      <th>Date début</th>
-		      <th>Date fin</th>
-		      <th>Action</th>
+		      <th>Nom de l'ordinateur</th>
+		      <th>Marque de l'ordinateur</th>
 		    </tr>
 		  </thead>
 		  <tbody>
-		   <c:forEach items="${reservations }" var="reservation"> 
+		   <c:forEach items="${laptops }" var="laptop"> 
 		    <tr>
-		      <td>${reservation.userId }</td>
-		      <th>${reservation.creationDate }</th>
-		      <th>${reservation.dateBegin }</th>
-		      <th>${reservation.dateEnd }</th>
-		      <th><a href="/reservations/delete?id=${reservation.id}">Supprimer</a></th>
+		      <td>${laptop.id }</td>
+		      <th>${laptop.name }</th>
+		      <th>${laptop.brand }</th>
+		      <th><a href="/laptops/delete?id=${laptop.id}">Supprimer</a></th>
+		        <th><a href="/laptops/update?id=${laptop.id}">Modifier</a></th>
 		    </tr>
 		    </c:forEach>
 		   </tbody>
