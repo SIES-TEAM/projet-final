@@ -1,39 +1,42 @@
 package co.simplon.exercise.core.model;
 
-//import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
 public class Classroom{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	
-	//private int classroom_id;
+	private int id;
+
+	@Column(nullable = false)
 	private String name;
+
+	@Column(nullable = false)
 	private int capacity;
 
+	@OneToMany
+	private List<Reservation> reservations = new ArrayList<>();
+
+	// Consturctors
 	public Classroom() {
 		super();
 	}
 
-	public Classroom(int capacity, String name) {
-		super();
-		//classroom_id = classroom_id;
-		this.capacity = capacity;
+	public Classroom(String name, int capacity) {
 		this.name = name;
-		
+		this.capacity = capacity;
+
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -53,4 +56,11 @@ public class Classroom{
 		this.capacity = capacity;
 	}
 
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
+	}
 }

@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%-- <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %> --%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -7,17 +7,17 @@
     	<meta name="description" content="">
     	<meta name="author" content="">
     	
-		<title>Gestion des r�servations</title>
-		
+		<title>Gestion des réservations</title>
+
 		 <!-- Bootstrap core CSS -->
-   		 <link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+         <link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 	</head>
 
 	<body>
 		 <div class="site-wrapper">
             <div class="site-wrapper-inner">
              <div class="cover-container">
-		        <jsp:include page="includes/header.jsp"></jsp:include>
+
 		        <!--  -->
 		        <c:if test="${message != null}">
 				<div class="alert alert-succes">${message }</div>
@@ -25,12 +25,19 @@
 		<h1>GESTION RESERVATIONS :</h1>
 		<%-- <security:authorize access="isAuthenticated()"> --%>
 			
-			<h2>Ajouter une r�servation</h2>
+			<h2>Ajouter une réservation d&quote;ordinateurs</h2>
 			<form class="form-inline" action="/reservations/add">
-				<input type="text" name="userId" placeholder="userId" />
-				
-				<input type="datetime-local" name="dateBegin" placeholder="Date d�but" />
-				<input type="datetime-local" name="dateEnd" placeholder="Date fin" />
+			    <label>Utilisateur</label>
+				<input type="text" name="users" placeholder="Select a user" />
+				<label for="laptops">Sélectionner ordinateur:</label>
+				<select multiple class="form-control" id="laptops">
+					<option></option>
+				</select>
+				<label>Début réservation</label>
+				<input type="date" name="dateBegin" placeholder="Date début" />
+				<input type="date" name="dateEnd" placeholder="Date fin" />
+				<input type="time" name="startTime" placeholder="Heure de début">
+				<input type="time" name="endTime" placeholder="Heure de fin">
 				<input type="submit" value="Ajouter" />
 			</form>
 			

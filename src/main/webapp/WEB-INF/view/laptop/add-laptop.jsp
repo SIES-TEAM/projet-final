@@ -2,23 +2,23 @@
 <%-- <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %> --%>
 <html>
 	<head>
-		<title>Supprimer un ordinateur</title>
+		<title>R�server un ordinateur</title>
 	</head>
 
 	<body>
 		 <div class="site-wrapper">
             <div class="site-wrapper-inner">
              <div class="cover-container">
-		        <jsp:include page="includes/header.jsp"></jsp:include>
-		<h1>Supprimer un ordinateur</h1>
+		        <jsp:include page="../includes/header.jsp"></jsp:include>
+		<h1>R�server un ordinateur</h1>
 		<%-- <security:authorize access="isAuthenticated()"> --%>
 			<h2>Choissir le model de l'ordinateur</h2>
-			<form class="form-inline" action="/laptop/delete">
+			<form class="form-inline" action="/laptops/add">
 				<!-- <input type="text" name="id" placeholder="Identifiant de l'ordinateur" /> -->
 				<input type="text" name="name" placeholder="Nom de l'ordinateur" />
 				<input type="text" name="brand" placeholder="Marque de l'ordinateur" />
 			
-				<input type="submit" value="Supprimer" />
+				<input type="submit" value="Ajouter" />
 			</form>
 		<%-- </security:authorize>
 		

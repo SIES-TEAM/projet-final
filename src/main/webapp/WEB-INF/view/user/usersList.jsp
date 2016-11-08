@@ -17,13 +17,13 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-		    <c:forEach items="${persons }" var="person"> 
+		    <c:forEach items="${persons }" var="user">
 				    <tr>
-				      <td>${person.id }</td>
-				      <th>${person.name }</th>
-				      <th>${person.surname}</th>
-				      <th><a href="/person/delete?id=${person.id}">Delete</a>
-				          <a href="/person" class="btn btn-info" role="button">Update</a>
+				      <td>${user.id }</td>
+				      <th>${user.name }</th>
+				      <th>${user.surname}</th>
+				      <th><a href="/user/delete?id=${user.id}">Delete</a>
+				          <a href="/user/update?id=${user.id}" class="btn btn-info" role="button">Update</a>
 				      </th>
 				    </tr>
 		    </c:forEach>

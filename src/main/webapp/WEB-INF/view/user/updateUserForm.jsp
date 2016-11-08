@@ -8,10 +8,10 @@
 	<body>
 		<h1></h1>
 		<h2>Modifier le profil :</h2>
-		<form action="/person/update">
-			<input type="hidden" name="id" value="${person.id }"/>
-			<input type="text" name="name" placeholder="name" value="${person.name }" />
-			<input type="text" name="surname" placeholder="surname" value="${person.surname }"/>
+		<form action="/user/update">
+			<input type="hidden" name="id" value="${user.id }"/>
+			<input type="text" name="name" placeholder="name" value="${user.name }" />
+			<input type="text" name="surname" placeholder="surname" value="${user.surname }"/>
 			<input type="submit" value="Add" />
 		</form> 
 	</body>

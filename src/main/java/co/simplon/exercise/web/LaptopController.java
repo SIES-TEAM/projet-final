@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import co.simplon.exercise.core.model.Classroom;
 import co.simplon.exercise.core.model.Laptop;
 
 import co.simplon.exercise.core.service.LaptopService;
@@ -18,7 +19,7 @@ import co.simplon.exercise.core.service.LaptopService;
 public class LaptopController {
 	@Autowired
 	LaptopService laptopService;
-	
+
 	/**
 	 * Display all laptops
 	 * 
@@ -26,23 +27,11 @@ public class LaptopController {
 	 */
 	@RequestMapping
 	public ModelAndView showLaptops(ModelMap model) {
-		model.addAttribute("laptops", laptopService.getAllLaptops());
+		model.addAttribute("laptops", laptopService.getAll());
 
-		return new ModelAndView("laptops", model);
+		return new ModelAndView("laptop/laptops", model);
 	}
 
-	/**
-	 * Display the laptopbyId
-	 * 
-	 * @return
-	 */
-
-	@RequestMapping("/laptopById")
-	public ModelAndView getById(@RequestParam("id") Integer id, ModelMap model) {
-		Laptop laptop = laptopService.findLaptopById(id);
-		model.addAttribute("laptop", laptop);
-		return new ModelAndView("laptop", model);
-	}
 
 	/**
 	 * Display the form to add a laptop
@@ -53,13 +42,14 @@ public class LaptopController {
 	@RequestMapping(value = "/formAdd", method = RequestMethod.GET)
 	public ModelAndView getAddLaptopForm(ModelMap model) {
 
-		return new ModelAndView("add-laptop", model);
-
+		return new ModelAndView("laptop/add-laptop", model);
 	}
 
 	@RequestMapping(path = "/add")
-	public ModelAndView addLaptop(@RequestParam String name, @RequestParam String brand, ModelMap model) {
-		laptopService.addOrUpdateLaptop(new Laptop(name, brand));
+	public ModelAndView addLaptop(@RequestParam String name, 
+								@RequestParam String brand, 
+								ModelMap model) {
+		laptopService.addOrUpdate(new Laptop(name, brand));
 
 		return new ModelAndView("redirect:/laptops/formAdd");
 
@@ -73,27 +63,33 @@ public class LaptopController {
 	@RequestMapping(path = "/updateLaptop")
 	public ModelAndView getUpdateLaptopForm(@RequestParam Integer id, ModelMap model) {
 
-		Laptop lp = laptopService.findLaptopById(id);
+		Laptop lp = laptopService.findById(id);
 		model.addAttribute(lp);
-
 		return new ModelAndView("update-laptop", model);
 	}
 
 	@RequestMapping(path = "/update")
-	public ModelAndView updateLaptop(@RequestParam Integer id, @RequestParam String name, @RequestParam String brand,
-			ModelMap model) {
-
-		Laptop lp = laptopService.findLaptopById(id);
+	public ModelAndView updateLaptop(@RequestParam Integer id, 
+								@RequestParam String name, 
+								@RequestParam String brand,
+								ModelMap model) {
+		Laptop lp = laptopService.findById(id);
 		lp.setName(name);
 		lp.setBrand(brand);
-		laptopService.addOrUpdateLaptop(lp);
+		laptopService.addOrUpdate(lp);
 		return new ModelAndView("redirect:/laptops", model);
 
 	}
-
+	
+	/**
+	 * Delete laptop
+	 * 
+	 * @return
+	 */
 	@RequestMapping(path = "/delete")
-	public ModelAndView deleteLaptop(@RequestParam Integer id, ModelMap model) {
-		laptopService.deleteLaptop(id);
+	public ModelAndView delete(@RequestParam Integer id, ModelMap model) {
+
+		laptopService.delete(id);
 		return new ModelAndView("redirect:/laptops");
 
 	}

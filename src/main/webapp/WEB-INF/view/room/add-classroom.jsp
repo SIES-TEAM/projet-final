@@ -9,8 +9,8 @@
              <div class="site-wrapper">
             <div class="site-wrapper-inner">
              <div class="cover-container">
-             <jsp:include page="includes/header.jsp"></jsp:include>
-		<h1>Réserver une salle</h1>
+             <jsp:include page="../includes/header.jsp"></jsp:include>
+		<h1>Rï¿½server une salle</h1>
 	 <form class="form-inline" action="/classroom/add">
 		<input type="text" name="name" placeholder="Nom de la salles"/>
 		<input type="text" name="capacity" placeholder="Capacite"/>
