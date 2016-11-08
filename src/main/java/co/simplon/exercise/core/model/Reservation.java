@@ -32,11 +32,11 @@ public class Reservation {
     private Date endTime;
 
     @ManyToOne
-	@Column(name = "user_id")
+	@JoinColumn(name = "user_id")
 	private User user;
 
-    @OneToMany
-	@Column(name = "room_id")
+    @ManyToOne
+	@JoinColumn(name = "room_id")
 	private Classroom classroom;
 
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
