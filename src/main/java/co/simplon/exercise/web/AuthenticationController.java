@@ -15,12 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping(path = "/authentication")
 public class AuthenticationController {
 
-//    @RequestMapping(path = "/signin")
-//    public ModelAndView signin(ModelMap model) {
-//        return new ModelAndView("jsp/signin");
-//    }
+    @RequestMapping(path = "/signin")
+    public ModelAndView signin(ModelMap model) {
+        return new ModelAndView("authentication/signin");
+    }
 
-    @RequestMapping(path = "/loginForm")
+    @RequestMapping(path = "/")
     public ModelAndView loginForm(ModelMap model) {
         return new ModelAndView("authentication/loginForm");
     }

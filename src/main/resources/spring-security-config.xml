@@ -11,7 +11,7 @@
         <intercept-url pattern="/person/delete" access="hasAuthority('ADMIN')" />
         <intercept-url pattern="/**" access="permitAll" />
         <form-login  login-page="/login"
-                     username-parameter="username"
+                     username-parameter="name"
                      password-parameter="password"
                      authentication-failure-url="/accessDenied" />
         <csrf/>
@@ -23,11 +23,11 @@
 
     <beans:bean class="org.springframework.security.authentication.dao.DaoAuthenticationProvider" id="daoAuthenticationProvider">
         <beans:property name="userDetailsService" ref="customLoginService" />
-        <beans:property name="passwordEncoder" ref="passwordEncoder" />
+        <!--<beans:property name="passwordEncoder" ref="passwordEncoder" />-->
     </beans:bean>
 
-    <beans:bean class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" id="passwordEncoder" >
-        <beans:constructor-arg value="11"/>
-    </beans:bean>
+    <!--<beans:bean class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" id="passwordEncoder" >-->
+        <!--<beans:constructor-arg value="11"/>-->
+    <!--</beans:bean>-->
 
 </beans:beans>

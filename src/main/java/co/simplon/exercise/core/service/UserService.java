@@ -9,25 +9,9 @@ import org.springframework.stereotype.Repository;
 import co.simplon.exercise.core.repository.UserRepository;
 
 @Repository
-public class UserService {
+public class UserService extends GenericService<User, UserRepository>{
 
 	@Autowired
 	public UserRepository userRepository;
-
-	public List<User> getAll() {
-		return userRepository.findAll();
-	}
-
-	public User findById(Integer id) {
-		return userRepository.findOne(id);
-	}
-
-	public User addOrUpdate(User user) {
-		return userRepository.save(user);
-	}
-
-	public void delete(Integer id) {
-		userRepository.delete(id);
-	}
-
+	
 }
