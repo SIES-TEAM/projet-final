@@ -38,7 +38,7 @@ public class ClassroomController {
 	@RequestMapping("/add")
 	public ModelAndView add(@RequestParam int capacity,@RequestParam String name, ModelMap model)
 	{
-		classroomService.addOrUpdate(new Classroom(capacity, name));
+		classroomService.addOrUpdate(new Classroom(name, capacity));
 		return new ModelAndView("redirect:/classroom/formAdd");
 	}
 	
