@@ -23,15 +23,15 @@ public class ClassroomController {
 //
 	@RequestMapping
 	public ModelAndView get( ModelMap model) {
-		List<Classroom> classroom = classroomService.getAll();
-		model.addAttribute("classrooms", classroom);
-		return new ModelAndView("classrooms", model);
+		List<Classroom> classrooms = classroomService.getAll();
+		model.addAttribute("classrooms", classrooms);
+		return new ModelAndView("room/classrooms", model);
 	}
 
 
  @RequestMapping(value = "/formAdd", method = RequestMethod.GET)
 	public ModelAndView classroomForm(ModelMap model) {
-		return new ModelAndView("add-classroom", model);
+		return new ModelAndView("room/add-classroom", model);
 	   }
 	
  
@@ -56,7 +56,7 @@ public class ClassroomController {
 		Classroom cl = classroomService.findById(id);
 		model.addAttribute(cl);
 		
-		return new ModelAndView("updateClassroomForm", model);		
+		return new ModelAndView("room/updateClassroomForm", model);
 	}
 	
 	@RequestMapping(path="/update")
