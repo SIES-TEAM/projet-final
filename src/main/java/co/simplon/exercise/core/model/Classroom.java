@@ -16,7 +16,7 @@ public class Classroom{
 	private String name;
 
 	@Column(nullable = false)
-	private Integer capacity;
+	private int capacity;
 
 	@OneToMany
 	private List<Reservation> reservations = new ArrayList<>();
@@ -26,7 +26,7 @@ public class Classroom{
 		super();
 	}
 
-	public Classroom(String name, Integercapacity) {
+	public Classroom(String name, int capacity) {
 		this.name = name;
 		this.capacity = capacity;
 
