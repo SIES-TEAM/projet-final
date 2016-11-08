@@ -14,15 +14,15 @@
     <body>
     	<div class="container">
     	<div class="jumbotron">
-    	<h2>Réservations </h2>
+    	<h2>RÃ©servations </h2>
     	
     	</div>
     	<table class="table">
 		  <thead class="thead-inverse">
 		    <tr>
 		      <th>Identifiant</th>
-		      <th>Date de création </th>
-		      <th>Date début</th>
+		      <th>Date de crÃ©ation </th>
+		      <th>Date dÃ©but</th>
 		      <th>Date fin</th>
 		      <th>Action</th>
 		    </tr>

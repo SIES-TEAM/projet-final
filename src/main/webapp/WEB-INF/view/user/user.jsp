@@ -8,9 +8,13 @@
 	<body>
 		<h1>Persons :</h1>
 		<h2>Add a user :</h2>
-		<form action="/user/addPerson">
+		<form action="/user/addUser">
 			<input type="text" name="name" placeholder="name" />
 			<input type="text" name="surname" placeholder="surname" />
+			<select name="role">
+            				<option value="USER">USER</option>
+            				<option value="ADMIN">ADMIN</option>
+            </select>
 			<input type="submit" value="Add" />
 		</form> 
 		<!-- Formulaire en JSP -->
