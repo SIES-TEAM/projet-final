@@ -20,9 +20,9 @@ public class UserController {
 
 	@RequestMapping()
 	public ModelAndView get(ModelMap model) {
-		List<User> user = userService.getAll();
+		List<User> users = userService.getAll();
 		//System.out.println(user);
-		model.addAttribute("users", user);
+		model.addAttribute("users", users);
 		return new ModelAndView("user/usersList", model);
 	}
 
