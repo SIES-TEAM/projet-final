@@ -4,6 +4,7 @@ import java.util.List;
 
 import co.simplon.exercise.core.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,16 @@ public class UserController {
 		//System.out.println(user);
 		model.addAttribute("users", users);
 		return new ModelAndView("user/usersList", model);
+	}
+
+	@RequestMapping(path = "/profil")
+	public ModelAndView getMyProfil(ModelMap model) {
+		String name = SecurityContextHolder.getContext().getAuthentication().getName();
+		System.out.println("name : "+name);
+		User myself = userService.findOneByEmail(name);
+		System.out.println("myself : "+myself.getEmail());
+		model.addAttribute("myInfos", myself);
+		return new ModelAndView("user/myprofil", model);
 	}
 
 	@RequestMapping(path = "/formAdd")
@@ -74,6 +85,6 @@ public class UserController {
 
 		return new ModelAndView("redirect:/users", model);
 	}
-	
+
 
 }

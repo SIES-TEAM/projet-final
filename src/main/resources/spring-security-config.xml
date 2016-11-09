@@ -13,6 +13,8 @@
         <form-login  login-page="/authentication/login"
                      username-parameter="email"
                      password-parameter="password"
+
+                     authentication-success-forward-url="/users/profil"
                      authentication-failure-url="/authentication/accessDenied" />
         <csrf/>
     </http>
