@@ -7,28 +7,34 @@
         <title>Liste des personnes inscrites</title>
     </head>
     <body>
+      <div class="container">
     	<h3>Listes des personnes inscrites</h3>
-        <table class="table">
+        <table class="table table-striped">
 		  <thead class="thead-default">
 		    <tr>
 		      <th>#</th>
 		      <th>First Name</th>
 		      <th>Last Name</th>
+		      <th>Email</th>
+		      <th>Role</th>
 		    </tr>
 		  </thead>
 		  <tbody>
-		    <c:forEach items="${persons }" var="user">
+		    <c:forEach items="${users }" var="user">
 				    <tr>
 				      <td>${user.id }</td>
 				      <th>${user.name }</th>
 				      <th>${user.surname}</th>
-				      <th><a href="/user/delete?id=${user.id}">Delete</a>
+				      <th>${user.email}</th>
+				      <th>${user.role}</th>
+				      <th><a href="/user/delete?id=${user.id}" class ="btn btn-danger">Delete</a>
 				          <a href="/user/update?id=${user.id}" class="btn btn-info" role="button">Update</a>
 				      </th>
 				    </tr>
 		    </c:forEach>
 		  </tbody>
-     </table>
+       </table>
+     </div>
      
      <!-- Bootstrap core JavaScript
     ================================================== -->

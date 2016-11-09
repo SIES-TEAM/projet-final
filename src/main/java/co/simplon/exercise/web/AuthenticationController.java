@@ -17,10 +17,10 @@ public class AuthenticationController {
 
 //    @RequestMapping(path = "/signin")
 //    public ModelAndView signin(ModelMap model) {
-//        return new ModelAndView("jsp/signin");
+//        return new ModelAndView("authentication/signin");
 //    }
 
-    @RequestMapping(path = "/loginForm")
+    @RequestMapping(path = "/login")
     public ModelAndView loginForm(ModelMap model) {
         return new ModelAndView("authentication/loginForm");
     }
@@ -37,6 +37,6 @@ public class AuthenticationController {
     @RequestMapping(value = "/accessDenied")
     public String accessDeniedPage(ModelMap model) {
 
-        return "jsp/accessDenied";
+        return "authentication/accessDenied";
     }
 }
