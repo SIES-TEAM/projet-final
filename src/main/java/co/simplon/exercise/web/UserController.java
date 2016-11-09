@@ -48,38 +48,32 @@ public class UserController {
 	 * @param model
 	 * @return
 	 */
-//	@RequestMapping(path="/updateUserForm")
-//	public ModelAndView getUpdateForm(@RequestParam Integer id, ModelMap model)
-//	{
-//		User ps = userService.findById(id);
-//		model.addAttribute(ps);
-//
-//		return new ModelAndView("updateUserForm", model);
-//	}
-//
-//	@RequestMapping(path="/update")
-//	public ModelAndView updateUser(@RequestParam Integer id,
-//								   @RequestParam String name,
-//								   @RequestParam String surname,
-//									 String password,
-//									 String email,
-//									 ModelMap model)
-//	{
-//		User userToUpdate = userService.findById(id);
-//		userToUpdate.setName(name);
-//		userToUpdate.setSurname(surname);
-//		userToUpdate.setPassword(password);
-//		userToUpdate.setEmail(email);
-//		userService.addOrUpdate(userToUpdate);
-//
-//		return new ModelAndView("redirect:/person", model);
-//	}
+	@RequestMapping(path="/updateUserForm")
+	public ModelAndView getUpdateForm(@RequestParam Integer id, ModelMap model)
+	{
+		User ps = userService.findById(id);
+		model.addAttribute(ps);
 
-//	@RequestMapping(path = "/delete")
-//	public ModelAndView deleteUser(Integer id)
-//	{
-//
-//
-//	}
+		return new ModelAndView("user/updateUserForm", model);
+	}
+
+	@RequestMapping(path="/update")
+	public ModelAndView updateUser(@RequestParam Integer id,
+								   @RequestParam String name,
+								   @RequestParam String surname,
+								   @RequestParam String password,
+								   @RequestParam String email,
+									 ModelMap model)
+	{
+		User userToUpdate = userService.findById(id);
+		userToUpdate.setName(name);
+		userToUpdate.setSurname(surname);
+		userToUpdate.setPassword(password);
+		userToUpdate.setEmail(email);
+		userService.addOrUpdate(userToUpdate);
+
+		return new ModelAndView("redirect:/users", model);
+	}
+	
 
 }
