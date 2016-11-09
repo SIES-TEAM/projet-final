@@ -20,20 +20,26 @@ public class UserController {
 
 	@RequestMapping()
 	public ModelAndView get(ModelMap model) {
-		List<User> user = userService.getAll();
-		model.addAttribute("users", user);
+		List<User> users = userService.getAll();
+		//System.out.println(user);
+		model.addAttribute("users", users);
 		return new ModelAndView("user/usersList", model);
 	}
-	
+
+	@RequestMapping(path = "/formAdd")
+	public ModelAndView getUserAddForm(){
+		return new ModelAndView("user/addUserForm");
+	}
+
 	@RequestMapping(path = "/addUser")
 	public ModelAndView addUser(@RequestParam String name,
 								  @RequestParam String surname,
-								  @RequestParam String password,
 								  @RequestParam String email,
+								  @RequestParam String password,
 								  @RequestParam String role,
 								  ModelMap model) {
 		userService.addOrUpdate(new User(name, surname, password, email, role));
-		return new ModelAndView("redirect:/addUser");
+		return new ModelAndView("redirect:/users");
 	}
 
 	/**
@@ -47,16 +53,16 @@ public class UserController {
 	{
 		User ps = userService.findById(id);
 		model.addAttribute(ps);
-		
-		return new ModelAndView("updateUserForm", model);
+
+		return new ModelAndView("user/updateUserForm", model);
 	}
-	
+
 	@RequestMapping(path="/update")
 	public ModelAndView updateUser(@RequestParam Integer id,
 								   @RequestParam String name,
 								   @RequestParam String surname,
-									 String password,
-									 String email,
+								   @RequestParam String password,
+								   @RequestParam String email,
 									 ModelMap model)
 	{
 		User userToUpdate = userService.findById(id);
@@ -66,14 +72,8 @@ public class UserController {
 		userToUpdate.setEmail(email);
 		userService.addOrUpdate(userToUpdate);
 
-		return new ModelAndView("redirect:/person", model);
+		return new ModelAndView("redirect:/users", model);
 	}
-
-//	@RequestMapping(path = "/delete")
-//	public ModelAndView deleteUser(Integer id)
-//	{
-//
-//
-//	}
+	
 
 }

@@ -4,30 +4,23 @@ import java.util.List;
 
 import co.simplon.exercise.core.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import co.simplon.exercise.core.repository.UserRepository;
 
 @Repository
-public class UserService {
+public class UserService extends GenericService<User, UserRepository>{
 
 	@Autowired
-	public UserRepository userRepository;
+	private PasswordEncoder passwordEncoder;
 
-	public List<User> getAll() {
-		return userRepository.findAll();
-	}
-
-	public User findById(Integer id) {
-		return userRepository.findOne(id);
-	}
-
+	@Override
 	public User addOrUpdate(User user) {
-		return userRepository.save(user);
-	}
 
-	public void delete(Integer id) {
-		userRepository.delete(id);
-	}
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 
+		return super.addOrUpdate(user);
+	}
 }

@@ -23,12 +23,12 @@ public class CustomLoginService implements UserDetailsService{
 
     @Override
     @Transactional(readOnly=true)
-    public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-        User user = userRepository.findOne(name);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userRepository.findOne(email);
         if(user==null) {
             throw new UsernameNotFoundException("User name not found");
         }
-//        System.out.println("User : " + user.getUsername());
+        System.out.println("User : " + user.getEmail());
         return new org.springframework.security.core.userdetails.User(user.getName(), user.getPassword(),
                 true, true, true, true, getGrantedAuthorities(user));
     }

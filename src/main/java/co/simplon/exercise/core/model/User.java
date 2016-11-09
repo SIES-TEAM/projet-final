@@ -15,12 +15,14 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+
 	private String name;
 
 	private String surname;
 
 	private String password;
 
+	@Column(unique = true)
 	private String email;
 
 	private String role;
