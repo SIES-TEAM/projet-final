@@ -12,17 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
-@RequestMapping(path = "/authentication")
 public class AuthenticationController {
 
-//    @RequestMapping(path = "/signin")
-//    public ModelAndView signin(ModelMap model) {
-//        return new ModelAndView("authentication/signin");
-//    }
-
     @RequestMapping(path = "/login")
-    public ModelAndView loginForm(ModelMap model) {
-        return new ModelAndView("authentication/loginForm");
+    public ModelAndView signin(ModelMap model) {
+        return new ModelAndView("authentication/signin");
     }
 
     @RequestMapping(value = "/logout")
