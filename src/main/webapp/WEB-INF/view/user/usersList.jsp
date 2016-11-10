@@ -27,7 +27,7 @@
 				      <th>${user.surname}</th>
 				      <th>${user.email}</th>
 				      <th>${user.role}</th>
-				      <th><a href="/user/delete?id=${user.id}" class ="btn btn-danger">Delete</a>
+				      <th><a href="/user/delete?id=${user.id}" class="btn btn-danger" role="button">Delete</a>
 				          <a href="/user/update?id=${user.id}" class="btn btn-info" role="button">Update</a>
 				      </th>
 				    </tr>
