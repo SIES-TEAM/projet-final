@@ -12,10 +12,10 @@
     <title>Signin </title>
 
     <!-- Bootstrap core CSS -->
-    <link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-   <link href="../resources/css/signin.css" rel="stylesheet">
+    <link href="/resources/css/signin.css" rel="stylesheet">
 
   </head>
 
