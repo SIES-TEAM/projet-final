@@ -9,76 +9,40 @@
 
     <title>Create account </title>
 
-	<!-- Bootstrap core CSS -->
-    <link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	 <!-- Bootstrap core CSS -->
+     <link href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href=".css" rel="stylesheet">
+     <!-- Custom styles for this template -->
+     <link href="/resources/css/signin.css" rel="stylesheet">
+     
   </head>
 
   <body>
-    <form class="form-horizontal" action="/users/addUser">
-    <fieldset>
+    <div class="container" action="/users/addUser">
+          <form class="form-signin">
+            <h2 class="form-signin-heading">Create account user</h2>
+            <label for="inputLastname" class="sr-only">Nom</label>
+            <input type="text" id="inputEmail" class="form-control" placeholder="Nom" required autofocus>
+            <label for="inputFirstname" class="sr-only">Prénom</label>
+            <input type="text" id="inputPassword" class="form-control" placeholder="Prénom" required>
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <label for="inputEmail" class="sr-only">Confirmation</label>
+            <input type="password" id="inputEmail" class="form-control" placeholder="Confirmation password" required autofocus>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Role" required>
 
-    <!-- Form Name -->
-    <legend>Créer un compte</legend>
+            <!-- <div class="checkbox">
+              <label>
+                <input type="checkbox" value="remember-me"> Remember me
+              </label>
+            </div> -->
+            <button class="btn btn-lg btn-success btn-block" type="submit">Create account</button>
+          </form>
 
-    <!-- Text input-->
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="lastname">Prénom</label>
-      <div class="col-md-6">
-      <input id="lastname" name="surname" type="text" placeholder="Entrer votre prénom" class="form-control input-md" required="">
-
-      </div>
-    </div>
-
-    <!-- Text input-->
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="name">Nom</label>
-      <div class="col-md-6">
-      <input id="name" name="name" type="text" placeholder="Entrer un nom" class="form-control input-md" required="">
-
-      </div>
-    </div>
-
-    <!-- Text input-->
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="email">Email</label>
-      <div class="col-md-6">
-      <input id="email" name="email" type="text" placeholder="Entrer votre email" class="form-control input-md" required="">
-      <span class="help-block">Format: exemple@exemple.com</span>
-      </div>
-    </div>
-
-    <!-- Password input-->
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="password">Mot de passe</label>
-      <div class="col-md-6">
-        <input id="password" name="password" type="password" placeholder="Entrer un mot de passe" class="form-control input-md" required="">
-
-      </div>
-    </div>
-
-    <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="role">ROLE</label>
-          <div class="col-md-6">
-          <input id="role" name="role" type="text" placeholder="Entrer un role" class="form-control input-md" required="">
-
-          </div>
-        </div>
-
-    <!-- Button -->
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="submit"></label>
-      <div class="col-md-4">
-        <button id="submit" name="submit" class="btn btn-success">Ajouter</button>
-      </div>
-    </div>
-
-    </fieldset>
-    </form>
-
+        </div> <!-- /container -->
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
