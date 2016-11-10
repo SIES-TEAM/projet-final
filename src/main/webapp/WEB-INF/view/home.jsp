@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -30,13 +31,31 @@
               <h3 class="masthead-brand">LOGO HERE</h3>
               <nav>
                 <ul class="nav masthead-nav">
-                  <li class="active"><a href="#">Home</a></li>
-                  <li><a href="#">Planning</a></li>
-                  <li><a href="/reservations/formAdd">Add reservation</a></>
-                  <li><a href="#">Profil</a></li>
-                  <li><button type="submit" class="btn btn-success">Sign up</button></li>
-                  <li><button type="submit" class="btn btn">Sign in</button></li>
-            
+                  <li class="active"><a href="/">Home</a></li>
+                  <security:authorize access="hasAuthority('ADMIN')">
+                  <li>
+                  		<div class="dropdown">
+                          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Gestion
+                          <span class="caret"></span></button>
+                          <ul class="dropdown-menu">
+                            <li><a href="/reservations">RESERVATIONS</a></li>
+                            <li><a href="/users">UTILISATEURS</a></li>
+                          </ul>
+                        </div>
+                  </li>
+                  </security:authorize>
+
+                  <security:authorize access="isAuthenticated()">
+                        <li><a href="/users/profil"></a></li>
+                        <li><a href="/logout">Logout</a></li>
+                  </security:authorize>
+
+                  <security:authorize access="!isAuthenticated()">
+                      <li><a href="/users/form/adduser"   class="btn btn-success">Sign up</a></li>
+                      <li><a href="/login" class="btn btn-info">Login</a></li>
+                  </security:authorize>
+
+                  <li><span class="glyphicons glyphicons-user"></span></li>
                 </ul>
               </nav>
             </div>
