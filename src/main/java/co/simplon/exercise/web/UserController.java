@@ -37,7 +37,7 @@ public class UserController {
 		return new ModelAndView("user/myprofil", model);
 	}
 
-	@RequestMapping(path = "/formAdd")
+	@RequestMapping(path = "/form/adduser")
 	public ModelAndView getUserAddForm(){
 		return new ModelAndView("user/addUserForm");
 	}
