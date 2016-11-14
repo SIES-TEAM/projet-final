@@ -16,6 +16,9 @@ public class UserService extends GenericService<User, UserRepository>{
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
+	@Autowired
+	private UserRepository userRepository;
+
 	@Override
 	public User addOrUpdate(User user) {
 
@@ -23,4 +26,8 @@ public class UserService extends GenericService<User, UserRepository>{
 
 		return super.addOrUpdate(user);
 	}
+	 public User findOneByEmail(String email) {
+
+		return userRepository.findOne(email);
+	 }
 }
