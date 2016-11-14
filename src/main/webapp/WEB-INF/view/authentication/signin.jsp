@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -21,6 +23,7 @@
 
   <body>
     <div class="container">
+    <
       <form class="form-signin" action="/login" method="post">
         <h2 class="form-signin-heading">Connexion</h2>
 

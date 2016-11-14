@@ -18,30 +18,67 @@
   </head>
 
   <body>
-    <div class="container" action="/users/addUser">
-          <form class="form-signin">
-            <h2 class="form-signin-heading">Create account user</h2>
-            <label for="inputLastname" class="sr-only">Nom</label>
-            <input type="text" id="inputEmail" class="form-control" placeholder="Nom" required autofocus>
-            <label for="inputFirstname" class="sr-only">Prénom</label>
-            <input type="text" id="inputPassword" class="form-control" placeholder="Prénom" required>
-            <label for="inputEmail" class="sr-only">Email address</label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-            <label for="inputEmail" class="sr-only">Confirmation</label>
-            <input type="password" id="inputEmail" class="form-control" placeholder="Confirmation password" required autofocus>
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Role" required>
+    <div class="container">
 
-            <!-- <div class="checkbox">
-              <label>
-                <input type="checkbox" value="remember-me"> Remember me
-              </label>
-            </div> -->
-            <button class="btn btn-lg btn-success btn-block" type="submit">Create account</button>
-          </form>
+           <form class="form-signin" action="/users/addUser">
+               <fieldset>
 
+               <!-- Form Name -->
+               <legend>Create account</legend>
+
+               <!-- Text input-->
+               <div class="form-group">
+                 <div class="col-md-12">
+                 <input id="surname" name="surname" type="text" placeholder="Entrer votre prénom" class="form-control input-md" required="">
+
+                 </div>
+               </div>
+
+               <!-- Text input-->
+               <div class="form-group">
+                <div class="col-md-12">
+                 <input id="name" name="name" type="text" placeholder="Entrer un nom" class="form-control input-md" required="">
+
+                 </div>
+               </div>
+
+               <!-- Text input-->
+               <div class="form-group">
+               <div class="col-md-12">
+                 <input id="email" name="email" type="text" placeholder="Entrer votre email" class="form-control input-md" required="">
+                 </div>
+               </div>
+
+               <!-- Password input-->
+               <div class="form-group">
+                <div class="col-md-12">
+                   <input id="password" name="password" type="password" placeholder="Entrer un mot de passe" class="form-control input-md" required="">
+                 </div>
+               </div>
+
+               <!-- Select Basic -->
+               <div class="form-group">
+                 <label class="col-md-4 control-label" for="role"></label>
+                 <div class="col-md-12">
+                   <select id="role" name="role" class="form-control">
+                     <option value="USER">USER</option>
+                     <option value="ADMIN">ADMIN</option>
+                   </select>
+                 </div>
+               </div>
+
+               <!-- Button -->
+               <div class="form-group">
+                 <label class="col-md-12 control-label" for="submit"></label>
+                 <div class="col-md-12">
+                   <button id="submit" name="submit" class="btn btn-lg btn-success btn-block">Ajouter</button>
+                 </div>
+               </div>
+
+               <!-- Select Basic -->
+
+               </fieldset>
+               </form>
         </div> <!-- /container -->
     <!-- Bootstrap core JavaScript
     ================================================== -->

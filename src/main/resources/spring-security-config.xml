@@ -10,7 +10,7 @@
         <intercept-url pattern="/person/add" access="isAuthenticated" />
         <intercept-url pattern="/person/delete" access="hasAuthority('ADMIN')" />
         <intercept-url pattern="/**" access="permitAll" />
-        <form-login  login-page="/authentication/login"
+        <form-login  login-page="/login"
                      username-parameter="email"
                      password-parameter="password"
                      authentication-failure-url="/accessDenied" />
