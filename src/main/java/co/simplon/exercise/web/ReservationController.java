@@ -1,13 +1,14 @@
 package co.simplon.exercise.web;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalTime;
 import java.util.List;
 
 import co.simplon.exercise.core.model.Classroom;
 import co.simplon.exercise.core.model.Laptop;
 import co.simplon.exercise.core.model.User;
+import co.simplon.exercise.core.service.LaptopService;
 import co.simplon.exercise.core.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,9 @@ public class ReservationController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+	private LaptopService laptopService;
 	
 	@RequestMapping
 	public ModelAndView showReservations(ModelMap model)
@@ -46,44 +50,36 @@ public class ReservationController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/formAdd", method = RequestMethod.GET)
-	public ModelAndView getFormAddReservation(ModelMap model) {
+	@RequestMapping(value = "laptop/formAdd", method = RequestMethod.GET)
+	public ModelAndView getFormAddLaptopReservation(ModelMap model) {
 		
-		return new ModelAndView("reservation/add-reservation", model);
+		return new ModelAndView("reservation/laptop-reservation", model);
 
 	}
 	
-	@RequestMapping(path = "/add")
+	@RequestMapping(path = "laptop/add")
 	public ModelAndView addReservation(
-			                           @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateEnd,
-									   @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateBegin,
-//									  /* @RequestParam LocalDateTime startTime,*/
-//                                       @RequestParam @DateTimeFormat(pattern = "hh-") Date endTime,*/
+			                           @RequestParam LocalDate bookingDate,
+									   @RequestParam LocalTime startTime,
+                                       @RequestParam LocalTime endTime,
 			                           ModelMap model,
 			                           final RedirectAttributes redirectAttribute
 			                          )
 	{
-		Date creationDate = new Date();
-//		DateTime startTime = new DateTime(dateBegin.getHourOfDay(), dateBegin.getMinuteOfHour(), dateBegin.getSecondOfMinute());
-//		DateTime endTime = new DateTime(dateEnd.getHourOfDay());
-		Date startTime = new Date(dateBegin.getHours());
-		Date endTime = new Date(dateEnd.getHours());
+		LocalDateTime creationDate = LocalDateTime.now();
         User user =  userService.findById(1);
-        Classroom classroom = new Classroom();
-        List<Laptop> laptops = new ArrayList<>();
-		reservationService.addOrUpdate(new Reservation(
+        List<Laptop> laptops = laptopService.getAll();
 
-                creationDate,
-                dateBegin,
-                dateEnd,
+		reservationService.addOrUpdate(new Reservation(
+				creationDate,
+				bookingDate,
                 startTime,
                 endTime,
                 user,
-                classroom,
                 laptops));
 
 		redirectAttribute.addFlashAttribute("message", "Réservation ajoutée avec succès !");
-		return new ModelAndView("redirect:/reservations/formAdd");
+		return new ModelAndView("redirect:/reservations");
 
 	}
 
