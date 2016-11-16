@@ -69,9 +69,9 @@
             <p class="lead">Bienvenue dans l'outil de gestion des ressources de Simplon</p>
             <p class="lead">
             
-             <a href="/reservations/formAdd" class="btn btn-lg btn-default">Room booking</a>
+             <a href="#" class="btn btn-lg btn-default">Room booking</a>
 
-	         <a href="/reservations/formAdd" class="btn btn-lg btn-default">Laptop booking</a>
+	         <a href="/reservations/laptop/formAdd" class="btn btn-lg btn-default">Laptop booking</a>
             </p>
           </div>
 
