@@ -1,7 +1,9 @@
 package co.simplon.exercise.core.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,23 +15,24 @@ public class Reservation {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "reserv_id")
+    @Column(name = "id")
     private int id;
 
 	@Column(name = "date_of_creation", nullable = false)
-	private Date creationDate;
-  
-    @Column(name = "date_begin", nullable = false)
-    private Date dateBegin;
+	private LocalDateTime creationDate;
+
+
+    @Column(name = "booking_date", nullable = false)
+    private LocalDate bookingDate;
     
-    @Column(name = "date_end", nullable = false)
-    private Date dateEnd;
+//    @Column(name = "date_end", nullable = false)
+//    private Date dateEnd;
 
     @Column(name = "start_time", nullable = false)
-    private Date startTime;
+    private LocalTime startTime;
 
     @Column(name ="end_time", nullable = false)
-    private Date endTime;
+    private LocalTime endTime;
 
     @ManyToOne
 	@JoinColumn(name = "user_id")
@@ -46,14 +49,12 @@ public class Reservation {
 		
 	}
 
-	public Reservation(Date creationDate, Date dateBegin, Date dateEnd, Date startTime, Date endTime, User user, Classroom classroom, List<Laptop> laptops) {
+	public Reservation(LocalDateTime creationDate, LocalDate bookingDate, LocalTime startTime, LocalTime endTime, User user, List<Laptop> laptops) {
 		this.creationDate = creationDate;
-		this.dateBegin = dateBegin;
-		this.dateEnd = dateEnd;
+		this.bookingDate = bookingDate;
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.user = user;
-		this.classroom = classroom;
 		this.laptops = laptops;
 	}
 
@@ -65,43 +66,35 @@ public class Reservation {
 		this.id = id;
 	}
 
-	public Date getCreationDate() {
+	public LocalDateTime getCreationDate() {
 		return creationDate;
 	}
 
-	public void setCreationDate(Date creationDate) {
+	public void setCreationDate(LocalDateTime creationDate) {
 		this.creationDate = creationDate;
 	}
 
-	public Date getDateBegin() {
-		return dateBegin;
+	public LocalDate getBookingDate() {
+		return bookingDate;
 	}
 
-	public void setDateBegin(Date dateBegin) {
-		this.dateBegin = dateBegin;
+	public void setBookingDate(LocalDate bookingDate) {
+		this.bookingDate = bookingDate;
 	}
 
-	public Date getDateEnd() {
-		return dateEnd;
-	}
-
-	public void setDateEnd(Date dateEnd) {
-		this.dateEnd = dateEnd;
-	}
-
-	public Date getStartTime() {
+	public LocalTime getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(Date startTime) {
+	public void setStartTime(LocalTime startTime) {
 		this.startTime = startTime;
 	}
 
-	public Date getEndTime() {
+	public LocalTime getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(Date endTime) {
+	public void setEndTime(LocalTime endTime) {
 		this.endTime = endTime;
 	}
 
