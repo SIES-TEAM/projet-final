@@ -1,8 +1,10 @@
 package co.simplon.exercise.web;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import co.simplon.exercise.core.model.Classroom;
@@ -59,17 +61,17 @@ public class ReservationController {
 	
 	@RequestMapping(path = "laptop/add")
 	public ModelAndView addReservation(
-			                           @RequestParam LocalDate bookingDate,
-									   @RequestParam LocalTime startTime,
-                                       @RequestParam LocalTime endTime,
+			                           @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate bookingDate,
+									   @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime startTime,
+                                       @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime endTime,
 			                           ModelMap model,
 			                           final RedirectAttributes redirectAttribute
 			                          )
 	{
-		LocalDateTime creationDate = LocalDateTime.now();
-        User user =  userService.findById(1);
-        List<Laptop> laptops = laptopService.getAll();
-
+		LocalDate creationDate = LocalDate.of(2016, 11, 22);
+		User user =  userService.findById(1);
+        List<Laptop> laptops = new ArrayList<>();
+		laptops = laptopService.getAll();
 		reservationService.addOrUpdate(new Reservation(
 				creationDate,
 				bookingDate,
