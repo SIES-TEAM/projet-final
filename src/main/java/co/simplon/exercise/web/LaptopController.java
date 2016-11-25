@@ -62,17 +62,16 @@ public class LaptopController {
 	 */
 	@RequestMapping(path = "/updateLaptop")
 	public ModelAndView getUpdateLaptopForm(@RequestParam Integer id, ModelMap model) {
-
 		Laptop lp = laptopService.findById(id);
 		model.addAttribute(lp);
 		return new ModelAndView("update-laptop", model);
 	}
 
 	@RequestMapping(path = "/update")
-	public ModelAndView updateLaptop(@RequestParam Integer id, 
-								@RequestParam String name, 
-								@RequestParam String brand,
-								ModelMap model) {
+	public ModelAndView updateLaptop(@RequestParam Integer id,
+									 @RequestParam String name,
+									 @RequestParam String brand,
+									 ModelMap model) {
 		Laptop lp = laptopService.findById(id);
 		lp.setName(name);
 		lp.setBrand(brand);

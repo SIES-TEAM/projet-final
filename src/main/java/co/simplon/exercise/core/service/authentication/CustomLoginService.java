@@ -29,7 +29,7 @@ public class CustomLoginService implements UserDetailsService{
             throw new UsernameNotFoundException("User name not found");
         }
         System.out.println("User : " + user.getEmail());
-        return new org.springframework.security.core.userdetails.User(user.getName(), user.getPassword(),
+        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
                 true, true, true, true, getGrantedAuthorities(user));
     }
 

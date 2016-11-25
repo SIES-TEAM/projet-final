@@ -4,6 +4,7 @@ import java.util.List;
 
 import co.simplon.exercise.core.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -21,18 +22,27 @@ public class UserController {
 	@RequestMapping()
 	public ModelAndView get(ModelMap model) {
 		List<User> users = userService.getAll();
-		//System.out.println(user);
 		model.addAttribute("users", users);
 		return new ModelAndView("user/usersList", model);
 	}
 
-	@RequestMapping(path = "/formAdd")
+	@RequestMapping(path = "/profil")
+	public ModelAndView getMyProfil(ModelMap model) {
+		String name = SecurityContextHolder.getContext().getAuthentication().getName();
+		System.out.println("name : "+name);
+		User myself = userService.findOneByEmail(name);
+//		System.out.println("myself : "+myself.getEmail());
+		model.addAttribute("myInfos", myself);
+		return new ModelAndView("user/myprofil", model);
+	}
+
+	@RequestMapping(path = "/form/adduser")
 	public ModelAndView getUserAddForm(){
 		return new ModelAndView("user/addUserForm");
 	}
 
 	@RequestMapping(path = "/addUser")
-	public ModelAndView addUser(@RequestParam String name,
+	public ModelAndView addUser(  @RequestParam String name,
 								  @RequestParam String surname,
 								  @RequestParam String email,
 								  @RequestParam String password,
@@ -63,7 +73,7 @@ public class UserController {
 								   @RequestParam String surname,
 								   @RequestParam String password,
 								   @RequestParam String email,
-									 ModelMap model)
+								   ModelMap model)
 	{
 		User userToUpdate = userService.findById(id);
 		userToUpdate.setName(name);
@@ -74,6 +84,6 @@ public class UserController {
 
 		return new ModelAndView("redirect:/users", model);
 	}
-	
+
 
 }

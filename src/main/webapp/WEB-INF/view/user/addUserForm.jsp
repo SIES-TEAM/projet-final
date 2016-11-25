@@ -9,76 +9,77 @@
 
     <title>Create account </title>
 
-	<!-- Bootstrap core CSS -->
-    <link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	 <!-- Bootstrap core CSS -->
+     <link href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href=".css" rel="stylesheet">
+     <!-- Custom styles for this template -->
+     <link href="/resources/css/signin.css" rel="stylesheet">
+     
   </head>
 
   <body>
-    <form class="form-horizontal" action="/users/addUser">
-    <fieldset>
+    <div class="container">
 
-    <!-- Form Name -->
-    <legend>Créer un compte</legend>
+           <form class="form-signin" action="/users/addUser">
+               <fieldset>
 
-    <!-- Text input-->
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="lastname">Prénom</label>
-      <div class="col-md-6">
-      <input id="lastname" name="surname" type="text" placeholder="Entrer votre prénom" class="form-control input-md" required="">
+               <!-- Form Name -->
+               <legend>Create account</legend>
 
-      </div>
-    </div>
+               <!-- Text input-->
+               <div class="form-group">
+                 <div class="col-md-12">
+                 <input id="surname" name="surname" type="text" placeholder="Entrer votre prénom" class="form-control input-md" required="">
 
-    <!-- Text input-->
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="name">Nom</label>
-      <div class="col-md-6">
-      <input id="name" name="name" type="text" placeholder="Entrer un nom" class="form-control input-md" required="">
+                 </div>
+               </div>
 
-      </div>
-    </div>
+               <!-- Text input-->
+               <div class="form-group">
+                <div class="col-md-12">
+                 <input id="name" name="name" type="text" placeholder="Entrer un nom" class="form-control input-md" required="">
 
-    <!-- Text input-->
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="email">Email</label>
-      <div class="col-md-6">
-      <input id="email" name="email" type="text" placeholder="Entrer votre email" class="form-control input-md" required="">
-      <span class="help-block">Format: exemple@exemple.com</span>
-      </div>
-    </div>
+                 </div>
+               </div>
 
-    <!-- Password input-->
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="password">Mot de passe</label>
-      <div class="col-md-6">
-        <input id="password" name="password" type="password" placeholder="Entrer un mot de passe" class="form-control input-md" required="">
+               <!-- Text input-->
+               <div class="form-group">
+               <div class="col-md-12">
+                 <input id="email" name="email" type="text" placeholder="Entrer votre email" class="form-control input-md" required="">
+                 </div>
+               </div>
 
-      </div>
-    </div>
+               <!-- Password input-->
+               <div class="form-group">
+                <div class="col-md-12">
+                   <input id="password" name="password" type="password" placeholder="Entrer un mot de passe" class="form-control input-md" required="">
+                 </div>
+               </div>
 
-    <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="role">ROLE</label>
-          <div class="col-md-6">
-          <input id="role" name="role" type="text" placeholder="Entrer un role" class="form-control input-md" required="">
+               <!-- Select Basic -->
+               <div class="form-group">
+                 <label class="col-md-4 control-label" for="role"></label>
+                 <div class="col-md-12">
+                   <select id="role" name="role" class="form-control">
+                     <option value="USER">USER</option>
+                     <option value="ADMIN">ADMIN</option>
+                   </select>
+                 </div>
+               </div>
 
-          </div>
-        </div>
+               <!-- Button -->
+               <div class="form-group">
+                 <label class="col-md-12 control-label" for="submit"></label>
+                 <div class="col-md-12">
+                   <button id="submit" name="submit" class="btn btn-lg btn-success btn-block">Ajouter</button>
+                 </div>
+               </div>
 
-    <!-- Button -->
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="submit"></label>
-      <div class="col-md-4">
-        <button id="submit" name="submit" class="btn btn-success">Ajouter</button>
-      </div>
-    </div>
+               <!-- Select Basic -->
 
-    </fieldset>
-    </form>
-
+               </fieldset>
+               </form>
+        </div> <!-- /container -->
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

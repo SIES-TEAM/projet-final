@@ -72,7 +72,10 @@ body {
 	background-color:#17232A;
 }
 
-
+.container .jumbotron {
+   background-color: #026D63;
+   color: #fff;
+}
 .masthead-nav > li {
   display: inline-block;
 }
@@ -80,13 +83,17 @@ body {
   margin-left: 20px;
 }
 .masthead-nav > li > a {
-  padding-right: 0;
-  padding-left: 0;
+  padding-right: ;
+  padding-left: ;
   font-size: 16px;
   font-weight: bold;
   color: #fff; /* IE8 proofing */
   color: rgba(255,255,255,.75);
   border-bottom: 2px solid transparent;
+}
+.login {
+  background-color: seagreen;
+  border-color seagreen;
 }
 .masthead-nav > li > a:hover,
 .masthead-nav > li > a:focus {
@@ -98,7 +105,7 @@ body {
 .masthead-nav > .active > a:hover,
 .masthead-nav > .active > a:focus {
   color: #fff;
-  border-bottom-color: #fff;
+  border-bottom-color: ;
 }
 
 @media (min-width: 768px) {
@@ -121,6 +128,11 @@ body {
 .cover .btn-lg {
   padding: 10px 20px;
   font-weight: bold;
+  margin: 20px;
+  margin-top: 50px;
+  color: #fff;
+  background-color: #17232A;
+  border-color: #17232A;
 }
 
 
