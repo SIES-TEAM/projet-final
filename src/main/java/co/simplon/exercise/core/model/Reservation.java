@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -20,23 +21,19 @@ public class Reservation {
     private int id;
 
 	@Column(name = "date_of_creation", nullable = false)
-	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-	private LocalDate creationDate;
+	private Date creationDate;
 
 
     @Column(name = "booking_date", nullable = false)
-	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate bookingDate;
     
 //    @Column(name = "date_end", nullable = false)
 //    private Date dateEnd;
 
     @Column(name = "start_time", nullable = false)
-	@DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalTime startTime;
 
     @Column(name ="end_time", nullable = false)
-	@DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalTime endTime;
 
     @ManyToOne
@@ -54,7 +51,7 @@ public class Reservation {
 		
 	}
 
-	public Reservation(LocalDate creationDate, LocalDate bookingDate, LocalTime startTime, LocalTime endTime, User user, List<Laptop> laptops) {
+	public Reservation(Date creationDate, LocalDate bookingDate, LocalTime startTime, LocalTime endTime, User user, List<Laptop> laptops) {
 		this.creationDate = creationDate;
 		this.bookingDate = bookingDate;
 		this.startTime = startTime;
@@ -71,11 +68,11 @@ public class Reservation {
 		this.id = id;
 	}
 
-	public LocalDate getCreationDate() {
+	public Date getCreationDate() {
 		return creationDate;
 	}
 
-	public void setCreationDate(LocalDate creationDate) {
+	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
 
