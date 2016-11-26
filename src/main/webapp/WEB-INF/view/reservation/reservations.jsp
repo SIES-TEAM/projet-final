@@ -20,20 +20,22 @@
     	<table class="table">
 		  <thead class="thead-inverse">
 		    <tr>
-		      <th>Identifiant</th>
-		      <th>Date de création </th>
-		      <th>Date début</th>
-		      <th>Date fin</th>
-		      <th>Action</th>
+		      <th>RESERVANT</th>
+		      <th>DATE DE CRATION </th>
+		      <th>DATE RESERVATION</th>
+		      <th>DEBUT</th>
+			  <th>FIN</th>
+		      <th>ACTION</th>
 		    </tr>
 		  </thead>
 		  <tbody>
 		   <c:forEach items="${reservations }" var="reservation"> 
 		    <tr>
-		      <td>${reservation.userId }</td>
+		      <td>${reservation.user.name }</td>
 		      <th>${reservation.creationDate }</th>
-		      <th>${reservation.dateBegin }</th>
-		      <th>${reservation.dateEnd }</th>
+		      <th>${reservation.bookingDate }</th>
+		      <th>${reservation.startTime }</th>
+				<th>${reservation.endTime }</th>
 		      <th><a href="/reservations/delete?id=${reservation.id}">Supprimer</a></th>
 		    </tr>
 		    </c:forEach>
