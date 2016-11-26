@@ -26,9 +26,6 @@ public class Reservation {
 
     @Column(name = "booking_date", nullable = false)
     private LocalDate bookingDate;
-    
-//    @Column(name = "date_end", nullable = false)
-//    private Date dateEnd;
 
     @Column(name = "start_time", nullable = false)
     private LocalTime startTime;
