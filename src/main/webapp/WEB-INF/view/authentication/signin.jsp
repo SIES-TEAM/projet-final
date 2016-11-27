@@ -23,7 +23,6 @@
 
   <body>
     <div class="container">
-    <
       <form class="form-signin" action="/login" method="post">
         <h2 class="form-signin-heading">Connexion</h2>
 

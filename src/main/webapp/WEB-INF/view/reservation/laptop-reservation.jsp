@@ -11,6 +11,9 @@
 
 		 <!-- Bootstrap core CSS -->
          <link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+         <!-- Custom styles for this template -->
+         <link href="../resources/css/signin.css" rel="stylesheet">
 	</head>
 
 	<body>
@@ -22,24 +25,19 @@
 		        <c:if test="${message != null}">
 				<div class="alert alert-succes">${message }</div>
 			    </c:if>
-		<h1>GESTION RESERVATIONS :</h1>
+		<h1>RESERVATION :</h1>
 		<%-- <security:authorize access="isAuthenticated()"> --%>
 			
-			<h2>Réserver un ordinateur</h2>
-			<form class="form-inline" action="/reservations/add">
-			    <label>Utilisateur</label>
-				<input type="text" name="users" placeholder="Select a user" />
-				<label for="laptops">Sélectionner ordinateur:</label>
-				<select multiple class="form-control" id="laptops">
-					<option></option>
-				</select>
-				<label>DATE RESERVATION</label>
-				<input type="date" name="dateBegin" placeholder="Date début" />
-				<input type="date" name="dateEnd" placeholder="Date fin" />
-				<input type="time" name="startTime" placeholder="Heure de début">
-				<input type="time" name="endTime" placeholder="Heure de fin">
-				<input type="submit" value="Rechercher" />
-			</form>
+			<h2>RESERVER UN ORDINATEUR</h2>
+                <form class="form-inline" action="/reservations/laptop/add">
+                    <label>DATE RESERVATION</label>
+                    <input type="date" name="bookingDate" placeholder="Date de reservation" />
+					<label>HEURE DEBUT</label>
+                    <input type="time" name="startTime" placeholder="Heure de début">
+					<label>HEURE FIN</label>
+                    <input type="time" name="endTime" placeholder="Heure de fin">
+                    <input type="submit" value="RECHERCHER" />
+                </form>
 			
 		<%-- </security:authorize>
 		

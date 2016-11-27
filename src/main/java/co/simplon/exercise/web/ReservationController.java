@@ -1,6 +1,8 @@
 package co.simplon.exercise.web;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -8,10 +10,12 @@ import java.util.List;
 import co.simplon.exercise.core.model.Classroom;
 import co.simplon.exercise.core.model.Laptop;
 import co.simplon.exercise.core.model.User;
+import co.simplon.exercise.core.service.LaptopService;
 import co.simplon.exercise.core.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +36,9 @@ public class ReservationController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+	private LaptopService laptopService;
 	
 	@RequestMapping
 	public ModelAndView showReservations(ModelMap model)
@@ -43,49 +50,40 @@ public class ReservationController {
 	
 	/**
 	 * Display the form to add a reservation
-	 * 
+	 *
 	 * @return
 	 */
-	@RequestMapping(value = "/formAdd", method = RequestMethod.GET)
-	public ModelAndView getFormAddReservation(ModelMap model) {
-		
-		return new ModelAndView("reservation/add-reservation", model);
+	@RequestMapping(value = "laptop/formAdd", method = RequestMethod.GET)
+	public ModelAndView getFormAddLaptopReservation(ModelMap model) {
+
+		return new ModelAndView("reservation/laptop-reservation", model);
 
 	}
+
+	@RequestMapping(value = "/calendar", method = RequestMethod.GET)
+	public ModelAndView showCalendar(ModelMap model) {
+		return new ModelAndView("reservation/bookingCalendar", model);
+	}
+
 	
-	@RequestMapping(path = "/add")
+	@RequestMapping(path = "laptop/add")
 	public ModelAndView addReservation(
-			                           @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateEnd,
-									   @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateBegin,
-//									  /* @RequestParam LocalDateTime startTime,*/
-//                                       @RequestParam @DateTimeFormat(pattern = "hh-") Date endTime,*/
+			                           @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate bookingDate,
+									   @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime startTime,
+                                       @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime endTime,
 			                           ModelMap model,
 			                           final RedirectAttributes redirectAttribute
 			                          )
 	{
-		Date creationDate = new Date();
-//		DateTime startTime = new DateTime(dateBegin.getHourOfDay(), dateBegin.getMinuteOfHour(), dateBegin.getSecondOfMinute());
-//		DateTime endTime = new DateTime(dateEnd.getHourOfDay());
-		Date startTime = new Date(dateBegin.getHours());
-		Date endTime = new Date(dateEnd.getHours());
-        User user =  userService.findById(1);
-        Classroom classroom = new Classroom();
-        List<Laptop> laptops = new ArrayList<>();
-		reservationService.addOrUpdate(new Reservation(
-
-                creationDate,
-                dateBegin,
-                dateEnd,
-                startTime,
-                endTime,
-                user,
-                classroom,
-                laptops));
+		List<Reservation> listLapResa = reservationService.searchAvailibilityByDate(bookingDate, startTime, endTime);
 
 		redirectAttribute.addFlashAttribute("message", "Réservation ajoutée avec succès !");
-		return new ModelAndView("redirect:/reservations/formAdd");
+		ModelAndView mav = new ModelAndView("redirect:/reservations");
+		mav.getModelMap().addAllAttributes(model);
+		return mav;
 
 	}
+
 
 	// Afficher le formulaire pour modifier une réservation
 	@RequestMapping(path= "/updateForm")
