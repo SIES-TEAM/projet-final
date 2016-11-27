@@ -2,23 +2,23 @@
 <%-- <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %> --%>
 <html>
 	<head>
-		<title>Gestion des réservations</title>
+		<title>Modifier un ordinateur</title>
 	</head>
 
 	<body>
 		 <div class="site-wrapper">
             <div class="site-wrapper-inner">
              <div class="cover-container">
-		        <jsp:include page="includes/header.jsp"></jsp:include>
-		<h1>GESTION RESERVATIONS :</h1>
+		        <jsp:include page="../includes/header.jsp"></jsp:include>
+		<h1>Modifier un ordinateur</h1>
 		<%-- <security:authorize access="isAuthenticated()"> --%>
-			<h2>Ajouter une réservation</h2>
-			<form class="form-inline" action="/reservations/add">
-				<input type="text" name="userId" placeholder="userId" />
-				<input type="date" name="creationDate" placeholder="Date de création" />
-				<input type="date" name="dateBegin" placeholder="Date début" />
-				<input type="date" name="dateEnd" placeholder="Date fin" />
-				<input type="submit" value="Ajouter" />
+			<h2>Choissir le model de l'ordinateur</h2>
+			<form class="form-inline" action="/laptop/update">
+				<!-- <input type="text" name="id" placeholder="Identifiant de l'ordinateur" /> -->
+				<input type="text" name="name" placeholder="Nom de l'ordinateur" />
+				<input type="text" name="brand" placeholder="Marque de l'ordinateur" />
+			
+				<input type="submit" value="Modifier" />
 			</form>
 		<%-- </security:authorize>
 		

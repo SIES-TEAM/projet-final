@@ -4,8 +4,9 @@ import javax.annotation.Resource;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import co.simplon.exercise.core.model.Person;
+import co.simplon.exercise.core.model.Classroom;
 
 @Resource
-public interface PersonRepository extends JpaRepository<Person, Integer> {
+public interface ClassroomRepository extends JpaRepository<Classroom, Integer> {
+
 }

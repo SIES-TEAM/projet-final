@@ -1,14 +1,14 @@
 package co.simplon.exercise.core.model;
 
-import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -17,89 +17,107 @@ public class Reservation {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "reserv_id")
+    @Column(name = "id")
     private int id;
-	
-	@Column(name = "user_id")
-	private int userId; 
-	
-	/*@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="ressource_id")
-	private Ressource ressource; // Capacite pour une salle (null pour un ordinateur)
-*/	
-	/*@ManyToMany(cascade=CascadeType.ALL, mappedBy="reservations")
-    private Set<CreneauHoraire> creneaux_horaires = new HashSet<CreneauHoraire>();*/
-	
-	@Column(name = "date_of_creation")
+
+	@Column(name = "date_of_creation", nullable = false)
 	private Date creationDate;
-  
-    @Column(name = "date_begin")
-    private Date dateBegin;
-    
-    @Column(name = "date_end")
-    private Date dateEnd;
+
+
+    @Column(name = "booking_date", nullable = false)
+    private LocalDate bookingDate;
+
+    @Column(name = "start_time", nullable = false)
+    private LocalTime startTime;
+
+    @Column(name ="end_time", nullable = false)
+    private LocalTime endTime;
+
+    @ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+
+    @ManyToOne
+	@JoinColumn(name = "room_id")
+	private Classroom classroom;
+
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	private List<Laptop> laptops = new ArrayList<>();
 
 	public Reservation() {
 		
 	}
 
-	
-	public Reservation(int userId, Date creationDate, Date dateBegin, Date dateEnd) {
-		super();
-		this.userId = userId;
-		this.creationDate = new Date();
-		this.dateBegin = dateBegin;
-		this.dateEnd = dateEnd;
+	public Reservation(Date creationDate, LocalDate bookingDate, LocalTime startTime, LocalTime endTime, User user, List<Laptop> laptops) {
+		this.creationDate = creationDate;
+		this.bookingDate = bookingDate;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.user = user;
+		this.laptops = laptops;
 	}
-
 
 	public int getId() {
 		return id;
 	}
 
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
-
-	public int getUserId() {
-		return userId;
-	}
-
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
 
 	public Date getCreationDate() {
 		return creationDate;
 	}
 
-
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
 
-
-	public Date getDateBegin() {
-		return dateBegin;
+	public LocalDate getBookingDate() {
+		return bookingDate;
 	}
 
-
-	public void setDateBegin(Date dateBegin) {
-		this.dateBegin = dateBegin;
+	public void setBookingDate(LocalDate bookingDate) {
+		this.bookingDate = bookingDate;
 	}
 
-
-	public Date getDateEnd() {
-		return dateEnd;
+	public LocalTime getStartTime() {
+		return startTime;
 	}
 
-
-	public void setDateEnd(Date dateEnd) {
-		this.dateEnd = dateEnd;
+	public void setStartTime(LocalTime startTime) {
+		this.startTime = startTime;
 	}
 
+	public LocalTime getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(LocalTime endTime) {
+		this.endTime = endTime;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Classroom getClassroom() {
+		return classroom;
+	}
+
+	public void setClassroom(Classroom classroom) {
+		this.classroom = classroom;
+	}
+
+	public List<Laptop> getLaptops() {
+		return laptops;
+	}
+
+	public void setLaptops(List<Laptop> laptops) {
+		this.laptops = laptops;
+	}
 }

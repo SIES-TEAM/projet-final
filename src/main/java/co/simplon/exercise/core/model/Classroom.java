@@ -1,31 +1,66 @@
 package co.simplon.exercise.core.model;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
-@Entity(name = "Classroom")
-@PrimaryKeyJoinColumn(name = "resource_id")
-public class Classroom extends Resources{
-	
-	@Column(name = "capacity")
-	private int Capacity;
 
+@Entity
+public class Classroom{
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+
+	@Column(nullable = false)
+	private String name;
+
+	@Column(nullable = false)
+	private int capacity;
+
+	@OneToMany
+	private List<Reservation> reservations = new ArrayList<>();
+
+	// Consturctors
 	public Classroom() {
 		super();
 	}
 
-	public Classroom(int capacity) {
-		super();
-		Capacity = capacity;
+	public Classroom(String name, int capacity) {
+		this.name = name;
+		this.capacity = capacity;
+
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public int getCapacity() {
-		return Capacity;
+		return capacity;
 	}
 
 	public void setCapacity(int capacity) {
-		Capacity = capacity;
+		this.capacity = capacity;
 	}
 
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
+	}
 }
