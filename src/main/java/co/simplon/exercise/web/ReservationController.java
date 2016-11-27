@@ -59,9 +59,10 @@ public class ReservationController {
 		return new ModelAndView("reservation/laptop-reservation", model);
 
 	}
+
 	@RequestMapping(value = "/calendar", method = RequestMethod.GET)
 	public ModelAndView showCalendar(ModelMap model) {
-		return new ModelAndView("reservations/bookingCalendar", model);
+		return new ModelAndView("reservation/bookingCalendar", model);
 	}
 
 	
