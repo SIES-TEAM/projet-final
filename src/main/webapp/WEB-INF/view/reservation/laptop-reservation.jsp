@@ -13,7 +13,7 @@
          <link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
          <!-- Custom styles for this template -->
-         <link href="/resources/css/signin.css" rel="stylesheet">
+         <link href="../resources/css/signin.css" rel="stylesheet">
 	</head>
 
 	<body>
@@ -29,12 +29,14 @@
 		<%-- <security:authorize access="isAuthenticated()"> --%>
 			
 			<h2>RESERVER UN ORDINATEUR</h2>
-                <form class="form-inline form-signin" action="/reservations/laptop/add">
-                    <label>Début réservation</label>
+                <form class="form-inline" action="/reservations/laptop/add">
+                    <label>DATE RESERVATION</label>
                     <input type="date" name="bookingDate" placeholder="Date de reservation" />
+					<label>HEURE DEBUT</label>
                     <input type="time" name="startTime" placeholder="Heure de début">
+					<label>HEURE FIN</label>
                     <input type="time" name="endTime" placeholder="Heure de fin">
-                    <input type="submit" value="Ajouter" />
+                    <input type="submit" value="RECHERCHER" />
                 </form>
 			
 		<%-- </security:authorize>

@@ -1,10 +1,10 @@
 package co.simplon.exercise.web;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import co.simplon.exercise.core.model.Classroom;
@@ -15,6 +15,7 @@ import co.simplon.exercise.core.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,15 +50,20 @@ public class ReservationController {
 	
 	/**
 	 * Display the form to add a reservation
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping(value = "laptop/formAdd", method = RequestMethod.GET)
 	public ModelAndView getFormAddLaptopReservation(ModelMap model) {
-		
+
 		return new ModelAndView("reservation/laptop-reservation", model);
 
 	}
+	@RequestMapping(value = "/calendar", method = RequestMethod.GET)
+	public ModelAndView showCalendar(ModelMap model) {
+		return new ModelAndView("reservations/bookingCalendar", model);
+	}
+
 	
 	@RequestMapping(path = "laptop/add")
 	public ModelAndView addReservation(
@@ -68,22 +74,15 @@ public class ReservationController {
 			                           final RedirectAttributes redirectAttribute
 			                          )
 	{
-		LocalDate creationDate = LocalDate.of(2016, 11, 22);
-		User user =  userService.findById(1);
-        List<Laptop> laptops = new ArrayList<>();
-		laptops = laptopService.getAll();
-		reservationService.addOrUpdate(new Reservation(
-				creationDate,
-				bookingDate,
-                startTime,
-                endTime,
-                user,
-                laptops));
+		List<Reservation> listLapResa = reservationService.searchAvailibilityByDate(bookingDate, startTime, endTime);
 
 		redirectAttribute.addFlashAttribute("message", "Réservation ajoutée avec succès !");
-		return new ModelAndView("redirect:/reservations");
+		ModelAndView mav = new ModelAndView("redirect:/reservations");
+		mav.getModelMap().addAllAttributes(model);
+		return mav;
 
 	}
+
 
 	// Afficher le formulaire pour modifier une réservation
 	@RequestMapping(path= "/updateForm")

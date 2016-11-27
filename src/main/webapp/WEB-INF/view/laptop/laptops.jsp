@@ -15,7 +15,6 @@
     	<div class="container">
     	<div class="jumbotron">
     	<h2> Ordinateurs </h2>
-    	
     	</div>
     	<table class="table">
 		  <thead class="thead-inverse">
@@ -32,7 +31,7 @@
 		      <th>${laptop.name }</th>
 		      <th>${laptop.brand }</th>
 		      <th><a href="/laptops/delete?id=${laptop.id}">Supprimer</a></th>
-		        <th><a href="/laptops/update?id=${laptop.id}">Modifier</a></th>
+		      <th><a href="/laptops/update?id=${laptop.id}">Modifier</a></th>
 		    </tr>
 		    </c:forEach>
 		   </tbody>
