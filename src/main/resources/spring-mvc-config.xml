@@ -15,11 +15,11 @@
 	<mvc:resources mapping="/resources/**" location="/resources/"/>
 	<mvc:annotation-driven />
 
-	<bean id="dbProperties"
-		  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location" value="classpath:database.properties" />
-		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_NEVER" />
-	</bean>
+	<!--<bean id="dbProperties"-->
+		  <!--class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
+		<!--<property name="location" value="classpath:database.properties" />-->
+		<!--<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_NEVER" />-->
+	<!--</bean>-->
 	<bean id="viewResolver"
 		  class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass"
