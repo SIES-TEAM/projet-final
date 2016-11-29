@@ -19,7 +19,7 @@ public class Laptop {
 	@Column(name = "brand")
 	private String brand;
 
-	@ManyToMany(mappedBy = "laptops")
+	@OneToMany
 	private List<Reservation> reservations = new ArrayList<>();
 
 	// Constructors
