@@ -21,4 +21,13 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
                                    @Param("startTime") LocalTime startTime,
                                    @Param("endTime") LocalTime endTime);
 
+//    @Query("SELECT r.laptop FROM Reservation r where " +
+//            "( r.bookingDate= :bookingDate and r.endTime >= :endTime and r.startTime =< :startTime)" +
+//            " OR " +
+//            " (r.bookingDate != :bookingDate)"
+//    List<Laptop> findLaptopsByBookingDate(@Param("bookingDate") LocalDate bookingDate,
+//                                          @Param("startTime") LocalTime startTime,
+//                                          @Param("endTime") LocalTime endTime);
+
+
 }

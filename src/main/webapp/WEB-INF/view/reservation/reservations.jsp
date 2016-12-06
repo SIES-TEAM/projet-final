@@ -19,13 +19,14 @@
     <jsp:include page="../includes/header.jsp"></jsp:include>
     	<div class="container">
     	<div class="jumbotron">
-    	<h2>RÉSRVATIONS </h2>
+    	<h2>RÉSERVATIONS </h2>
     	
     	</div>
     	<table class="table">
 		  <thead class="thead-inverse">
 		    <tr>
 		      <th>UTILISATEUR</th>
+			  <th>ORDINATEUR</th>
 		      <th>DATE DE CRÉATION </th>
 		      <th>DATE RÉSÉRVATION</th>
 		      <th>DÉBUT</th>
@@ -36,7 +37,8 @@
 		  <tbody>
 		   <c:forEach items="${reservations }" var="reservation"> 
 		    <tr>
-		      <td>${reservation.user.name }</td>
+		      <td>${reservation.user.surname}</td>
+			  <td>${reservation.laptop.name}</td>
 		      <th>${reservation.creationDate }</th>
 		      <th>${reservation.bookingDate }</th>
 		      <th>${reservation.startTime }</th>
