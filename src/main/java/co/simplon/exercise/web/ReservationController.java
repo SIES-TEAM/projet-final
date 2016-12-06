@@ -79,7 +79,7 @@ public class ReservationController {
 			// Get search params for booking
 			Map<String, Object> searchParams = new HashMap<>();
 			searchParams.put("bookingDate", bookingDate);
-//			System.out.println(searchParams.get(bookingDate));
+			System.out.println(searchParams.get(bookingDate));
 			searchParams.put("startTime", startTime);
 			searchParams.put("endTime", endTime);
 			searchParams.put("currentUser", currentUser);
