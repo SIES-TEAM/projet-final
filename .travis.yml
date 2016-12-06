@@ -5,3 +5,4 @@ script: mvn install -DskipTests=true
 notifications:
   email:
     - amberandoud@gmail.com
+    - moi@example.com
