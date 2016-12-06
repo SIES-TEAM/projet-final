@@ -41,20 +41,24 @@ public class Reservation {
 	@JoinColumn(name = "room_id")
 	private Classroom classroom;
 
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	private List<Laptop> laptops = new ArrayList<>();
+    @ManyToOne
+	@JoinColumn(name = "laptop_id")
+	private Laptop laptop;
+
+//	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+//	private List<Laptop> laptops = new ArrayList<>();
 
 	public Reservation() {
 		
 	}
 
-	public Reservation(Date creationDate, LocalDate bookingDate, LocalTime startTime, LocalTime endTime, User user, List<Laptop> laptops) {
+	public Reservation(Date creationDate, LocalDate bookingDate, LocalTime startTime, LocalTime endTime, User user, Laptop laptop) {
 		this.creationDate = creationDate;
 		this.bookingDate = bookingDate;
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.user = user;
-		this.laptops = laptops;
+		this.laptop = laptop;
 	}
 
 	public int getId() {
@@ -113,11 +117,11 @@ public class Reservation {
 		this.classroom = classroom;
 	}
 
-	public List<Laptop> getLaptops() {
-		return laptops;
+	public Laptop getLaptop() {
+		return laptop;
 	}
 
-	public void setLaptops(List<Laptop> laptops) {
-		this.laptops = laptops;
+	public void setLaptop(Laptop laptop) {
+		this.laptop = laptop;
 	}
 }

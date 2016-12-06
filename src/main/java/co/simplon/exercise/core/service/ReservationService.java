@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class ReservationService extends GenericService< Reservation, ReservationRepository >{
@@ -30,9 +28,14 @@ public class ReservationService extends GenericService< Reservation, Reservation
     @Autowired
     private ReservationService reservationService;
 
-    public List<Reservation> searchAvailibilityByDate(LocalDate bookingDate, LocalTime startTime, LocalTime endTime) {
-        List<Reservation> bookingList = reservationRepository.findByBookingDate(bookingDate, startTime, endTime);
-        return bookingList;
+    public List<Laptop> searchAvailableLaptopsByDate(LocalDate bookingDate, LocalTime startTime, LocalTime endTime) {
+
+        List<Laptop> listBookedLaptops = reservationRepository.findLaptopsByBookingDate(bookingDate, startTime, endTime);
+        Set<Laptop> bookedLaptops = new HashSet(listBookedLaptops);
+        Set<Laptop> allLaptops = new HashSet(laptopService.getAll());
+        Set<Laptop> availableLaptops = new HashSet(allLaptops);
+        availableLaptops.removeAll(bookedLaptops);
+        return new ArrayList(availableLaptops);
     }
 
 }
