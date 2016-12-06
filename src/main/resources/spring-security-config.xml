@@ -6,7 +6,8 @@
 
     <http auto-config="true"  >
         <intercept-url pattern="/users" access="hasAuthority('ADMIN')" />
-        <intercept-url pattern="/user/add/user" access="isAuthenticated" />
+        <intercept-url pattern="/users/add/user" access="hasAuthority('ADMIN') or hasAuthority('USER')" />
+        <intercept-url pattern="/reservations/laptop/add" access="hasAuthority('USER') or hasAuthority('ADMIN')" />
         <intercept-url pattern="/person/add" access="isAuthenticated" />
         <intercept-url pattern="/person/delete" access="hasAuthority('ADMIN')" />
         <intercept-url pattern="/**" access="permitAll" />

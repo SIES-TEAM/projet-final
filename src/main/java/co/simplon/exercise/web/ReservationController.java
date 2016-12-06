@@ -3,9 +3,7 @@ package co.simplon.exercise.web;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import co.simplon.exercise.core.model.Classroom;
 import co.simplon.exercise.core.model.Laptop;
@@ -32,7 +30,7 @@ import co.simplon.exercise.core.service.ReservationService;
 public class ReservationController {
 	
 	@Autowired
-	ReservationService reservationService;
+	private ReservationService reservationService;
 
     @Autowired
     private UserService userService;
@@ -56,27 +54,65 @@ public class ReservationController {
 	@RequestMapping(value = "laptop/formAdd", method = RequestMethod.GET)
 	public ModelAndView getFormAddLaptopReservation(ModelMap model) {
 
-		return new ModelAndView("reservation/laptop-reservation", model);
+		return new ModelAndView("reservation/laptop-search", model);
 
 	}
 
-	@RequestMapping(value = "/calendar", method = RequestMethod.GET)
-	public ModelAndView showCalendar(ModelMap model) {
-		return new ModelAndView("reservation/bookingCalendar", model);
-	}
-
-	
-	@RequestMapping(path = "laptop/add")
-	public ModelAndView addReservation(
-			                           @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate bookingDate,
-									   @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime startTime,
-                                       @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime endTime,
-			                           ModelMap model,
-			                           final RedirectAttributes redirectAttribute
-			                          )
+	@RequestMapping(value = "laptop/search")
+	public ModelAndView searchLaptops(
+						@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate bookingDate,
+						@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime startTime,
+						@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime endTime,
+						ModelMap model,
+						final RedirectAttributes redirectAttribute
+						)
 	{
-		List<Reservation> listLapResa = reservationService.searchAvailibilityByDate(bookingDate, startTime, endTime);
+	    // Get the list of available items for a given date
+		List<Laptop> availableLaptops = reservationService.searchAvailableLaptopsByDate(bookingDate, startTime, endTime);
+		if (availableLaptops.size()==0) {
+			redirectAttribute.addFlashAttribute("info", "Aucun élémenys correspond à votre recherche !");
+			return new ModelAndView("redirect:/reservations/laptop/search");
+		}
+		else {
+			// Get search params for booking
+			Map<String, Object> searchParams = new HashMap<>();
+			searchParams.put("bookingDate", bookingDate);
+			//System.out.println(searchParams.get(bookingDate));
+			searchParams.put("startTime", startTime);
+			searchParams.put("endTime", endTime);
+			model.addAllAttributes(searchParams);
 
+			model.addAttribute("availableLaptops", availableLaptops);
+
+			//Add a second lis for available rooms
+//			model.addAttribute("availableRooms", availableRooms);
+			return new ModelAndView("reservation/laptop-booking");
+		}
+	}
+
+
+	@RequestMapping(path = "laptop/add", method = RequestMethod.GET)
+	public ModelAndView addReservation(@RequestParam(name = "id")  Integer id,
+							           @RequestParam(name = "bookingDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)LocalDate bookingDate,
+									   @RequestParam(name = "startTime") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)LocalTime startTime,
+									   @RequestParam(name = "endTime") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)LocalTime endTime,
+	                                   ModelMap model,
+									   final RedirectAttributes redirectAttribute)
+	{
+		// get Laptop objet from id
+		Laptop bookedLaptop =laptopService.findById(id);
+        // Get User from context
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        User currentUser = userService.findOneByEmail(email);
+
+        // Get the date of creation
+		Date createdAt = new Date();
+        // Create a reservation
+		Reservation res = new Reservation(createdAt, bookingDate, startTime, endTime, currentUser, null, bookedLaptop );
+
+		// Add created resrvation to DB
+		reservationService.addOrUpdate(res);
+		// Redirection to reservations list with a flash message
 		redirectAttribute.addFlashAttribute("message", "Réservation ajoutée avec succès !");
 		ModelAndView mav = new ModelAndView("redirect:/reservations");
 		mav.getModelMap().addAllAttributes(model);

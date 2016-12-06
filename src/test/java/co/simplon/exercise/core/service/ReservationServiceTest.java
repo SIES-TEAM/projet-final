@@ -23,7 +23,7 @@ public class ReservationServiceTest {
 
     @Test
     public void searchAvailibilityByDate() throws Exception {
-        reservationService.searchAvailibilityByDate(LocalDate.of(2014, Month.JANUARY, 1), LocalTime.of(15,00,00), LocalTime.of(16,00,00));
+        reservationService.searchAvailableLaptopsByDate(LocalDate.of(2014, Month.JANUARY, 1), LocalTime.of(15,00,00), LocalTime.of(16,00,00));
     }
 
 }

@@ -9,8 +9,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import co.simplon.exercise.core.repository.UserRepository;
+import org.springframework.stereotype.Service;
 
-@Repository
+@Service
 public class UserService extends GenericService<User, UserRepository>{
 
 	@Autowired

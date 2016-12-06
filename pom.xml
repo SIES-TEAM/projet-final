@@ -14,9 +14,16 @@
 		<jackson.version>2.8.3</jackson.version>
 		<h2.version>1.3.166</h2.version>
 		<hibernate.version>5.1.0.Final</hibernate.version>
+		<hibernate-jpa-2.1-api.version>1.0.0.Final</hibernate-jpa-2.1-api.version>
 		<jstl.version>1.2</jstl.version>
 		<mockito-all.version>1.10.19</mockito-all.version>
 		<assertj-core.version>3.5.2</assertj-core.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Indique qu'on code en Java 8 -->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+		<bootstrap.version>3.3.7</bootstrap.version>
+		<jquery.version>3.1.1</jquery.version>
 	</properties>
 
 	<build>
@@ -136,7 +143,11 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.1-api</artifactId>
+			<version>${hibernate-jpa-2.1-api.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-java8</artifactId>
@@ -171,7 +182,7 @@
 		<dependency>
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
-            <version>3.3.7</version>
+            <version>${bootstrap.version}</version>
         </dependency>
 		<dependency>
 			<groupId>org.webjars</groupId>
@@ -186,13 +197,8 @@
         <dependency>
 		    <groupId>org.webjars</groupId>
 		    <artifactId>jquery</artifactId>
-		    <version>3.1.1</version>
+		    <version>${jquery.version}</version>
         </dependency>
-		<dependency>
-			<groupId>org.hibernate.javax.persistence</groupId>
-			<artifactId>hibernate-jpa-2.1-api</artifactId>
-			<version>1.0.0.Final</version>
-		</dependency>
 	</dependencies>
 
 </project>

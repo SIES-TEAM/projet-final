@@ -71,7 +71,7 @@
             <p class="lead">Bienvenue dans l'outil de gestion des ressources de Simplon</p>
             <p class="lead">
             
-             <a href="/reservations/calendar" class="btn btn-lg btn-default">Réserver une salle</a>
+             <a href="#" class="btn btn-lg btn-default">Réserver une salle</a>
 
 	         <a href="/reservations/laptop/formAdd" class="btn btn-lg btn-default">Réserver ordinateur</a>
             </p>
