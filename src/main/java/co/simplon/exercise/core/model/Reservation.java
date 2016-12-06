@@ -34,7 +34,7 @@ public class Reservation {
     private LocalTime endTime;
 
     @ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 
     @ManyToOne
@@ -52,12 +52,13 @@ public class Reservation {
 		
 	}
 
-	public Reservation(Date creationDate, LocalDate bookingDate, LocalTime startTime, LocalTime endTime, User user, Laptop laptop) {
+	public Reservation(Date creationDate, LocalDate bookingDate, LocalTime startTime, LocalTime endTime, User user, Classroom classroom, Laptop laptop) {
 		this.creationDate = creationDate;
 		this.bookingDate = bookingDate;
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.user = user;
+		this.classroom = classroom;
 		this.laptop = laptop;
 	}
 
