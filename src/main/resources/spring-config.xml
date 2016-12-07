@@ -12,17 +12,20 @@
 	<context:component-scan base-package="co.simplon.exercise.core" />
 	<context:annotation-config />
 	<jpa:repositories base-package="co.simplon.exercise.core.repository" />
-	<import resource="spring-security-config.xml"></import>
-
+ <import resource="spring-security-config.xml"></import>
+	<import resource="spring-email-config.xml"></import>
 	<bean
 		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
 
 	<bean id="dataSource"
+
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/gestion_ressource" />
+
+		<property name="url" value="jdbc:mysql://localhost:3306/java_simplon" />
 		<property name="username" value="root" />
-		<property name="password" value="1234" />
+		<property name="password" value="bishkekkg311425" />
+
 	</bean>
 
 	<bean id="entityManagerFactory"
@@ -31,7 +34,7 @@
 		<property name="persistenceUnitName" value="spring-jpa" />
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-			    <property name="generateDdl" value="true" />
+				<property name="generateDdl" value="true" />
 				<property name="database" value="MYSQL" />
 			</bean>
 		</property>
