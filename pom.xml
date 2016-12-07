@@ -24,6 +24,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
 		<bootstrap.version>3.3.7</bootstrap.version>
 		<jquery.version>3.1.1</jquery.version>
+		<mail.version>1.4.7</mail.version>
 	</properties>
 
 	<build>
@@ -78,6 +79,12 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aspects</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
 
@@ -152,6 +159,13 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-java8</artifactId>
 			<version>${hibernate.version}</version>
+		</dependency>
+
+		<!-- Javax mail-->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>${mail.version}</version>
 		</dependency>
 
 		<!-- tests -->
