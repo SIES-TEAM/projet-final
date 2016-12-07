@@ -3,6 +3,7 @@ package co.simplon.exercise.web;
 import co.simplon.exercise.core.model.Mail;
 import co.simplon.exercise.core.service.MailService;
 import co.simplon.exercise.core.service.UserService;
+//import co.simplon.exercise.core.service.mailing.EmailAPI;
 import co.simplon.exercise.core.service.mailing.EmailAPI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -29,8 +30,8 @@ public class MailContoroller {
     @Autowired
     private UserService userService;
 
- @Autowired
- EmailAPI emailAPI;
+    @Autowired
+    EmailAPI emailAPI;
 
     @RequestMapping
     public ModelAndView getMailList(ModelMap model){
@@ -42,11 +43,11 @@ public class MailContoroller {
     @RequestMapping(path="/sendAndSaveMail")
     public ModelAndView sendAndSaveMail (@RequestParam ("msgBody") String msgBody, @RequestParam String subject  ){
         String actualFromAdress = SecurityContextHolder.getContext().getAuthentication().getName();
-        String toAdress="simlpon.company@gmail.com";
-        Date createdAt=new Date();
-        Mail mail=new Mail(actualFromAdress,createdAt, 0, null, subject, msgBody);
+        String toAdress="simplon.company@gmail.com";
+        Date createdAt = new Date();
+        Mail mail = new Mail(actualFromAdress,createdAt, 0, null, subject, msgBody);
         mailService.addOrUpdate(mail);
         emailAPI.sendEmail(toAdress,actualFromAdress, subject, msgBody);
-        return new ModelAndView("redirect:/home");
+        return new ModelAndView("redirect:/");
     }
 }
