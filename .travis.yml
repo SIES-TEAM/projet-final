@@ -1,7 +1,11 @@
 language: java
+jdk:
+  - oraclejdk8
 
 script: mvn install -DskipTests=true
 
 notifications:
   email:
-    - s.ibtissem83@gmail.com
+    - amberandoud@gmail.com
+    - s.ibtisssem83@gmail.com
+    - millet.elina@gmail.com

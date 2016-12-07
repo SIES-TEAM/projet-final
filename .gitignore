@@ -1,6 +1,7 @@
-
+RemoteSystemsTempFiles
 /target/
 .classpath
+/.metadata
 .project
 .settings
 .idea
@@ -23,3 +24,9 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+.metadata/
+RemoteSystemsTempFiles/
+.tern-project
+
+#A voir....
+/src/main/webapp/WEB-INF/database.properties
