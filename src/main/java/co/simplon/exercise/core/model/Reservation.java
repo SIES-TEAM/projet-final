@@ -1,7 +1,11 @@
 package co.simplon.exercise.core.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,23 +17,21 @@ public class Reservation {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "reserv_id")
+    @Column(name = "id")
     private int id;
 
 	@Column(name = "date_of_creation", nullable = false)
 	private Date creationDate;
-  
-    @Column(name = "date_begin", nullable = false)
-    private Date dateBegin;
-    
-    @Column(name = "date_end", nullable = false)
-    private Date dateEnd;
+
+
+    @Column(name = "booking_date", nullable = false)
+    private LocalDate bookingDate;
 
     @Column(name = "start_time", nullable = false)
-    private Date startTime;
+    private LocalTime startTime;
 
     @Column(name ="end_time", nullable = false)
-    private Date endTime;
+    private LocalTime endTime;
 
     @ManyToOne
 	@JoinColumn(name = "user_id")
@@ -39,22 +41,25 @@ public class Reservation {
 	@JoinColumn(name = "room_id")
 	private Classroom classroom;
 
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	private List<Laptop> laptops = new ArrayList<>();
+    @ManyToOne
+	@JoinColumn(name = "laptop_id")
+	private Laptop laptop;
+
+//	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+//	private List<Laptop> laptops = new ArrayList<>();
 
 	public Reservation() {
 		
 	}
 
-	public Reservation(Date creationDate, Date dateBegin, Date dateEnd, Date startTime, Date endTime, User user, Classroom classroom, List<Laptop> laptops) {
+	public Reservation(Date creationDate, LocalDate bookingDate, LocalTime startTime, LocalTime endTime, User user, Classroom classroom, Laptop laptop) {
 		this.creationDate = creationDate;
-		this.dateBegin = dateBegin;
-		this.dateEnd = dateEnd;
+		this.bookingDate = bookingDate;
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.user = user;
 		this.classroom = classroom;
-		this.laptops = laptops;
+		this.laptop = laptop;
 	}
 
 	public int getId() {
@@ -73,35 +78,27 @@ public class Reservation {
 		this.creationDate = creationDate;
 	}
 
-	public Date getDateBegin() {
-		return dateBegin;
+	public LocalDate getBookingDate() {
+		return bookingDate;
 	}
 
-	public void setDateBegin(Date dateBegin) {
-		this.dateBegin = dateBegin;
+	public void setBookingDate(LocalDate bookingDate) {
+		this.bookingDate = bookingDate;
 	}
 
-	public Date getDateEnd() {
-		return dateEnd;
-	}
-
-	public void setDateEnd(Date dateEnd) {
-		this.dateEnd = dateEnd;
-	}
-
-	public Date getStartTime() {
+	public LocalTime getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(Date startTime) {
+	public void setStartTime(LocalTime startTime) {
 		this.startTime = startTime;
 	}
 
-	public Date getEndTime() {
+	public LocalTime getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(Date endTime) {
+	public void setEndTime(LocalTime endTime) {
 		this.endTime = endTime;
 	}
 
@@ -121,11 +118,11 @@ public class Reservation {
 		this.classroom = classroom;
 	}
 
-	public List<Laptop> getLaptops() {
-		return laptops;
+	public Laptop getLaptop() {
+		return laptop;
 	}
 
-	public void setLaptops(List<Laptop> laptops) {
-		this.laptops = laptops;
+	public void setLaptop(Laptop laptop) {
+		this.laptop = laptop;
 	}
 }

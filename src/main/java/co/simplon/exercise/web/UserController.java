@@ -28,9 +28,9 @@ public class UserController {
 
 	@RequestMapping(path = "/profil")
 	public ModelAndView getMyProfil(ModelMap model) {
-		String name = SecurityContextHolder.getContext().getAuthentication().getName();
-		System.out.println("name : "+name);
-		User myself = userService.findOneByEmail(name);
+		String email = SecurityContextHolder.getContext().getAuthentication().getName();
+//		System.out.println("name : "+name);
+		User myself = userService.findOneByEmail(email);
 //		System.out.println("myself : "+myself.getEmail());
 		model.addAttribute("myInfos", myself);
 		return new ModelAndView("user/myprofil", model);

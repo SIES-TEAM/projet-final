@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(indexes = {@Index(columnList="email,id", name="email", unique = true)})
 public class User {
 
 	public enum Role {

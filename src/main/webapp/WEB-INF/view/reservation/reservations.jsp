@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
     <head>
@@ -10,30 +12,37 @@
         
         <!-- Bootstrap core CSS -->
     <link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+        <link href="<c:url value="/resources/css/home.css" />" rel="stylesheet">
     </head>
     <body>
+    <jsp:include page="../includes/header.jsp"></jsp:include>
     	<div class="container">
     	<div class="jumbotron">
-    	<h2>Réservations </h2>
+    	<h2>RÉSERVATIONS </h2>
     	
     	</div>
     	<table class="table">
 		  <thead class="thead-inverse">
 		    <tr>
-		      <th>Identifiant</th>
-		      <th>Date de création </th>
-		      <th>Date début</th>
-		      <th>Date fin</th>
-		      <th>Action</th>
+		      <th>UTILISATEUR</th>
+			  <th>ORDINATEUR</th>
+		      <th>DATE DE CRÉATION </th>
+		      <th>DATE RÉSÉRVATION</th>
+		      <th>DÉBUT</th>
+			  <th>FIN</th>
+		      <th>ACTION</th>
 		    </tr>
 		  </thead>
 		  <tbody>
 		   <c:forEach items="${reservations }" var="reservation"> 
 		    <tr>
-		      <td>${reservation.userId }</td>
+		      <td>${reservation.user.surname}</td>
+			  <td>${reservation.laptop.name}</td>
 		      <th>${reservation.creationDate }</th>
-		      <th>${reservation.dateBegin }</th>
-		      <th>${reservation.dateEnd }</th>
+		      <th>${reservation.bookingDate }</th>
+		      <th>${reservation.startTime }</th>
+				<th>${reservation.endTime }</th>
 		      <th><a href="/reservations/delete?id=${reservation.id}">Supprimer</a></th>
 		    </tr>
 		    </c:forEach>
