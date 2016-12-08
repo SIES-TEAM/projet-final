@@ -34,7 +34,10 @@
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Remember me
-          </label>
+          </label><br>
+           <a href="/sendMPmailForm" >Forgotten password?</a>
+          
+            </p>
         </div>
         <button class="btn btn-lg btn-success btn-block" type="submit">Sign in</button>
       </form>
