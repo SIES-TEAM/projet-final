@@ -38,6 +38,11 @@
 				<property name="database" value="MYSQL" />
 			</bean>
 		</property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.show_sql">false</prop>
+			</props>
+		</property>
 	</bean>
 
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
