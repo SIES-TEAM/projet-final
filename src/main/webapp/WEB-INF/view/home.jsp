@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <!DOCTYPE html>
@@ -48,19 +46,22 @@
                   </security:authorize>
                   <security:authorize access="isAuthenticated()">
                         <li><a href="/users/profil">
-                           <span class="glyphicon glyphicon-user" aria-hidden="true"> Username<span class="caret dropdown-toggle"></span>
-                           </span>
-                            <%--<security:authorize access="isAuthenticated()">--%>
-                                        <%--<security:authentication property="principal.username" />--%>
-                            <%--</security:authorize>--%>
+                            <security:authorize access="isAuthenticated()">
+                                        <security:authentication property="principal.username" />
+                            </security:authorize>
+                        </a></li>
+                      <li><a href="/mail/formSend"> Contact </a></li>
                         </a></li>
                         <li><a href="/logout" class="btn btn-lg btn-danger">Logout</a></li>
+
                   </security:authorize>
 
                   <security:authorize access="!isAuthenticated()">
                       <li><a href="/users/form/adduser"   class="btn btn-lg btn-success">Sign up</a></li>
                       <li><a href="/login" class="btn btn-lg btn-info login">Login</a></li>
                   </security:authorize>
+
+                  <li><span class="glyphicons glyphicons-user"></span></li>
                 </ul>
               </nav>
             </div>
@@ -71,9 +72,9 @@
             <p class="lead">Bienvenue dans l'outil de gestion des ressources de Simplon</p>
             <p class="lead">
             
-             <a href="#" class="btn btn-lg btn-default">Réserver une salle</a>
+             <a href="/reservations/formAdd" class="btn btn-lg btn-default">Room booking</a>
 
-	         <a href="/reservations/laptop/formAdd" class="btn btn-lg btn-default">Réserver ordinateur</a>
+	         <a href="/reservations/formAdd" class="btn btn-lg btn-default">Laptop booking</a>
             </p>
           </div>
 
@@ -82,6 +83,7 @@
               
             </div>
           </div>
+
         </div>
 
       </div>
