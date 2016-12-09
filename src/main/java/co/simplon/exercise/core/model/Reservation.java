@@ -52,14 +52,22 @@ public class Reservation {
 		
 	}
 
-	public Reservation(Date creationDate, LocalDate bookingDate, LocalTime startTime, LocalTime endTime, User user, Classroom classroom, Laptop laptop) {
+	public Reservation(Date creationDate, LocalDate bookingDate, LocalTime startTime, LocalTime endTime, User user, Laptop laptop) {
+		this.creationDate = creationDate;
+		this.bookingDate = bookingDate;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.user = user;
+		this.laptop = laptop;
+	}
+
+	public Reservation(Date creationDate, LocalDate bookingDate, LocalTime startTime, LocalTime endTime, User user, Classroom classroom) {
 		this.creationDate = creationDate;
 		this.bookingDate = bookingDate;
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.user = user;
 		this.classroom = classroom;
-		this.laptop = laptop;
 	}
 
 	public int getId() {

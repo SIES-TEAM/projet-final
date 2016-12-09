@@ -12,30 +12,43 @@
 <html>
 <head>
     <title>$Title$</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--<link href="<c:url value="/resources/css/home.css" />" rel="stylesheet"> -->
 </head>
 <body>
-</div>
+    <div class="site-wrapper">
+     <div class="site-wrapper-inner">
+        <div class="cover-container">
+            <!-- flash message -->
+            <c:if test="${message != null}">
+                <div class="alert alert-succes">${message }</div>
+            </c:if>
+            <form class="form-inline">
+                <select class="form-group">
+                    <label for="room">Salle</label>
+                    <input type="select" class="form-control" id="" placeholder="">
+                </select>
+                <select class="form-group">
+                    <label for="laptop">Ordinateur</label>
+                    <input type="select" class="form-control" id="" placeholder="">
+                </select>
+                <button type="submit" class="btn btn-default">Réserver</button>
+            </form>
 
-<table class="table">
-    <thead class="thead-inverse">
-    <tr>
-        <th>ORDINATEUR</th>
-        <th>MARQUE</th>
-        <th>DATE</th>
-        <th>ACTION</th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach items="${availableLaptops}" var="availableLaptop">
-        <tr>
-            <td>${availableLaptop.name}</td>
-            <td>${availableLaptop.brand}</td>
-            <td></td>
-            <th><a href="/reservations/laptop/add?id=${availableLaptop.id}&bookingDate=${bookingDate}&startTime=${startTime}&endTime=${endTime}">RÉSERVER</a></th>
-        </tr>
-    </c:forEach>
-    </tbody>
-</table>
+
+            <%--<c:forEach items="${availableLaptops}" var="availableLaptop">--%>
+                <%--<tr>--%>
+                    <%--<td>${availableLaptop.name}</td>--%>
+                    <%--<td>${availableLaptop.brand}</td>--%>
+                    <%--<td></td>--%>
+                    <%--<th><a href="/reservations/laptop/add?id=${availableLaptop.id}&bookingDate=${bookingDate}&startTime=${startTime}&endTime=${endTime}">RÉSERVER</a></th>--%>
+                <%--</tr>--%>
+           <%----%>
+        </div>
+     </div>
 </div>
 </body>
 </html>

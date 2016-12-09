@@ -39,6 +39,21 @@ public class Laptop {
 		this.reservations = reservations;
 	}
 
+	// Eviter que des objets différents aient le même code
+	@Override
+	public int hashCode()
+	{
+		return 100000 + id;
+	}
+
+
+	@Override
+	public boolean equals(Object a)
+	{
+		if(!Laptop.class.isInstance(a)) return false;
+		return ((Laptop)a).getId() == getId();
+	}
+
 	public int getId() {
 		return id;
 	}

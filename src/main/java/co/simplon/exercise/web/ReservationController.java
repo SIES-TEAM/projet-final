@@ -68,8 +68,10 @@ public class ReservationController {
 						)
 	{
 	    // Get the list of available items for a given date
-		List<Laptop> availableLaptops = reservationService.searchAvailableLaptopsByDate(bookingDate, startTime, endTime);
-		if (availableLaptops.size()==0) {
+//		List<Laptop> availableLaptops = reservationService.searchAvailableLaptopsByDate(bookingDate, startTime, endTime);
+		List<Laptop>availableLaptops = reservationService.getAvailableLaptops(bookingDate, startTime, endTime);
+		List<Classroom> availableRooms = reservationService.searchAvailableRoomsByDate(bookingDate, startTime, endTime);
+		if (availableLaptops.size() == 0 || availableRooms.size() == 0) {
 			redirectAttribute.addFlashAttribute("info", "Aucun élémenys correspond à votre recherche !");
 			return new ModelAndView("redirect:/reservations/laptop/search");
 		}
@@ -77,15 +79,12 @@ public class ReservationController {
 			// Get search params for booking
 			Map<String, Object> searchParams = new HashMap<>();
 			searchParams.put("bookingDate", bookingDate);
-			//System.out.println(searchParams.get(bookingDate));
 			searchParams.put("startTime", startTime);
 			searchParams.put("endTime", endTime);
 			model.addAllAttributes(searchParams);
 
 			model.addAttribute("availableLaptops", availableLaptops);
-
-			//Add a second lis for available rooms
-//			model.addAttribute("availableRooms", availableRooms);
+			model.addAttribute("availableRooms", availableRooms);
 			return new ModelAndView("reservation/laptop-booking");
 		}
 	}
@@ -101,14 +100,19 @@ public class ReservationController {
 	{
 		// get Laptop objet from id
 		Laptop bookedLaptop =laptopService.findById(id);
+
         // Get User from context
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         User currentUser = userService.findOneByEmail(email);
+        if (currentUser == null) {
+        	redirectAttribute.addFlashAttribute("", "Il faut d'abord se connecter pour pouvoir réserver");
+        	return new ModelAndView("redirect:/reservations/laptop/add");
+		}
 
         // Get the date of creation
 		Date createdAt = new Date();
         // Create a reservation
-		Reservation res = new Reservation(createdAt, bookingDate, startTime, endTime, currentUser, null, bookedLaptop );
+		Reservation res = new Reservation(createdAt, bookingDate, startTime, endTime, currentUser,bookedLaptop );
 
 		// Add created resrvation to DB
 		reservationService.addOrUpdate(res);
