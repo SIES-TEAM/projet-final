@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,10 +15,6 @@
     <link href="/resources/css/signin.css" rel="stylesheet">
 
 
-
-
-
-
     <!-- Bootstrap core CSS -->
     <link href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -27,16 +23,19 @@
 <body>
 <div class="container">
 
+    <h3>Merci !
+        <br> <br>
+        <br>Votre message a bien été envoyé.
+        <br> <br>
+        <br> Nous y répondrons dès que possible</h3>
 
-                <h3>Merci !
-                    <br>
-            <br>Votre message a bien été envoyé.
-                    <br>
-            <br> Nous y répondrons dès que possible</h3>
+    <br>
+    <br>
+    <br>
 
-
-
-        <a href="/">  <button class="btn btn-success" type="submit" > Retour a la page d'accueil </button> </a>
+    <a href="/">
+        <button class="btn btn-success" type="submit"> Retour a la page d'accueil</button>
+    </a>
 
 </div> <!-- /container -->
 </body>
