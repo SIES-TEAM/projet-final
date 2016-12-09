@@ -1,4 +1,5 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,13 +23,14 @@
 <div class="container">
 
     <form class="form-signin" action="/mail/sendAndSaveMail/">
-    <h3>Nous contacter</h3>
+    <h3>Nous contacter </h3>
 
+        <p> Une question, une suggestion, un doute ? C’est par ici !</p>
        <br>
-            <label class="col-md-4 control-label" for="subject">Sujet</label>
+            <label class="col-md-4 control-label" for="subject">Sujet * </label>
         <input id="subject" name="subject" placeholder="" class="form-control input-md" type="text">
         <br>
-            <label class="col-md-4 control-label" for="msgBody">Message</label>
+            <label class="col-md-4 control-label" for="msgBody"> Votre message* </label>
         <textarea class="form-control" id="msgBody" name="msgBody"></textarea>
 
     	<button class="btn btn-lg btn-success btn-block" type="submit" >Envoyer</button>

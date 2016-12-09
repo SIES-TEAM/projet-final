@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,18 +30,19 @@
 
           <div class="masthead clearfix">
             <div class="inner">
-              <h3 class="masthead-brand">LOGO HERE</h3>
+              <h2 class="masthead-brand">Simplon & Company</h2>
+
               <nav>
                 <ul class="nav masthead-nav">
-                  <li class="active"><a href="/">Home</a></li>
+                  <!--<li class="active"><a href="/">Home</a></li>-->
                   <security:authorize access="hasAuthority('ADMIN')">
                   <li>
                   		<div class="dropdown">
-                          <button class="btn  btn-lg dropdown-toggle" type="button" data-toggle="dropdown">Gestion
+                          <button class="btn btn-lg dropdown-toggle" type="button" data-toggle="dropdown">Gestion
                           <span class="caret"></span></button>
                           <ul class="dropdown-menu">
-                            <li><a href="/reservations">RESERVATIONS</a></li>
-                            <li><a href="/users">UTILISATEURS</a></li>
+                            <li><a href="/reservations">Réservation</a></li>
+                            <li><a href="/users">Utilisateurs</a></li>
                           </ul>
                         </div>
                   </li>
