@@ -10,7 +10,7 @@ public class Laptop {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "laptop_id")
+	@Column(name = "id")
 	private int id;
 
 	@Column(name = "name")
@@ -20,6 +20,7 @@ public class Laptop {
 	private String brand;
 
 	@OneToMany
+	@JoinColumn(name = "laptop_id")
 	private List<Reservation> reservations = new ArrayList<>();
 
 	// Constructors

@@ -34,15 +34,12 @@ public class Reservation {
     private LocalTime endTime;
 
     @ManyToOne
-	@JoinColumn(name = "user_id")
 	private User user;
 
     @ManyToOne
-	@JoinColumn(name = "room_id")
 	private Classroom classroom;
 
     @ManyToOne
-	@JoinColumn(name = "laptop_id")
 	private Laptop laptop;
 
 //	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
