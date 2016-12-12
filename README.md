@@ -1,4 +1,4 @@
-# projet-final
+# Projet-final
 Merci de lire attentivement avant de commencer le projet.
 
 Projet de fin d'année, il s'agit d'un outil de gestion des ressources (salles et ordis) de Simpoln.

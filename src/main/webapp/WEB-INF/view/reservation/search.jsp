@@ -40,10 +40,8 @@
                     <option>16:00</option>
                     <option>17:00</option>
                     <option>18:00</option>
-                    <option>19:00</option>
                 </select>
                 <select class="carousel form-control" id="endTime" name="endTime">
-                    <option>09:00</option>
                     <option>10:00</option>
                     <option>11:00</option>
                     <option>12:00</option>
