@@ -49,9 +49,5 @@ public class ReservationService extends GenericService< Reservation, Reservation
         return new ArrayList(availableRooms);
     }
 
-    public List<Laptop> getAvailableLaptops(LocalDate resDate, LocalTime begin, LocalTime end) {
-        List<Laptop> ordis = reservationRepository.findLaptopsByBookingDateAndHour(resDate, begin, end);
-        return ordis;
-    }
 
 }

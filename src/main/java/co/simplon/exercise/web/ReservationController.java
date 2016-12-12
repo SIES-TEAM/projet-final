@@ -1,13 +1,13 @@
 package co.simplon.exercise.web;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
 
 import co.simplon.exercise.core.model.Classroom;
 import co.simplon.exercise.core.model.Laptop;
 import co.simplon.exercise.core.model.User;
+import co.simplon.exercise.core.service.ClassroomService;
 import co.simplon.exercise.core.service.LaptopService;
 import co.simplon.exercise.core.service.UserService;
 
@@ -37,6 +37,9 @@ public class ReservationController {
 
     @Autowired
 	private LaptopService laptopService;
+
+    @Autowired
+	private ClassroomService classroomService;
 	
 	@RequestMapping
 	public ModelAndView showReservations(ModelMap model)
@@ -54,11 +57,11 @@ public class ReservationController {
 	@RequestMapping(value = "laptop/formAdd", method = RequestMethod.GET)
 	public ModelAndView getFormAddLaptopReservation(ModelMap model) {
 
-		return new ModelAndView("reservation/laptop-search", model);
+		return new ModelAndView("reservation/search", model);
 
 	}
 
-	@RequestMapping(value = "laptop/search")
+	@RequestMapping(value = "resources/search")
 	public ModelAndView searchLaptops(
 						@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate bookingDate,
 						@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime startTime,
@@ -68,12 +71,12 @@ public class ReservationController {
 						)
 	{
 	    // Get the list of available items for a given date
-//		List<Laptop> availableLaptops = reservationService.searchAvailableLaptopsByDate(bookingDate, startTime, endTime);
-		List<Laptop>availableLaptops = reservationService.getAvailableLaptops(bookingDate, startTime, endTime);
-		List<Classroom> availableRooms = reservationService.searchAvailableRoomsByDate(bookingDate, startTime, endTime);
+		List<Laptop>availableLaptops   = laptopService.getAvailableLaptops(bookingDate, startTime, endTime);
+		List<Classroom> availableRooms = classroomService.getAvailableRooms(bookingDate, startTime, endTime);
+
 		if (availableLaptops.size() == 0 || availableRooms.size() == 0) {
 			redirectAttribute.addFlashAttribute("info", "Aucun élémenys correspond à votre recherche !");
-			return new ModelAndView("redirect:/reservations/laptop/search");
+			return new ModelAndView("redirect:/reservations/resources/search");
 		}
 		else {
 			// Get search params for booking
@@ -85,13 +88,14 @@ public class ReservationController {
 
 			model.addAttribute("availableLaptops", availableLaptops);
 			model.addAttribute("availableRooms", availableRooms);
-			return new ModelAndView("reservation/laptop-booking");
+			return new ModelAndView("reservation/resource-booking");
 		}
 	}
 
 
-	@RequestMapping(path = "laptop/add", method = RequestMethod.GET)
-	public ModelAndView addReservation(@RequestParam(name = "id")  Integer id,
+	@RequestMapping(path = "/resource/add", method = RequestMethod.GET)
+	public ModelAndView addReservation(@RequestParam(name = "laptopId") Integer laptopId,
+									   @RequestParam(name = "roomId") Integer roomId,
 							           @RequestParam(name = "bookingDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)LocalDate bookingDate,
 									   @RequestParam(name = "startTime") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)LocalTime startTime,
 									   @RequestParam(name = "endTime") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)LocalTime endTime,
@@ -99,20 +103,23 @@ public class ReservationController {
 									   final RedirectAttributes redirectAttribute)
 	{
 		// get Laptop objet from id
-		Laptop bookedLaptop =laptopService.findById(id);
+		Laptop bookedLaptop =laptopService.findById(laptopId);
+
+		// Récupérer la salle sélectionnée
+		Classroom bookedRoom = classroomService.findById(roomId);
 
         // Get User from context
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         User currentUser = userService.findOneByEmail(email);
         if (currentUser == null) {
-        	redirectAttribute.addFlashAttribute("", "Il faut d'abord se connecter pour pouvoir réserver");
-        	return new ModelAndView("redirect:/reservations/laptop/add");
+        	redirectAttribute.addFlashAttribute("", "Il faut se connecter pour pouvoir réserver");
+        	return new ModelAndView("redirect:/login");
 		}
 
         // Get the date of creation
 		Date createdAt = new Date();
         // Create a reservation
-		Reservation res = new Reservation(createdAt, bookingDate, startTime, endTime, currentUser,bookedLaptop );
+		Reservation res = new Reservation(createdAt, bookingDate, startTime, endTime, currentUser,bookedLaptop, bookedRoom );
 
 		// Add created resrvation to DB
 		reservationService.addOrUpdate(res);

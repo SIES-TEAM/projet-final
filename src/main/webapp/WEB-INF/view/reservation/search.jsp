@@ -12,9 +12,11 @@
     <!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
     <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
     <link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<c:url value="/resources/css/home.css" />" rel="stylesheet">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 <body>
+<div class="container">
 <div class="bootstrap-iso">
 <div class="container-fluid">
     <div class="row">
@@ -22,13 +24,12 @@
             <div class="alert alert-info">
                 <p>Cherchez les ressources en fonction de la date</p>
             </div>
-            <form class="form-inline" method="post">
+            <form class="form-inline" method="get" action="/reservations/resources/search">
                 <div class="form-group"> <!-- Date input -->
-                    <label class="control-label" for="date">Date de réservation</label>
-                    <input class="form-control" id="dateBooking" name="dateBooking" placeholder="DD/MM/YYY" type="text"/>
+                    <label class="control-label" for="bookingDate">Date de réservation</label>
+                    <input class="form-control" id="bookingDate" name="bookingDate" placeholder="DD/MM/YYYY" type="date"/>
                 </div>
                 <select class="carousel form-control" id="startTime" name="startTime">
-                    <option>Heure début</option>
                     <option>09:00</option>
                     <option>10:00</option>
                     <option>11:00</option>
@@ -42,7 +43,6 @@
                     <option>19:00</option>
                 </select>
                 <select class="carousel form-control" id="endTime" name="endTime">
-                    <option>Heure début</option>
                     <option>09:00</option>
                     <option>10:00</option>
                     <option>11:00</option>
@@ -56,7 +56,7 @@
                     <option>19:00</option>
                 </select>
                 <div class="form-group"> <!-- Submit button -->
-                    <button class="btn btn-primary " name="submit" type="submit">Rechercher</button>
+                    <button class="btn btn-primary " name="submit" value="submit" type="submit">Rechercher</button>
                 </div>
             </form>
 
@@ -64,9 +64,10 @@
     </div>
 </div>
 </div>
+</div>
 <script>
     $(document).ready(function(){
-        var date_input=$('input[name="date"]'); //our date input has the name "date"
+        var date_input=$('input[name="bookingDate"]'); //our date input has the name "bookingDate"
         var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
         var options={
             format: 'dd/mm/yyyy',
@@ -80,5 +81,7 @@
         date_input.datepicker(options);
     })
 </script>
+<script src="webjars/jquery/3.1.1/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
