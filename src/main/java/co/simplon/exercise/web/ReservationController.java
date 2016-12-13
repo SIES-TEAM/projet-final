@@ -58,7 +58,7 @@ public class ReservationController {
 	 *
 	 * @return
 	 */
-	@RequestMapping(value = "laptop/formAdd", method = RequestMethod.GET)
+	@RequestMapping(value = "resources/searchform", method = RequestMethod.GET)
 	public ModelAndView getFormAddLaptopReservation(ModelMap model) {
 
 		return new ModelAndView("reservation/search", model);
