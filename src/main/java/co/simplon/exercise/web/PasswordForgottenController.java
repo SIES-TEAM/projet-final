@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import co.simplon.exercise.core.model.Mail;
 import co.simplon.exercise.core.model.User;
-import co.simplon.exercise.core.repository.UserRepository;
 import co.simplon.exercise.core.service.MailService;
 import co.simplon.exercise.core.service.UserService;
 import co.simplon.exercise.core.service.mailing.EmailAPI;
@@ -25,9 +24,6 @@ public class PasswordForgottenController {
     private MailService mailService;
 	@Autowired
 	private UserService userService;
-
-	@Autowired
-	private UserRepository userRepository;
 	
 	@Autowired
     EmailAPI emailAPI;
@@ -59,7 +55,6 @@ public class PasswordForgottenController {
 	        mailService.addOrUpdate(mail);
 	        //envoi mail
 	        emailAPI.sendEmail(toAdress,actualFromAdress, subject, msgBody);
-
 		}
 	
 
@@ -86,10 +81,10 @@ public class PasswordForgottenController {
 		String msgBody= "Votre nouveau mdp est: " + pwd;
 		String subject = "Récuperation du mot de passe";
 		User user = userService.findOneByEmail(email);
-		 //envoi du mail
+		//envoi du mail
 		 sendMpEmail(pwd, email, msgBody, subject); 
 		user.setPassword(pwd);
-		System.out.println(pwd);
+		//System.out.println(pwd);
 		//ajout de MP dans la bade de donnée
 		userService.addOrUpdate(user);
 		//affichage d'un message de validation d'envoi du MP

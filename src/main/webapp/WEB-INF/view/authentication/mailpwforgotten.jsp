@@ -10,15 +10,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
-
-    <title>Saisir Votre Mail pour récupérer votre mot de passe</title>
-
+    <title>Saisissez Votre Mail pour récupérer votre mot de passe</title>
     <!-- Bootstrap core CSS -->
     <link href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom styles for this template -->
     <link href="/resources/css/signin.css" rel="stylesheet">
-
   </head>
 <body>
    <div class="container">
