@@ -3,6 +3,7 @@ package co.simplon.exercise.web;
 import java.security.SecureRandom;
 import java.util.Date;
 
+import co.simplon.exercise.core.service.mailing.EmailAPI;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,6 @@ import co.simplon.exercise.core.model.User;
 import co.simplon.exercise.core.repository.UserRepository;
 import co.simplon.exercise.core.service.MailService;
 import co.simplon.exercise.core.service.UserService;
-import co.simplon.exercise.core.service.mailing.EmailAPI;
 
 @Controller
 public class PasswordForgottenController {
@@ -30,7 +30,7 @@ public class PasswordForgottenController {
 	private UserRepository userRepository;
 	
 	@Autowired
-    EmailAPI emailAPI;
+	EmailAPI emailAPI;
 
 	/**
 	 *  Generer le mot de passe

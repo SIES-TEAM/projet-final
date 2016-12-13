@@ -1,6 +1,7 @@
 package co.simplon.exercise.core.model;
 
-import co.simplon.exercise.core.service.mailing.EmailAPI;
+import co.simplon.exercise.core.service.EmailAPI;
+import org.apache.commons.lang3.RandomUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ public class EmailAPITest {
     @Test
     public void SendEmail() throws Exception {
 
+        String prenom = "Prenom recu par ???";
+
         String toAddr = "simplon.company@gmail.com";
         String fromAddr = "millet.elina@gmail.com";
 
@@ -30,7 +33,7 @@ public class EmailAPITest {
         String subject = "Hey.. This email sent by Crunchify's Spring MVC Tutorial";
 
         // email body
-        String body = "There you go.. You got an email.. Let's understand details on how Spring MVC works -- By Crunchify Admin";
+        String body = "Bonjour " + prenom + ", Heureux d'avoir votre message";
         emailAPI.sendEmail(toAddr, fromAddr, subject, body);
     }
 

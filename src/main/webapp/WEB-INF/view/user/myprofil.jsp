@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,8 +10,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
+    <link href="/resources/css/signin.css" rel="stylesheet">
 
-    <title>acces denied</title>
+    <title>Mon profil</title>
 
   </head>
 
@@ -23,7 +25,10 @@
         <li>Prénom: ${myInfos.surname}</li>
         <li>Email: ${myInfos.email}</li>
       </ul>
-      <p><a href="/"> Home</a> </p>
+      <a href="/">
+        <button class="btn btn-success" type="submit"> Retour a la page d'accueil </button>
+      </a>
+
     </div> <!-- /container -->
   </body>
 </html>
