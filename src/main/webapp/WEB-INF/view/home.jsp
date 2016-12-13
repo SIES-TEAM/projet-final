@@ -50,12 +50,13 @@
                         <li><a href="/users/profil">
                            <span class="glyphicon glyphicon-user" aria-hidden="true"> Username<span class="caret dropdown-toggle"></span>
                            </span>
-                            <%--<security:authorize access="isAuthenticated()">--%>
-                                        <%--<security:authentication property="principal.username" />--%>
-                            <%--</security:authorize>--%>
+	                            <%--<security:authorize access="isAuthenticated()">--%>
+	                                        <%--<security:authentication property="principal.username" />--%>
+	                            <%--</security:authorize>--%>
                         </a></li>
-                        <li><a href="/logout" class="btn btn-lg btn-danger">Logout</a></li>
-                  </security:authorize>
+	                         <li><a href="/logout" class="btn btn-lg btn-danger">Logout</a></li>
+	                         <li><a href="/renitialmpForm" class="btn btn-lg btn-danger">Change password</a></li>
+	                  </security:authorize>
 
                   <security:authorize access="!isAuthenticated()">
                       <li><a href="/users/form/adduser"   class="btn btn-lg btn-success">Sign up</a></li>
