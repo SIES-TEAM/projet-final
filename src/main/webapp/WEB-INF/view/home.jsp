@@ -70,7 +70,7 @@
             <h1 class="cover-heading"><c:out value="${message }"></c:out></h1>
             <p class="lead">Bienvenue dans l'outil de gestion des ressources de Simplon</p>
             <p class="lead">
-	         <a href="/reservations/laptop/formAdd" class="btn btn-lg btn-default">Réserver une ressource</a>
+	         <a href="/reservations/resources/searchform" class="btn btn-lg btn-default">Réserver une ressource</a>
             </p>
           </div>
 

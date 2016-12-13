@@ -59,7 +59,7 @@ public class ReservationController {
 	 *
 	 * @return
 	 */
-	@RequestMapping(value = "laptop/formAdd", method = RequestMethod.GET)
+	@RequestMapping(value = "resources/searchform", method = RequestMethod.GET)
 	public ModelAndView getFormAddLaptopReservation(ModelMap model) {
 
 		return new ModelAndView("reservation/search", model);
@@ -79,7 +79,7 @@ public class ReservationController {
 		List<Laptop>availableLaptops   = laptopService.getAvailableLaptops(bookingDate, startTime, endTime);
 		List<Classroom> availableRooms = classroomService.getAvailableRooms(bookingDate, startTime, endTime);
 
-		if (availableLaptops.size() == 0 || availableRooms.size() == 0) {
+		if (availableLaptops.size() == 0 && availableRooms.size() == 0) {
 			redirectAttribute.addFlashAttribute("info", "Aucun élémenys correspond à votre recherche !");
 			return new ModelAndView("redirect:/reservations/resources/search");
 		}
