@@ -78,7 +78,7 @@ public class ReservationController {
 		List<Laptop>availableLaptops   = laptopService.getAvailableLaptops(bookingDate, startTime, endTime);
 		List<Classroom> availableRooms = classroomService.getAvailableRooms(bookingDate, startTime, endTime);
 
-		if (availableLaptops.size() == 0 || availableRooms.size() == 0) {
+		if (availableLaptops.size() == 0 && availableRooms.size() == 0) {
 			redirectAttribute.addFlashAttribute("info", "Aucun élémenys correspond à votre recherche !");
 			return new ModelAndView("redirect:/reservations/resources/search");
 		}
