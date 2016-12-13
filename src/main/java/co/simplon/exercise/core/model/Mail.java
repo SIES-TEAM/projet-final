@@ -4,10 +4,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * Created by millet on 06/12/16.
- */
-
 @Entity
 public class Mail implements Serializable {
 
@@ -26,8 +22,10 @@ public class Mail implements Serializable {
 
     private Date treatedAt;
 
+    @Column(name = "subject")
     private String subject;
 
+    @Column(name = "body", nullable = false)
     private String msgBody;
 
     public Mail() {
