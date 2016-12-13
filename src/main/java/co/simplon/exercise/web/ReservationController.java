@@ -11,6 +11,7 @@ import co.simplon.exercise.core.service.ClassroomService;
 import co.simplon.exercise.core.service.LaptopService;
 import co.simplon.exercise.core.service.UserService;
 
+import co.simplon.exercise.core.service.mailing.EmailAPI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -40,6 +41,9 @@ public class ReservationController {
 
     @Autowired
 	private ClassroomService classroomService;
+
+    @Autowired
+	private EmailAPI emailAPI;
 	
 	@RequestMapping
 	public ModelAndView showReservations(ModelMap model)
@@ -62,7 +66,7 @@ public class ReservationController {
 	}
 
 	@RequestMapping(value = "resources/search")
-	public ModelAndView searchLaptops(
+	public ModelAndView search(
 						@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate bookingDate,
 						@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime startTime,
 						@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime endTime,
@@ -123,6 +127,12 @@ public class ReservationController {
 
 		// Add created resrvation to DB
 		reservationService.addOrUpdate(res);
+
+		String to ="simplon.company@gmail.com";
+		String subject = "Confirmation de réservation";
+		String content = " Bonjour " + currentUser.getSurname() + " vous avez éffectué une réservation pour "+bookingDate ;
+		emailAPI.sendEmail(email, to, subject, content);
+
 		// Redirection to reservations list with a flash message
 		redirectAttribute.addFlashAttribute("message", "Réservation ajoutée avec succès !");
 		ModelAndView mav = new ModelAndView("redirect:/reservations");
@@ -134,9 +144,17 @@ public class ReservationController {
 
 	// Afficher le formulaire pour modifier une réservation
 	@RequestMapping(path= "/updateForm")
-	public ModelAndView updateReservation(ModelMap model)
+	public ModelAndView getUpdateForm(@RequestParam Integer id, ModelMap model)
 	{
+		model.addAttribute("bookToUpdate", reservationService.findById(id));
 		return new ModelAndView("updateReservationForm", model);
+	}
+
+	// Modifier une réservation
+	@RequestMapping(path = "/update")
+	public ModelAndView updateReservation() {
+
+		return new ModelAndView("");
 	}
 	
 	@RequestMapping(path = "/delete")

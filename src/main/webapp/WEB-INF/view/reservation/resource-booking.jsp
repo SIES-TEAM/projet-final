@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="C" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 <head>
@@ -9,7 +9,7 @@
     <!-- Bootstrap core CSS -->
     <link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
-    <%--<link href="<c:url value="/resources/css/home.css" />" rel="stylesheet">--%>
+    <link href="<c:url value="/resources/css/signin.css" />" rel="stylesheet">
 </head>
 <body>
     <div class="site-wrapper">
@@ -19,6 +19,10 @@
             <c:if test="${message != null}">
                 <div class="alert alert-succes">${message }</div>
             </c:if>
+            <div class="inner cover">
+            <h5> Il ya <span style="color: #018865;">${availableLaptops.size()}</span> ordinateur(s) disponible(s)
+                pour le ${bookingDate} de ${startTime} à ${endTime}
+            </h5>
            <form class="form-inline" method="get" action="/reservations/resource/add">
                <input type="hidden" name="bookingDate" value="${bookingDate}" />
                <input type="hidden" name="startTime" value="${startTime}" >
@@ -37,10 +41,11 @@
                    </select>
                </div>
                <div class="form-group">
-                   <input  class="btn btn-primary " name="submit" value="submit" type="submit">Réserver</input>
+                   <input  class="btn btn-primary " name="submit" value="Réserver" type="submit" />
                </div>
 
            </form>
+            </div>
 
             <%--<c:forEach items="${availableLaptops}" var="availableLaptop">--%>
                 <%--<tr>--%>

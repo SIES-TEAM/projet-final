@@ -16,17 +16,23 @@
         <link href="<c:url value="/resources/css/booking.css" />" rel="stylesheet">
     </head>
     <body>
-    <jsp:include page="../includes/header.jsp"></jsp:include>
     	<div class="container">
+			<jsp:include page="../includes/header.jsp"></jsp:include>
     	<div class="jumbotron">
     	<h2>RÉSERVATIONS </h2>
     	
     	</div>
+			<c:if test="${message != null}" var="msg">
+				<div class="alert alert-success">
+					<h4><span class="glyphicon glyphicon-check">${msg}</span></h4>
+				</div>
+			</c:if>
     	<table class="table">
 		  <thead class="thead-inverse">
 		    <tr>
 		      <th>UTILISATEUR</th>
 			  <th>ORDINATEUR</th>
+			  <th>SALLE</th>
 		      <th>DATE DE CRÉATION </th>
 		      <th>DATE RÉSÉRVATION</th>
 		      <th>DÉBUT</th>
@@ -39,6 +45,7 @@
 		    <tr>
 		      <td>${reservation.user.surname}</td>
 			  <td>${reservation.laptop.name}</td>
+			  <td>${reservation.classroom.name}</td>
 		      <th>${reservation.creationDate }</th>
 		      <th>${reservation.bookingDate }</th>
 		      <th>${reservation.startTime }</th>
