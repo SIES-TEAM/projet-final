@@ -46,11 +46,12 @@ public class ReservationController {
 	private EmailAPI emailAPI;
 	
 	@RequestMapping
-	public ModelAndView showReservations(ModelMap model)
+	public ModelAndView showMyReservations(ModelMap model)
 	{
-		model.addAttribute("reservations", reservationService.getAll());
+		Integer currentUserId = userService.getCurrentUser().getId();
+//		model.addAttribute("reservations", reservationService.findById(currentUserId));
 		
-		return new ModelAndView("reservation/reservations", model);
+		return new ModelAndView("admin/reservations", model);
 	}
 	
 	/**
@@ -106,10 +107,7 @@ public class ReservationController {
 	                                   ModelMap model,
 									   final RedirectAttributes redirectAttribute)
 	{
-		// get Laptop objet from id
 		Laptop bookedLaptop =laptopService.findById(laptopId);
-
-		// Récupérer la salle sélectionnée
 		Classroom bookedRoom = classroomService.findById(roomId);
 
         // Get User from context
@@ -120,14 +118,13 @@ public class ReservationController {
         	return new ModelAndView("redirect:/login");
 		}
 
-        // Get the date of creation
 		Date createdAt = new Date();
-        // Create a reservation
 		Reservation res = new Reservation(createdAt, bookingDate, startTime, endTime, currentUser,bookedLaptop, bookedRoom );
 
 		// Add created resrvation to DB
 		reservationService.addOrUpdate(res);
 
+		// Confirm booking by mail
 		String to ="simplon.company@gmail.com";
 		String subject = "Confirmation de réservation";
 		String content = " Bonjour " + currentUser.getSurname() + " vous avez éffectué une réservation pour "+bookingDate ;
