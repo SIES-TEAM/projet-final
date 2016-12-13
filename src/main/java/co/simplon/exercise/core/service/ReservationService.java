@@ -1,5 +1,6 @@
 package co.simplon.exercise.core.service;
 
+import co.simplon.exercise.core.model.Classroom;
 import co.simplon.exercise.core.model.Laptop;
 import co.simplon.exercise.core.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,16 @@ public class ReservationService extends GenericService< Reservation, Reservation
         availableLaptops.removeAll(bookedLaptops);
         return new ArrayList(availableLaptops);
     }
+
+    public List<Classroom> searchAvailableRoomsByDate(LocalDate bookingDate, LocalTime startTime, LocalTime endTime) {
+
+        List<Classroom> bookedRoomsList = reservationRepository.findRoomsByBookingDate(bookingDate, startTime, endTime);
+        Set<Laptop> bookedRooms = new HashSet(bookedRoomsList);
+        Set<Laptop> allRooms = new HashSet(laptopService.getAll());
+        Set<Laptop> availableRooms = new HashSet(allRooms);
+        availableRooms.removeAll(bookedRooms);
+        return new ArrayList(availableRooms);
+    }
+
 
 }

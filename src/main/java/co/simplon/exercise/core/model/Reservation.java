@@ -34,15 +34,12 @@ public class Reservation {
     private LocalTime endTime;
 
     @ManyToOne
-	@JoinColumn(name = "user_id")
 	private User user;
 
     @ManyToOne
-	@JoinColumn(name = "room_id")
 	private Classroom classroom;
 
     @ManyToOne
-	@JoinColumn(name = "laptop_id")
 	private Laptop laptop;
 
 //	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
@@ -52,14 +49,23 @@ public class Reservation {
 		
 	}
 
-	public Reservation(Date creationDate, LocalDate bookingDate, LocalTime startTime, LocalTime endTime, User user, Classroom classroom, Laptop laptop) {
+	public Reservation(Date creationDate, LocalDate bookingDate, LocalTime startTime, LocalTime endTime, User user, Laptop laptop) {
 		this.creationDate = creationDate;
 		this.bookingDate = bookingDate;
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.user = user;
-		this.classroom = classroom;
 		this.laptop = laptop;
+	}
+
+	public Reservation(Date creationDate, LocalDate bookingDate, LocalTime startTime, LocalTime endTime, User user, Laptop laptop, Classroom classroom) {
+		this.creationDate = creationDate;
+		this.bookingDate = bookingDate;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.user = user;
+		this.laptop = laptop;
+		this.classroom = classroom;
 	}
 
 	public int getId() {

@@ -29,6 +29,7 @@ public class User {
 	private String role;
 
 	@OneToMany
+	@JoinColumn(name = "user_id")
 	private List<Reservation> reservations = new ArrayList<>();
 
 	public User() {

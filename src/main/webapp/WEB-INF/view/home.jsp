@@ -48,7 +48,7 @@
                   </security:authorize>
                   <security:authorize access="isAuthenticated()">
                         <li><a href="/users/profil">
-                           <span class="glyphicon glyphicon-user" aria-hidden="true"> Username<span class="caret dropdown-toggle"></span>
+                           <span class="glyphicon glyphicon-user" aria-hidden="true"> {currentUser.name}<span class="caret dropdown-toggle"></span>
                            </span>
                             <%--<security:authorize access="isAuthenticated()">--%>
                                         <%--<security:authentication property="principal.username" />--%>
@@ -70,10 +70,7 @@
             <h1 class="cover-heading"><c:out value="${message }"></c:out></h1>
             <p class="lead">Bienvenue dans l'outil de gestion des ressources de Simplon</p>
             <p class="lead">
-            
-             <a href="#" class="btn btn-lg btn-default">Réserver une salle</a>
-
-	         <a href="/reservations/laptop/formAdd" class="btn btn-lg btn-default">Réserver ordinateur</a>
+	         <a href="/reservations/laptop/formAdd" class="btn btn-lg btn-default">Réserver une ressource</a>
             </p>
           </div>
 

@@ -7,10 +7,11 @@
     	<meta name="description" content="">
     	<meta name="author" content="">
     	
-		<title>Gestion des réservations</title>
+		<title>Réserver une ressource</title>
 
 		 <!-- Bootstrap core CSS -->
-         <link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<link href="<c:url value="/resources/css/booking.css" />" rel="stylesheet">
 	</head>
 
 	<body>

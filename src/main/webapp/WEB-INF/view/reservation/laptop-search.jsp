@@ -33,34 +33,47 @@
                     <label>DATE RESERVATION</label>
                     <input type="date" name="bookingDate" placeholder="Date de reservation" />
 					<label>HEURE DEBUT</label>
-                    <input type="time" name="startTime" placeholder="Heure de début">
+                    <%--<input type="time" name="startTime" placeholder="Heure de début">--%>
+					<select class="carousel form-control" id="startTime" name="startTime">
+						<option>09:00</option>
+						<option>10:00</option>
+						<option>11:00</option>
+						<option>12:00</option>
+						<option>13:00</option>
+						<option>14:00</option>
+						<option>15:00</option>
+						<option>16:00</option>
+						<option>17:00</option>
+						<option>18:00</option>
+						<option>19:00</option>
+					</select>
 					<label>HEURE FIN</label>
                     <input type="time" name="endTime" placeholder="Heure de fin">
                     <input type="submit" value="RECHERCHER" />
                 </form>
-				 <c:if test="${bookedLaptopList.size()>0}" >
+				 <%--<c:if test="${bookedLaptopList.size()>0}" >--%>
 
-				 <h3>Ordinateurs disponibles</h3>
+				 <%--<h3>Ordinateurs disponibles</h3>--%>
 
-				 <form class="form-inline" action="/reservations/laptop/add">
-					 <input type="hidden" name="bookingDate" value="${searchParams.get(bookingDate)}" />
-					 <input type="hidden" name="startTime" value="" >
-					 <input type="hidden" name="endTime" value="">
-					 <!-- Get a dropdown list of available laptops -->
-					 <div class="dropdown">
-						 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-							 Dropdown
-							 <span class="caret"></span>
-						 </button>
-						 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-							 <c:forEach items="${availableLaptops}" var="availableLaptop">
-								 <li>${availableLaptop.name} ${availableLaptop.brand}</li>
-							 </c:forEach>
-						 </ul>
-					 </div>
-					 <input type="submit" value="RESERVER" />
-				 </form>
-				 </c:if>
+				 <%--<form class="form-inline" action="/reservations/laptop/add">--%>
+					 <%--<input type="hidden" name="bookingDate" value="${searchParams.get(bookingDate)}" />--%>
+					 <%--<input type="hidden" name="startTime" value="" >--%>
+					 <%--<input type="hidden" name="endTime" value="">--%>
+					 <%--<!-- Get a dropdown list of available laptops -->--%>
+					 <%--<div class="dropdown">--%>
+						 <%--<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">--%>
+							 <%--Dropdown--%>
+							 <%--<span class="caret"></span>--%>
+						 <%--</button>--%>
+						 <%--<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">--%>
+							 <%--<c:forEach items="${availableLaptops}" var="availableLaptop">--%>
+								 <%--<li>${availableLaptop.name} ${availableLaptop.brand}</li>--%>
+							 <%--</c:forEach>--%>
+						 <%--</ul>--%>
+					 <%--</div>--%>
+					 <%--<input type="submit" value="RESERVER" />--%>
+				 <%--</form>--%>
+				 <%--</c:if>--%>
 
 		<%-- </security:authorize>
 		

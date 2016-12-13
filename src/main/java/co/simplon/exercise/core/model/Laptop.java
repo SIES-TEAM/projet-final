@@ -10,7 +10,7 @@ public class Laptop {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "laptop_id")
+	@Column(name = "id")
 	private int id;
 
 	@Column(name = "name")
@@ -20,6 +20,7 @@ public class Laptop {
 	private String brand;
 
 	@OneToMany
+	@JoinColumn(name = "laptop_id")
 	private List<Reservation> reservations = new ArrayList<>();
 
 	// Constructors
@@ -37,6 +38,21 @@ public class Laptop {
 		this.name = name;
 		this.brand = brand;
 		this.reservations = reservations;
+	}
+
+	// Eviter que des objets différents aient le même code
+	@Override
+	public int hashCode()
+	{
+		return 100000 + id;
+	}
+
+
+	@Override
+	public boolean equals(Object a)
+	{
+		if(!Laptop.class.isInstance(a)) return false;
+		return ((Laptop)a).getId() == getId();
 	}
 
 	public int getId() {
