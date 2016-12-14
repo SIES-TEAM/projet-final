@@ -19,8 +19,8 @@
 
   <%--</head>--%>
 
-  <%--<div class="masthead clearfix">--%>
-      <%--<div class="inner">--%>
+  <div class="masthead clearfix">
+      <div class="inner">
           <h3 class="masthead-brand">LOGO HERE</h3>
           <nav>
               <ul class="nav masthead-nav">
@@ -53,9 +53,9 @@
 
                   <li><span class="glyphicons glyphicons-user"></span></li>
               </ul>
-          <%--</nav>--%>
-      <%--</div>--%>
-  <%--</div>--%>
+          </nav>
+      </div>
+  </div>
 
 
   <%--<!-- Bootstrap core JavaScript--%>

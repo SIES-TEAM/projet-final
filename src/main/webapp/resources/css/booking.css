@@ -6,7 +6,7 @@
 a,
 a:focus,
 a:hover {
-    color: cadetblue;
+    color: darkred;
 }
 
 /* Custom default button */
@@ -132,6 +132,13 @@ body {
     color: #fff;
     background-color: #17232A;
     border-color: lemonchiffon;
+}
+.supprimer{
+    color: #d9534;
+    width: 35px;
+}
+.modifier{
+    color: #018865;
 }
 
 
