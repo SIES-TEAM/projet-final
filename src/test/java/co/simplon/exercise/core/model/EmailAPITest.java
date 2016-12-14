@@ -1,6 +1,6 @@
 package co.simplon.exercise.core.model;
 
-import co.simplon.exercise.core.service.EmailAPI;
+import co.simplon.exercise.core.service.mailing.EmailAPI;
 import org.apache.commons.lang3.RandomUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,9 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-/**
- * Created by millet on 06/12/16.
- */
+
 @RunWith(SpringJUnit4ClassRunner.class)
 //Update your configuration file with the right path
 @ContextConfiguration(locations = {"/spring-email-config.xml","/spring-config.xml","/spring-security-config.xml"})
