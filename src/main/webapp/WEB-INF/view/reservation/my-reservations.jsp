@@ -21,9 +21,9 @@
 <div class="container">
 	<jsp:include page="../includes/header.jsp"></jsp:include>
 	<div class="jumbotron">
-		<h2>RÉSERVATIONS </h2>
-
+		<h3>Historique </h3>
 	</div>
+
 	<c:if test="${message != null}" var="msg">
 		<div class="alert alert-success">
 			<h4><span class="glyphicon glyphicon-check">${msg}</span></h4>
