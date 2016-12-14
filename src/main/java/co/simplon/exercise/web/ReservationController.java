@@ -44,21 +44,13 @@ public class ReservationController {
 
     @Autowired
 	private EmailAPI emailAPI;
-	
-	@RequestMapping
-	public ModelAndView showMyReservations(ModelMap model)
-	{
-		Integer currentUserId = userService.getCurrentUser().getId();
-//		model.addAttribute("reservations", reservationService.findById(currentUserId));
-		
-		return new ModelAndView("admin/reservations", model);
+
+    @RequestMapping
+	public ModelAndView showAllReservations(ModelMap model) {
+		model.addAttribute("reservations", reservationService.getAll());
+		return new ModelAndView("reservation/reservations");
 	}
-	
-	/**
-	 * Display the form to add a reservation
-	 *
-	 * @return
-	 */
+
 	@RequestMapping(value = "resources/searchform", method = RequestMethod.GET)
 	public ModelAndView getFormAddLaptopReservation(ModelMap model) {
 
@@ -124,11 +116,9 @@ public class ReservationController {
 		// Add created resrvation to DB
 		reservationService.addOrUpdate(res);
 
-		// Confirm booking by mail
-		String to ="simplon.company@gmail.com";
-		String subject = "Confirmation de réservation";
-		String content = " Bonjour " + currentUser.getSurname() + " vous avez éffectué une réservation pour "+bookingDate ;
-		emailAPI.sendEmail(email, to, subject, content);
+		// Confirm booking by semdin email
+		sendBookingConfirmation(bookingDate, email, currentUser);
+
 
 		// Redirection to reservations list with a flash message
 		redirectAttribute.addFlashAttribute("message", "Réservation ajoutée avec succès !");
@@ -138,13 +128,21 @@ public class ReservationController {
 
 	}
 
+	private void sendBookingConfirmation(@RequestParam(name = "bookingDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate bookingDate, String email, User currentUser) {
+		// Confirm booking by mail
+		String to = currentUser.getEmail();
+		String subject = "Confirmation de réservation";
+		String content = " Bonjour " + currentUser.getSurname() + " vous avez éffectué une réservation pour "+bookingDate ;
+		emailAPI.sendEmail(email, to, subject, content);
+	}
+
 
 	// Afficher le formulaire pour modifier une réservation
 	@RequestMapping(path= "/updateForm")
 	public ModelAndView getUpdateForm(@RequestParam Integer id, ModelMap model)
 	{
 		model.addAttribute("bookToUpdate", reservationService.findById(id));
-		return new ModelAndView("updateReservationForm", model);
+		return new ModelAndView("reservation/updateReservationForm", model);
 	}
 
 	// Modifier une réservation
