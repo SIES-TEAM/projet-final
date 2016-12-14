@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,22 +11,26 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
-    <title>Saisissez Votre Mail pour récupérer votre mot de passe</title>
+
+    <title>Saisir Votre Mail pour rï¿½cupï¿½rer votre mot de passe</title>
+
     <!-- Bootstrap core CSS -->
     <link href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Custom styles for this template -->
     <link href="/resources/css/signin.css" rel="stylesheet">
+
   </head>
 <body>
    <div class="container">
 
 	<form class="form-signin" action="/sendMP">
-	<h3>Saisissez Votre Mail</h3>
-	  <label for="inputEmail" class="sr-only">Email address</label>
+	<h3>RÃ©initialisez votre mot de passe </h3>
+	  <label for="inputEmail" class="sr-only">Addresse email</label>
         <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
          <!--  input type="text"  name="email" placeholder="Entrer votre email"-->
        <br>
-		<button class="btn btn-lg btn-success btn-block" type="submit" >Renvoyé</button>
+		<button class="btn btn-lg btn-success btn-block" type="submit" >Valider</button>
 		
 	</form>
 	</div> <!-- /container -->
