@@ -43,6 +43,7 @@
                                         <ul class="dropdown-menu">
                                             <li><a href="/reservations" class="btn btn-lg ">Réservations</a></li>
                                             <li><a href="/users" class="btn btn-lg ">Utilisateurs</a></li>
+                                            <li><a href="/admin/resources" class="btn btn-lg ">Ressources</a></li>
                                         </ul>
                                     </div>
                                 </li>
@@ -67,7 +68,7 @@
                             </security:authorize>
 
                             <security:authorize access="!isAuthenticated()">
-                                <li><a href="/users/form/adduser" class="btn btn-lg btn-success">Sign up</a></li>
+                                <li><a href="/users/form/add/account" class="btn btn-lg btn-success">Sign up</a></li>
                                 <li><a href="/login" class="btn btn-lg btn-info login">Login</a></li>
                             </security:authorize>
 
@@ -98,7 +99,6 @@
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
     <script src="webjars/jquery/3.1.1/jquery.min.js"></script>
     <script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </body>
