@@ -66,4 +66,15 @@ public class AdminController {
         redirectAttributes.addFlashAttribute("message", "L'utilisteur à été ajouté avec succès !");
         return new ModelAndView("redirect:/admin/user/form/add");
     }
+
+    // Set a simple user to admin
+    @RequestMapping(path = "/user/set/admin")
+    public ModelAndView setUserAsAdmin(@RequestParam Integer id) {
+        User userToSet = userService.findById(id);
+        userToSet.setRole("ADMIN");
+        userService.addOrUpdate(userToSet);
+       return new ModelAndView("/users");
+    }
+
+    // Set a message as treated
 }
