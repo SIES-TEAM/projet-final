@@ -5,9 +5,6 @@ import co.simplon.exercise.core.repository.MailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * Created by millet on 06/12/16.
- */
 @Service
 public class MailService extends GenericService <Mail, MailRepository> {
 

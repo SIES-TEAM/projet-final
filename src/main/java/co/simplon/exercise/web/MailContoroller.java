@@ -3,7 +3,6 @@ package co.simplon.exercise.web;
 import co.simplon.exercise.core.model.Mail;
 import co.simplon.exercise.core.service.MailService;
 import co.simplon.exercise.core.service.UserService;
-//import co.simplon.exercise.core.service.mailing.EmailAPI;
 import co.simplon.exercise.core.service.mailing.EmailAPI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,10 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
 import java.util.List;
-
-/**
- * Created by millet on 06/12/16.
- */
 
 @Controller
 @RequestMapping("/mail")
@@ -37,7 +32,7 @@ public class MailContoroller {
     public ModelAndView getMailList(ModelMap model){
         List<Mail>mailList=mailService.getAll();
         model.addAttribute("mailList",mailList);
-        return new ModelAndView("mail",model);
+        return new ModelAndView("mail/contact-form",model);
     }
 
     @RequestMapping(path="/sendAndSaveMail")

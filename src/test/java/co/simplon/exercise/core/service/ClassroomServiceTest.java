@@ -33,7 +33,6 @@ public class ClassroomServiceTest extends TestCase{
     @Before
     public void setUp() {
         roomServiceMock = mock(ClassroomService.class);
-//        mockMvc = MockMvcBuilders.standaloneSetup(new ClassroomController(roomServiceMock)).build();
         mockMvc = MockMvcBuilders.standaloneSetup(new ClassroomController(roomServiceMock)).build();
 
     }

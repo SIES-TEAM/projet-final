@@ -71,10 +71,8 @@ public class PasswordChangeToken {
 	public User getUser() {
 		return user;
 	}
-
-
 	
-	}
+}
 
     
     

@@ -4,6 +4,7 @@ import java.util.List;
 
 import co.simplon.exercise.core.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
@@ -29,6 +30,11 @@ public class UserService extends GenericService<User, UserRepository>{
 	}
 	 public User findOneByEmail(String email) {
 
+		return userRepository.findOne(email);
+	 }
+
+	 public User getCurrentUser() {
+		String email = SecurityContextHolder.getContext().getAuthentication().getName();
 		return userRepository.findOne(email);
 	 }
 }

@@ -4,11 +4,16 @@
 
 /* Links */
 a,
-a:focus,
-a:hover {
+a:focus{
   color: #fff;
 }
 
+.gestion{
+  color: #5555;
+}
+.monCompte{
+  color: #9999;
+}
 /* Custom default button */
 .btn-default,
 .btn-default:hover,
@@ -83,8 +88,7 @@ body {
   margin-left: 20px;
 }
 .masthead-nav > li > a {
-  padding-right: ;
-  padding-left: ;
+
   font-size: 16px;
   font-weight: bold;
   color: #fff; /* IE8 proofing */
@@ -93,7 +97,7 @@ body {
 }
 .login {
   background-color: seagreen;
-  border-color seagreen;
+  border-color:seagreen;
 }
 .masthead-nav > li > a:hover,
 .masthead-nav > li > a:focus {
@@ -105,7 +109,7 @@ body {
 .masthead-nav > .active > a:hover,
 .masthead-nav > .active > a:focus {
   color: #fff;
-  border-bottom-color: ;
+
 }
 
 @media (min-width: 768px) {

@@ -28,7 +28,7 @@ public class CustomLoginService implements UserDetailsService{
         if(user==null) {
             throw new UsernameNotFoundException("User name not found");
         }
-        System.out.println("User : " + user.getEmail());
+//        System.out.println("User : " + user.getEmail());
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
                 true, true, true, true, getGrantedAuthorities(user));
     }
@@ -37,7 +37,7 @@ public class CustomLoginService implements UserDetailsService{
     private List<GrantedAuthority> getGrantedAuthorities(User user){
         List<GrantedAuthority> authorities = new ArrayList<>();
         String role = user.getRole().toString();
-        System.out.println("Role : " + role);
+//        System.out.println("Role : " + role);
         authorities.add(new SimpleGrantedAuthority(role));
         return authorities;
     }

@@ -19,6 +19,7 @@ public class Classroom{
 	private int capacity;
 
 	@OneToMany
+	@JoinColumn(name = "classroom_id")
 	private List<Reservation> reservations = new ArrayList<>();
 
 	// Consturctors

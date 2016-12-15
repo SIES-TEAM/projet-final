@@ -15,8 +15,7 @@ public class ReinitialisermpController {
 	
 	@Autowired
 	private UserService userService;
-	//@Autowired
-    //private MailService mailService;
+
 	@Autowired
     EmailAPI emailAPI;
 
@@ -41,17 +40,12 @@ public class ReinitialisermpController {
 	@RequestMapping(value = "/sendNouveauMP", method = RequestMethod.GET)
 	public ModelAndView cahngepasssW(String newPassword, String newPasswordControl, ModelMap model ) {
 		String email= SecurityContextHolder.getContext().getAuthentication().getName();
-		//User currentUser = userService.findOneByEmail(email);
-		//String pwd = currentUser.getPassword();
-		//PasswordEncoder encoder = new BCryptPasswordEncoder();
-        //String pssencod = encoder.encode(pasword);
-        //userService.addOrUpdate(user);
+
 		if( newPassword.equals(newPasswordControl))
 		{
 		    User user = userService.findOneByEmail(email);
 		    user.setPassword(newPassword);
 		    userService.addOrUpdate(user);
-		    //sendMpEmailNmp(newPassword, email, msgBody, subject); 
 		}
 		return new ModelAndView("/home", model);
 	}

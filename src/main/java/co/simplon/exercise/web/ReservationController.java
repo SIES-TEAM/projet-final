@@ -1,16 +1,17 @@
 package co.simplon.exercise.web;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
 
 import co.simplon.exercise.core.model.Classroom;
 import co.simplon.exercise.core.model.Laptop;
 import co.simplon.exercise.core.model.User;
+import co.simplon.exercise.core.service.ClassroomService;
 import co.simplon.exercise.core.service.LaptopService;
 import co.simplon.exercise.core.service.UserService;
 
+import co.simplon.exercise.core.service.mailing.EmailAPI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -37,29 +38,28 @@ public class ReservationController {
 
     @Autowired
 	private LaptopService laptopService;
-	
-	@RequestMapping
-	public ModelAndView showReservations(ModelMap model)
-	{
+
+    @Autowired
+	private ClassroomService classroomService;
+
+    @Autowired
+	private EmailAPI emailAPI;
+
+    @RequestMapping
+	public ModelAndView showAllReservations(ModelMap model) {
 		model.addAttribute("reservations", reservationService.getAll());
-		
-		return new ModelAndView("reservation/reservations", model);
+		return new ModelAndView("reservation/reservations");
 	}
-	
-	/**
-	 * Display the form to add a reservation
-	 *
-	 * @return
-	 */
-	@RequestMapping(value = "laptop/formAdd", method = RequestMethod.GET)
+
+	@RequestMapping(value = "resources/searchform", method = RequestMethod.GET)
 	public ModelAndView getFormAddLaptopReservation(ModelMap model) {
 
-		return new ModelAndView("reservation/laptop-search", model);
+		return new ModelAndView("reservation/search", model);
 
 	}
 
-	@RequestMapping(value = "laptop/search")
-	public ModelAndView searchLaptops(
+	@RequestMapping(value = "resources/search")
+	public ModelAndView search(
 						@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate bookingDate,
 						@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime startTime,
 						@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime endTime,
@@ -68,50 +68,58 @@ public class ReservationController {
 						)
 	{
 	    // Get the list of available items for a given date
-		List<Laptop> availableLaptops = reservationService.searchAvailableLaptopsByDate(bookingDate, startTime, endTime);
-		if (availableLaptops.size()==0) {
+		List<Laptop>availableLaptops   = laptopService.getAvailableLaptops(bookingDate, startTime, endTime);
+		List<Classroom> availableRooms = classroomService.getAvailableRooms(bookingDate, startTime, endTime);
+
+		if (availableLaptops.size() == 0 && availableRooms.size() == 0) {
 			redirectAttribute.addFlashAttribute("info", "Aucun élémenys correspond à votre recherche !");
-			return new ModelAndView("redirect:/reservations/laptop/search");
+			return new ModelAndView("redirect:/reservations/resources/search");
 		}
 		else {
 			// Get search params for booking
 			Map<String, Object> searchParams = new HashMap<>();
 			searchParams.put("bookingDate", bookingDate);
-			//System.out.println(searchParams.get(bookingDate));
 			searchParams.put("startTime", startTime);
 			searchParams.put("endTime", endTime);
 			model.addAllAttributes(searchParams);
 
 			model.addAttribute("availableLaptops", availableLaptops);
-
-			//Add a second lis for available rooms
-//			model.addAttribute("availableRooms", availableRooms);
-			return new ModelAndView("reservation/laptop-booking");
+			model.addAttribute("availableRooms", availableRooms);
+			return new ModelAndView("reservation/resource-booking");
 		}
 	}
 
 
-	@RequestMapping(path = "laptop/add", method = RequestMethod.GET)
-	public ModelAndView addReservation(@RequestParam(name = "id")  Integer id,
+	@RequestMapping(path = "/resource/add", method = RequestMethod.GET)
+	public ModelAndView addReservation(@RequestParam(name = "laptopId") Integer laptopId,
+									   @RequestParam(name = "roomId") Integer roomId,
 							           @RequestParam(name = "bookingDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)LocalDate bookingDate,
 									   @RequestParam(name = "startTime") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)LocalTime startTime,
 									   @RequestParam(name = "endTime") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)LocalTime endTime,
 	                                   ModelMap model,
 									   final RedirectAttributes redirectAttribute)
 	{
-		// get Laptop objet from id
-		Laptop bookedLaptop =laptopService.findById(id);
+		Laptop bookedLaptop =laptopService.findById(laptopId);
+		Classroom bookedRoom = classroomService.findById(roomId);
+
         // Get User from context
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         User currentUser = userService.findOneByEmail(email);
+        if (currentUser == null) {
+        	redirectAttribute.addFlashAttribute("", "Il faut se connecter pour pouvoir réserver");
+        	return new ModelAndView("redirect:/login");
+		}
 
-        // Get the date of creation
 		Date createdAt = new Date();
-        // Create a reservation
-		Reservation res = new Reservation(createdAt, bookingDate, startTime, endTime, currentUser, null, bookedLaptop );
+		Reservation res = new Reservation(createdAt, bookingDate, startTime, endTime, currentUser,bookedLaptop, bookedRoom );
 
 		// Add created resrvation to DB
 		reservationService.addOrUpdate(res);
+
+		// Confirm booking by semdin email
+		sendBookingConfirmation(bookingDate, email, currentUser);
+
+
 		// Redirection to reservations list with a flash message
 		redirectAttribute.addFlashAttribute("message", "Réservation ajoutée avec succès !");
 		ModelAndView mav = new ModelAndView("redirect:/reservations");
@@ -120,12 +128,28 @@ public class ReservationController {
 
 	}
 
+	private void sendBookingConfirmation(@RequestParam(name = "bookingDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate bookingDate, String email, User currentUser) {
+		// Confirm booking by mail
+		String to = currentUser.getEmail();
+		String subject = "Confirmation de réservation";
+		String content = " Bonjour " + currentUser.getSurname() + " vous avez éffectué une réservation pour "+bookingDate ;
+		emailAPI.sendEmail(email, to, subject, content);
+	}
+
 
 	// Afficher le formulaire pour modifier une réservation
 	@RequestMapping(path= "/updateForm")
-	public ModelAndView updateReservation(ModelMap model)
+	public ModelAndView getUpdateForm(@RequestParam Integer id, ModelMap model)
 	{
-		return new ModelAndView("updateReservationForm", model);
+		model.addAttribute("bookToUpdate", reservationService.findById(id));
+		return new ModelAndView("reservation/updateReservationForm", model);
+	}
+
+	// Modifier une réservation
+	@RequestMapping(path = "/update")
+	public ModelAndView updateReservation() {
+
+		return new ModelAndView("");
 	}
 	
 	@RequestMapping(path = "/delete")

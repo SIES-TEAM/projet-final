@@ -22,9 +22,10 @@
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 
-		<property name="url" value="jdbc:mysql://localhost:8889/java_simplon" />
-		<property name="username" value="java_simplon" />
-		<property name="password" value="password" />
+		<property name="url" value="jdbc:mysql://localhost:3306/gestion_ressources" />
+		<property name="username" value="root" />
+		<property name="password" value="1234" />
+
 	</bean>
 
 	<bean id="entityManagerFactory"
@@ -36,6 +37,11 @@
 				<property name="generateDdl" value="true" />
 				<property name="database" value="MYSQL" />
 			</bean>
+		</property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.show_sql">false</prop>
+			</props>
 		</property>
 	</bean>
 
