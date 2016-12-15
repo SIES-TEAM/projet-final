@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link href="<c:url value="/resources/img/favicon.ico" />" rel="icon">
 
     <title>Home Page</title>
 
@@ -37,7 +38,7 @@
                                 <li>
                                     <div class="dropdown">
                                         <button class="btn btn-lg btn-success gestion" type="button"
-                                                data-toggle="dropdown">Gestion
+                                                data-toggle="dropdown">Administration
                                             <span class="caret"></span></button>
                                         <ul class="dropdown-menu">
                                             <li><a href="/reservations" class="btn btn-lg ">Réservations</a></li>

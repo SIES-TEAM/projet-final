@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <html>
     <head>
     	<meta charset="utf-8">
@@ -35,7 +35,9 @@
 		      <th>DATE RÉSÉRVATION</th>
 		      <th>HEURE DÉBUT</th>
 			  <th>HEURE FIN</th>
+			<security:authorize access="hasAuthority('ADMIN')">
 		      <th>ACTION</th>
+			</security:authorize>
 		    </tr>
 		  </thead>
 		  <tbody>
@@ -48,6 +50,7 @@
 		      <th>${reservation.bookingDate }</th>
 		      <th>${reservation.startTime }</th>
 			  <th>${reservation.endTime }</th>
+				<security:authorize access="hasAuthority('ADMIN')">
 		      <th>
 				  <a href="/reservations/delete?id=${reservation.id}" data-toggle="tooltip" data-placement="bottom" title="Supprimer">
 					  <span aria-hidden="true" class="glyphicon glyphicon-trash supprimer"></span>
@@ -56,6 +59,7 @@
 					  <span class="glyphicon glyphicon-edit modifier"></span>
 				  </a>
 			  </th>
+				</security:authorize>
 		    </tr>
 		    </c:forEach>
 		   </tbody>

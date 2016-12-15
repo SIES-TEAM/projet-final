@@ -19,37 +19,28 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping()
-	public ModelAndView get(ModelMap model) {
-		List<User> users = userService.getAll();
-		model.addAttribute("users", users);
-		return new ModelAndView("user/usersList", model);
-	}
-
 	@RequestMapping(path = "/profil")
 	public ModelAndView getMyProfil(ModelMap model) {
 		String email = SecurityContextHolder.getContext().getAuthentication().getName();
-//		System.out.println("name : "+name);
 		User myself = userService.findOneByEmail(email);
-//		System.out.println("myself : "+myself.getEmail());
 		model.addAttribute("myInfos", myself);
 		return new ModelAndView("user/myprofil", model);
 	}
 
-	@RequestMapping(path = "/form/adduser")
-	public ModelAndView getUserAddForm(){
-		return new ModelAndView("user/addUserForm");
+	@RequestMapping(path = "/form/add/account")
+	public ModelAndView getCreateAccountForm(){
+		return new ModelAndView("user/create-account");
 	}
 
-	@RequestMapping(path = "/addUser")
+	@RequestMapping(path = "/account/create")
 	public ModelAndView addUser(  @RequestParam String name,
 								  @RequestParam String surname,
 								  @RequestParam String email,
 								  @RequestParam String password,
-								  @RequestParam String role,
 								  ModelMap model) {
+		String role = "USER";
 		userService.addOrUpdate(new User(name, surname, password, email, role));
-		return new ModelAndView("redirect:/users");
+		return new ModelAndView("redirect:/");
 	}
 
 	/**

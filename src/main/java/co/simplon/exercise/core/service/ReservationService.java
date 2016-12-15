@@ -48,6 +48,9 @@ public class ReservationService extends GenericService< Reservation, Reservation
 //        availableRooms.removeAll(bookedRooms);
 //        return new ArrayList(availableRooms);
 //    }
+    public List<Reservation> findByCurrentDate() {
+        return reservationRepository.getAllCurentBookings();
+    }
 
 
 }
