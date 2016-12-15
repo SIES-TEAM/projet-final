@@ -22,7 +22,7 @@
   <body>
     <div class="container">
 
-           <form class="form-signin" action="/users/addUser">
+           <form class="form-signin" action="/admin/user/add">
                <fieldset>
 
                <!-- Form Name -->
@@ -84,7 +84,6 @@
         </div> <!-- /container -->
     <!-- Bootstrap core JavaScript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
     <script src="webjars/jquery/3.1.1/jquery.min.js"></script>
     <script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </body>
