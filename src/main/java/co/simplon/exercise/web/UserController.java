@@ -67,14 +67,17 @@ public class UserController {
 								   ModelMap model)
 	{
 		User userToUpdate = userService.findById(id);
+		modifyUser(name, surname, password, email, userToUpdate);
+
+		return new ModelAndView("redirect:/users", model);
+	}
+
+	private void modifyUser(@RequestParam String name, @RequestParam String surname, @RequestParam String password, @RequestParam String email, User userToUpdate) {
 		userToUpdate.setName(name);
 		userToUpdate.setSurname(surname);
 		userToUpdate.setPassword(password);
 		userToUpdate.setEmail(email);
 		userService.addOrUpdate(userToUpdate);
-
-		return new ModelAndView("redirect:/users", model);
 	}
-
 
 }

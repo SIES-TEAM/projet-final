@@ -1,29 +1,43 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="C" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Reservation search criteria</title>
-    <!-- Bootstrap Date-Picker Plugin -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!--<link rel="stylesheet" href="/resources/demos/style.css"> -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <!-- Bootstrap core CSS -->
     <!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
     <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
     <link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<c:url value="/resources/css/home.css" />" rel="stylesheet">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- -->
+    <script>
+        $( function() {
+            $( "#bookingDate" ).datepicker({ minDate: new Date(), maxDate: "+1M +10D" });
+        } );
+    </script>
 </head>
 <body>
 <div class="container">
 <div class="bootstrap-iso">
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-8 col-sm-6 col-xs-12">
+        <div class="col-md-10 col-sm-6 col-xs-12">
             <div class="alert alert-info">
-                <p>Cherchez les ressources en fonction de la date</p>
+                <h3>Cherchez les ressources en fonction de la date</h3>
             </div>
+            <c:if test="${info != null} ">
+                <div class="alert alert-danger">
+                    <h4><span class="glyphicon glyphicon-exclamation-sign "> ${info}</span></h4>
+                </div>
+            </c:if>
             <form class="form-inline" method="get" action="/reservations/resources/search">
                 <div class="form-group"> <!-- Date input -->
                     <label class="control-label" for="bookingDate">Date de réservation</label>
@@ -63,22 +77,7 @@
 </div>
 </div>
 </div>
-<script>
-    $(document).ready(function(){
-        var date_input=$('input[name="bookingDate"]'); //our date input has the name "bookingDate"
-        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-        var options={
-            format: 'dd/mm/yyyy',
-            startDate: "new Date()",
-            todayBtn: "linked",
-            daysOfWeekDisabled: "0,6",
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
-        };
-        date_input.datepicker(options);
-    })
-</script>
+
 <script src="webjars/jquery/3.1.1/jquery.min.js"></script>
 <script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>

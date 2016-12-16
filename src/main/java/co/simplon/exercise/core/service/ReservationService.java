@@ -29,25 +29,7 @@ public class ReservationService extends GenericService< Reservation, Reservation
     @Autowired
     private ReservationService reservationService;
 
-//    public List<Laptop> searchAvailableLaptopsByDate(LocalDate bookingDate, LocalTime startTime, LocalTime endTime) {
-//
-//        List<Laptop> listBookedLaptops = reservationRepository.findLaptopsByBookingDate(bookingDate, startTime, endTime);
-//        Set<Laptop> bookedLaptops = new HashSet(listBookedLaptops);
-//        Set<Laptop> allLaptops = new HashSet(laptopService.getAll());
-//        Set<Laptop> availableLaptops = new HashSet(allLaptops);
-//        availableLaptops.removeAll(bookedLaptops);
-//        return new ArrayList(availableLaptops);
-//    }
-//
-//    public List<Classroom> searchAvailableRoomsByDate(LocalDate bookingDate, LocalTime startTime, LocalTime endTime) {
-//
-//        List<Classroom> bookedRoomsList = reservationRepository.findRoomsByBookingDate(bookingDate, startTime, endTime);
-//        Set<Laptop> bookedRooms = new HashSet(bookedRoomsList);
-//        Set<Laptop> allRooms = new HashSet(laptopService.getAll());
-//        Set<Laptop> availableRooms = new HashSet(allRooms);
-//        availableRooms.removeAll(bookedRooms);
-//        return new ArrayList(availableRooms);
-//    }
+
     public List<Reservation> findByCurrentDate() {
         return reservationRepository.getAllCurentBookings();
     }

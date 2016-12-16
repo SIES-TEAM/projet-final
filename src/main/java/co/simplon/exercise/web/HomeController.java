@@ -12,7 +12,7 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView welcome(ModelMap model) {
 
-		model.addAttribute("message", "Welcome to my website");
+		model.addAttribute("message", "Gestion de ressources Simplon");
 		return new ModelAndView("home", model);
 
 	}
