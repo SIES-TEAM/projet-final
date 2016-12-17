@@ -139,7 +139,7 @@ public class ReservationController {
 		reservationService.addOrUpdate(res);
 
 		// Confirm booking by semdin email
-		sendBookingConfirmation(bookingDate, email, currentUser);
+		sendBookingConfirmation(bookingDate, currentUser);
 
 
 		// Redirection to reservations list with a flash message
@@ -158,12 +158,13 @@ public class ReservationController {
 		return resToUpdate;
 	}
 
-	private void sendBookingConfirmation(@RequestParam(name = "bookingDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate bookingDate, String email, User currentUser) {
+	private void sendBookingConfirmation(@RequestParam(name = "bookingDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate bookingDate, User currentUser) {
 		// Confirm booking by mail
 		String to = currentUser.getEmail();
+		String from = "simplon.company@gmail.com";
 		String subject = "Confirmation de réservation";
 		String content = " Bonjour " + currentUser.getSurname() + " vous avez éffectué une réservation pour "+bookingDate ;
-		emailAPI.sendEmail(email, to, subject, content);
+		emailAPI.sendEmail(to, from, subject, content);
 	}
 
 
