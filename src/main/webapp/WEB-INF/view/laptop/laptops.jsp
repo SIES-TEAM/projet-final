@@ -20,24 +20,25 @@
 			<div style="margin: 30px">
 				<a href="/laptops/formAdd" class="btn btn-success" role="button"><span class="glyphicon glyphicon-plus"></span>  Ajouter un ordinateur</a>
 			</div>
-    	<table class="table">
-		  <thead class="thead-inverse">
-		    <tr>
-		      <th>Nom de l'ordinateur</th>
-		      <th>Marque de l'ordinateur</th>
-		    </tr>
-		  </thead>
-		  <tbody>
-		   <c:forEach items="${laptops }" var="laptop"> 
-		    <tr>
-		      <th>${laptop.name }</th>
-		      <th>${laptop.brand }</th>
-		      <th><a href="/laptops/delete?id=${laptop.id}">Supprimer</a></th>
-		      <th><a href="/laptops/updateform?id=${laptop.id}">Modifier</a></th>
-		    </tr>
-		    </c:forEach>
-		   </tbody>
-        </table>
+			<!-- Table of laptops -->
+			<table class="table">
+			  <thead class="thead-inverse">
+				<tr>
+				  <th>Nom de l'ordinateur</th>
+				  <th>Marque de l'ordinateur</th>
+				</tr>
+			  </thead>
+			  <tbody>
+			   <c:forEach items="${laptops }" var="laptop">
+				<tr>
+				  <th>${laptop.name }</th>
+				  <th>${laptop.brand }</th>
+				  <th><a href="/laptops/delete?id=${laptop.id}">Supprimer</a></th>
+				  <th><a href="/laptops/updateform?id=${laptop.id}">Modifier</a></th>
+				</tr>
+				</c:forEach>
+			   </tbody>
+			</table>
 			<div style="margin: 30px">
 				<a href="/" class="btn btn-primary" role="button">Accueil</a>
 			</div>
