@@ -34,7 +34,7 @@
                     <nav>
                         <ul class="nav masthead-nav">
                             <li class="active"><a href="/">Home</a></li>
-                            <li ><a href="/planning">Planning mensuel</a></li>
+
                             <!--    <li class="active"><a href="/">Home</a></li>-->
                             <security:authorize access="hasAuthority('ADMIN')">
                                 <li>
@@ -44,11 +44,11 @@
                                             <span class="caret"></span></button>
                                         <ul class="dropdown-menu">
                                             <li class="dropdown-header">Réservations</li>
-                                            <li><a href="/admin/bookings/current" class="btn btn-lg ">Gestions</a></li>
+                                            <li><a href="/admin/bookings/current" class="btn btn-lg ">En cours</a></li>
                                             <li><a href="/admin/bookings/historic" class="btn btn-lg ">Historique</a></li>
                                             <li class="dropdown-header">Ressources</li>
-                                            <li><a href="/classroom/formAdd" class="btn btn-lg ">Salles</a></li>
-                                            <li><a href="/laptops/formAdd" class="btn btn-lg ">Ordinateurs</a></li>
+                                            <li><a href="/classroom" class="btn btn-lg ">Salles</a></li>
+                                            <li><a href="/laptops" class="btn btn-lg ">Ordinateurs</a></li>
                                             <li role="separator" class="divider"></li>
                                             <li><a href="/admin/users" class="btn btn-lg ">Utilisateurs</a></li>
                                         </ul>
