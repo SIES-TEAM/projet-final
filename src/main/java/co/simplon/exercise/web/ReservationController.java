@@ -68,12 +68,13 @@ public class ReservationController {
 						final RedirectAttributes redirectAttribute
 						)
 	{
-//		if (2>1) {
+//		if (bookingDate.isAfter(LocalDate.now()) || startTime.isBefore(endTime) || startTime.getHour()== endTime.getHour()) {
 //			redirectAttribute.addFlashAttribute("info", "L'heure de réservation ne doit pas être antérieure à la date d'aujord'hui");
 //
-//			return new ModelAndView("/reservation/search-criteria-errors");
+//			return new ModelAndView("redirect:/reservations/resources/searchform");
 //
 //		}
+
 	    // Get the list of available items for a given date
 		List<Laptop>availableLaptops   = laptopService.getAvailableLaptops(bookingDate, startTime, endTime);
 		List<Classroom> availableRooms = classroomService.getAvailableRooms(bookingDate, startTime, endTime);
@@ -138,7 +139,7 @@ public class ReservationController {
 		// Add the resrvation to DB
 		reservationService.addOrUpdate(res);
 
-		// Confirm booking by semdin email
+		// Confirm booking by semding email
 		sendBookingConfirmation(bookingDate, currentUser);
 
 

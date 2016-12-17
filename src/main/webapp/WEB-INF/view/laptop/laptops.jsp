@@ -13,9 +13,12 @@
     </head>
     <body>
     	<div class="container">
-    	<div class="jumbotron">
-    	<h2> Ordinateurs </h2>
+    	<div class="jumbotron" style="background-color: #17232A">
+    	<h2 style="color: #eeeeee"> Gestion des ordinateurs </h2>
     	</div>
+			<div style="margin: 30px">
+				<a href="/laptops/formAdd" class="btn btn-success" role="button">Ajouter un ordinateur</a>
+			</div>
     	<table class="table">
 		  <thead class="thead-inverse">
 		    <tr>
@@ -31,11 +34,14 @@
 		      <th>${laptop.name }</th>
 		      <th>${laptop.brand }</th>
 		      <th><a href="/laptops/delete?id=${laptop.id}">Supprimer</a></th>
-		      <th><a href="/laptops/update?id=${laptop.id}">Modifier</a></th>
+		      <th><a href="/laptops/updateform?id=${laptop.id}">Modifier</a></th>
 		    </tr>
 		    </c:forEach>
 		   </tbody>
         </table>
+			<div style="margin: 30px">
+				<a href="/" class="btn btn-primary" role="button">Accueil</a>
+			</div>
         </div>
         
         <!-- Bootstrap core JavaScript

@@ -60,11 +60,11 @@ public class LaptopController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(path = "/updateLaptop")
+	@RequestMapping(path = "/updateform")
 	public ModelAndView getUpdateLaptopForm(@RequestParam Integer id, ModelMap model) {
 		Laptop lp = laptopService.findById(id);
 		model.addAttribute(lp);
-		return new ModelAndView("update-laptop", model);
+		return new ModelAndView("laptop/update-laptop", model);
 	}
 
 	@RequestMapping(path = "/update")
