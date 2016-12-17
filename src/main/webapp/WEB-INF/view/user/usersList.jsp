@@ -8,7 +8,8 @@
     </head>
     <body>
       <div class="container">
-    	<h3>Listes des personnes inscrites</h3>
+
+		  <h3>Listes des personnes inscrites</h3>
         <table class="table table-striped">
 		  <thead class="thead-default">
 		    <tr>
@@ -27,18 +28,20 @@
 				      <th>${user.surname}</th>
 				      <th>${user.email}</th>
 				      <th>${user.role}</th>
-				      <th><a href="/user/delete?id=${user.id}" class="btn btn-danger" role="button">Delete</a>
-				          <a href="/user/update?id=${user.id}" class="btn btn-info" role="button">Update</a>
+				      <th><a href="/admin/user/delete?id=${user.id}" class="btn btn-danger" role="button">Delete</a>
+				          <a href="/admin/user/updateform?id=${user.id}" class="btn btn-info" role="button">Update</a>
 				      </th>
 				    </tr>
 		    </c:forEach>
 		  </tbody>
        </table>
+		  <div>
+			  <a href="/" class="btn btn-info" role="button">Accueil</a>
+		  </div>
      </div>
      
      <!-- Bootstrap core JavaScript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
     <script src="webjars/jquery/3.1.1/jquery.min.js"></script>
     <script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </body>
