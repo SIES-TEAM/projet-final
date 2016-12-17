@@ -64,7 +64,7 @@ public class AdminController {
                                   ModelMap model) {
         userService.addOrUpdate(new User(name, surname, password, email, role));
         redirectAttributes.addFlashAttribute("message", "L'utilisteur à été ajouté avec succès !");
-        return new ModelAndView("redirect:/admin/user/form/add");
+        return new ModelAndView("redirect:/admin/users");
     }
 
     @RequestMapping(path = "/user/updateform")
