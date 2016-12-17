@@ -19,7 +19,7 @@
 
 		  <h4 style="margin: 30px">Liste des personnes inscrites</h4>
 		  <div style="margin: 30px">
-			  <a href="/admin/user/form/add" class="btn btn-info" role="button">Ajouter un utilisateur</a>
+			  <a href="/admin/user/form/add" class="btn btn-success" role="button">Ajouter un utilisateur</a>
 		  </div>
         <table class="table table-striped">
 		  <thead class="thead-default">
