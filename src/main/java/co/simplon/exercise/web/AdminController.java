@@ -32,7 +32,7 @@ public class AdminController {
     @RequestMapping(path = "/bookings/historic")
     public ModelAndView showAllReservations(ModelMap model) {
         model.addAttribute("reservations", reservationService.getAll());
-        return new ModelAndView("reservation/reservations");
+        return new ModelAndView("admin/bookings-historic");
     }
 
     @RequestMapping(path = "/bookings/current")
@@ -64,7 +64,7 @@ public class AdminController {
                                   ModelMap model) {
         userService.addOrUpdate(new User(name, surname, password, email, role));
         redirectAttributes.addFlashAttribute("message", "L'utilisteur à été ajouté avec succès !");
-        return new ModelAndView("redirect:/admin/user/form/add");
+        return new ModelAndView("redirect:/admin/users");
     }
 
     @RequestMapping(path = "/user/updateform")

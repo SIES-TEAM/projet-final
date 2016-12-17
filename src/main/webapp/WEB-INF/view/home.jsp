@@ -43,9 +43,14 @@
                                                 data-toggle="dropdown">Administration
                                             <span class="caret"></span></button>
                                         <ul class="dropdown-menu">
-                                            <li><a href="/reservations" class="btn btn-lg ">Réservations</a></li>
+                                            <li class="dropdown-header">Réservations</li>
+                                            <li><a href="/admin/bookings/current" class="btn btn-lg ">Gestions</a></li>
+                                            <li><a href="/admin/bookings/historic" class="btn btn-lg ">Historique</a></li>
+                                            <li class="dropdown-header">Ressources</li>
+                                            <li><a href="/classroom/formAdd" class="btn btn-lg ">Salles</a></li>
+                                            <li><a href="/laptops/formAdd" class="btn btn-lg ">Ordinateurs</a></li>
+                                            <li role="separator" class="divider"></li>
                                             <li><a href="/admin/users" class="btn btn-lg ">Utilisateurs</a></li>
-                                            <li><a href="/admin/resources" class="btn btn-lg ">Ressources</a></li>
                                         </ul>
                                     </div>
                                 </li>
