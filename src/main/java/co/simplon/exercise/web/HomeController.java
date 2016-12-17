@@ -17,4 +17,12 @@ public class HomeController {
 
 	}
 
+	@RequestMapping(value = "/planning", method = RequestMethod.GET)
+	public ModelAndView showMensuelSchedule(ModelMap model) {
+		//TODO
+//		model.addAttribute("currentMonthBooks", list);
+		return new ModelAndView("resrvation/reservations", model);
+
+	}
+
 }

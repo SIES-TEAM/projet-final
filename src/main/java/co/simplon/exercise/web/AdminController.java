@@ -67,14 +67,45 @@ public class AdminController {
         return new ModelAndView("redirect:/admin/user/form/add");
     }
 
+    @RequestMapping(path = "/user/updateform")
+    public ModelAndView getUpdateForm(@RequestParam Integer id, ModelMap model)
+    {
+        User ps = userService.findById(id);
+        model.addAttribute(ps);
+
+        return new ModelAndView("user/updateUserForm", model);
+    }
+
+    @RequestMapping(path="/user/update")
+    public ModelAndView updateUser(@RequestParam Integer id,
+                                   @RequestParam String name,
+                                   @RequestParam String surname,
+                                   @RequestParam String password,
+                                   @RequestParam String email,
+                                   RedirectAttributes redirectAttributes,
+                                   ModelMap model)
+    {
+        User userToUpdate = userService.findById(id);
+        userService.modifyUser(name, surname, password, email, userToUpdate);
+        redirectAttributes.addFlashAttribute("message", "L'utilisteur à été modifié avec succès !");
+        return new ModelAndView("redirect:/admin/users", model);
+    }
+
+
     // Set a simple user to admin
     @RequestMapping(path = "/user/set/admin")
     public ModelAndView setUserAsAdmin(@RequestParam Integer id) {
         User userToSet = userService.findById(id);
         userToSet.setRole("ADMIN");
         userService.addOrUpdate(userToSet);
-       return new ModelAndView("/users");
+       return new ModelAndView("/admin/users");
     }
 
-    // Set a message as treated
+    // Delete u user
+    @RequestMapping(path = "/user/delete")
+    public ModelAndView deletUser(@RequestParam Integer id, RedirectAttributes red) {
+        userService.delete(id);
+        red.addFlashAttribute("message", "L'utilisateur a été supprimé avec succès !");
+        return new ModelAndView("redirect:/admin/users");
+    }
 }

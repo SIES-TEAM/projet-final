@@ -33,6 +33,8 @@
                     <h2 class="masthead-brand"><a href="/" style="text-decoration:none">Simplon & Company</a></h2>
                     <nav>
                         <ul class="nav masthead-nav">
+                            <li class="active"><a href="/">Home</a></li>
+                            <li ><a href="/planning">Planning mensuel</a></li>
                             <!--    <li class="active"><a href="/">Home</a></li>-->
                             <security:authorize access="hasAuthority('ADMIN')">
                                 <li>
@@ -42,7 +44,7 @@
                                             <span class="caret"></span></button>
                                         <ul class="dropdown-menu">
                                             <li><a href="/reservations" class="btn btn-lg ">Réservations</a></li>
-                                            <li><a href="/users" class="btn btn-lg ">Utilisateurs</a></li>
+                                            <li><a href="/admin/users" class="btn btn-lg ">Utilisateurs</a></li>
                                             <li><a href="/admin/resources" class="btn btn-lg ">Ressources</a></li>
                                         </ul>
                                     </div>
