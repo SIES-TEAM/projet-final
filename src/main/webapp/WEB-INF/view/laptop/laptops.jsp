@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
     <head>
@@ -13,32 +14,31 @@
     </head>
     <body>
     	<div class="container">
-    	<div class="jumbotron" style="background-color: #17232A">
-    	<h2 style="color: #eeeeee"> Gestion des ordinateurs </h2>
+    	<div class="jumbotron" style="background-color: #333333">
+    	<h2 style="color: #ffffff"> Gestion des ordinateurs </h2>
     	</div>
 			<div style="margin: 30px">
-				<a href="/laptops/formAdd" class="btn btn-success" role="button">Ajouter un ordinateur</a>
+				<a href="/laptops/formAdd" class="btn btn-success" role="button"><span class="glyphicon glyphicon-plus"></span>  Ajouter un ordinateur</a>
 			</div>
-    	<table class="table">
-		  <thead class="thead-inverse">
-		    <tr>
-		      <th>Identifiant</th>
-		      <th>Nom de l'ordinateur</th>
-		      <th>Marque de l'ordinateur</th>
-		    </tr>
-		  </thead>
-		  <tbody>
-		   <c:forEach items="${laptops }" var="laptop"> 
-		    <tr>
-		      <td>${laptop.id }</td>
-		      <th>${laptop.name }</th>
-		      <th>${laptop.brand }</th>
-		      <th><a href="/laptops/delete?id=${laptop.id}">Supprimer</a></th>
-		      <th><a href="/laptops/updateform?id=${laptop.id}">Modifier</a></th>
-		    </tr>
-		    </c:forEach>
-		   </tbody>
-        </table>
+			<!-- Table of laptops -->
+			<table class="table">
+			  <thead class="thead-inverse">
+				<tr>
+				  <th>Nom de l'ordinateur</th>
+				  <th>Marque de l'ordinateur</th>
+				</tr>
+			  </thead>
+			  <tbody>
+			   <c:forEach items="${laptops }" var="laptop">
+				<tr>
+				  <th>${laptop.name }</th>
+				  <th>${laptop.brand }</th>
+				  <th><a href="/laptops/delete?id=${laptop.id}">Supprimer</a></th>
+				  <th><a href="/laptops/updateform?id=${laptop.id}">Modifier</a></th>
+				</tr>
+				</c:forEach>
+			   </tbody>
+			</table>
 			<div style="margin: 30px">
 				<a href="/" class="btn btn-primary" role="button">Accueil</a>
 			</div>
