@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import co.simplon.exercise.core.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Service
 public class UserService extends GenericService<User, UserRepository>{
@@ -27,6 +28,14 @@ public class UserService extends GenericService<User, UserRepository>{
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 
 		return super.addOrUpdate(user);
+	}
+
+	public void modifyUser(@RequestParam String name, @RequestParam String surname, @RequestParam String password, @RequestParam String email, User userToUpdate) {
+		userToUpdate.setName(name);
+		userToUpdate.setSurname(surname);
+		userToUpdate.setPassword(password);
+		userToUpdate.setEmail(email);
+		super.addOrUpdate(userToUpdate);
 	}
 	 public User findOneByEmail(String email) {
 

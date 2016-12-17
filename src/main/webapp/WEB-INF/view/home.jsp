@@ -44,7 +44,7 @@
                                             <span class="caret"></span></button>
                                         <ul class="dropdown-menu">
                                             <li><a href="/reservations" class="btn btn-lg ">Réservations</a></li>
-                                            <li><a href="/users" class="btn btn-lg ">Utilisateurs</a></li>
+                                            <li><a href="/admin/users" class="btn btn-lg ">Utilisateurs</a></li>
                                             <li><a href="/admin/resources" class="btn btn-lg ">Ressources</a></li>
                                         </ul>
                                     </div>

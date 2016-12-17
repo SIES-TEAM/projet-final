@@ -64,6 +64,9 @@
 		    </c:forEach>
 		   </tbody>
         </table>
+				<div>
+					<a href="/" class="btn btn-info" role="button">Accueil</a>
+				</div>
         </div>
 		<script>
             $(document).ready(function(){
