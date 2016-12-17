@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
     <head>
@@ -24,7 +25,7 @@
 		  <thead class="thead-inverse">
 		    <tr>
 		      <th>Nom de la salle</th>
-		      <th>Capacit� de la salle </th>
+		      <th>Capacité de la salle </th>
 		      <th>Action</th>
 		    </tr>
 		  </thead>
@@ -32,7 +33,7 @@
 		   <c:forEach items="${classrooms}" var="classroom"> 
 		    <tr>
 		      <td>${classroom.name }</td>
-		      <th>${classroom.capacity }</th>
+		      <th>${classroom.capacity } place(s)</th>
 		      <th><a href="/classroom/delete?id=${classroom.id}">Supprimer</a></th>
 		      
 		      <th><a href="/classroom/updateClassroom?id=${classroom.id}">Modifier</a></th>
