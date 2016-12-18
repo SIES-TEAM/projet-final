@@ -11,15 +11,15 @@
         <title>List of reservations</title>
         
         <!-- Bootstrap core CSS -->
-    	<link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    	<link href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
         <link href="<c:url value="/resources/css/booking.css" />" rel="stylesheet">
     </head>
     <body>
     	<div class="container">
-			<%--<jsp:include page="../includes/header.jsp"></jsp:include>--%>
-
-
+        <div class="jumbotron">
+			<h3>Réservations en cours</h3>
+		</div>
 			<c:if test="${message != null}" var="msg">
 				<div class="alert alert-success">
 					<h4><span class="glyphicon glyphicon-check "> ${message}</span></h4>

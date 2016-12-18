@@ -10,9 +10,9 @@
     <title>Historic of reservations</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
-    <link href="<c:url value="resources/css/dashboard.css" />" rel="stylesheet">
+    <link href="<c:url value="/resources/css/dashboard.css" />" rel="stylesheet">
 </head>
 <body>
 <div class="container">
@@ -54,7 +54,7 @@
 </div>
 
 <!-- Bootstrap core JavaScript -->
-<script src="webjars/jquery/3.1.1/jquery.min.js"></script>
-<script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

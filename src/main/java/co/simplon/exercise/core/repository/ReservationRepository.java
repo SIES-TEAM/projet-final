@@ -21,9 +21,10 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
             " and r.startTime >= current_time ")
     List<Reservation> getAllCurentBookings();
 
-//    @Query("select r from Reservation r" +
-//            " where r.bookingDate between current_date and :endOfCurrentMOnth")
-//    List<Reservation> getCurrentMonthBookings(@Param ("endOfCurrentMonth") LocalDate endOfCurrentMonth);
-//
+    @Query("select r from Reservation r left join User u" +
+            " where r.bookingDate >= current_date " +
+            "and r.startTime >= current_time " )
+    List<Reservation> getMyCurrentBookings(@Param ("endOfCurrentMonth") LocalDate endOfCurrentMonth);
+
 
 }

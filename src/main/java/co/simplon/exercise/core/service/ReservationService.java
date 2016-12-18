@@ -34,5 +34,9 @@ public class ReservationService extends GenericService< Reservation, Reservation
         return reservationRepository.getAllCurentBookings();
     }
 
+//    public List<Reservation> getMyCurentBookings(String email) {
+//        return reservationRepository.getMyCurrentBookings(email);
+//    }
+
 
 }
