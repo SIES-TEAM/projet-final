@@ -89,7 +89,9 @@
             <h1 class="cover-heading"><c:out value="${message }"></c:out></h1>
             <p class="lead">Bienvenue dans l'outil de gestion des ressources de Simplon</p>
             <p class="lead">
-	         <a href="/reservations/resources/searchform" class="btn btn-lg btn-default">Réserver une ressource</a>
+            	<security:authorize access="isAuthenticated()">
+	         		<a href="/reservations/resources/searchform" class="btn btn-lg btn-default">Réserver une ressource</a>
+	         	</security:authorize>
             </p>
           </div>
 

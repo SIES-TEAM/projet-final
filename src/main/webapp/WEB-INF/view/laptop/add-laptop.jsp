@@ -19,7 +19,7 @@
 
 		     	<h1>Ajouter un ordinateur</h1>
 
-				<h2>Choissir le model de l'ordinateur</h2>
+				<h2>Choissir le modèle de l'ordinateur</h2>
 					<form class="form-inline" action="/laptops/add">
 						<input type="text" name="name" placeholder="Nom de l'ordinateur" />
 						<input type="text" name="brand" placeholder="Marque de l'ordinateur" />
@@ -28,7 +28,7 @@
 					</form>
 		            <br/>
 				 <div style="margin: 30px">
-					 <a href="/laptops" class="btn btn-primary" role="button">Gesstion d'ordinateurs</a>
+					 <a href="/laptops" class="btn btn-primary" role="button">Gestion d'ordinateurs</a>
 				 </div>
 		</div>
 		 <!-- Bootstrap core JavaScript
