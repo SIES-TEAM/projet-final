@@ -68,22 +68,7 @@
         </div>
     </div>
 </div>
-<script>
-//    $(document).ready(function(){
-//        var date_input=$('input[name="bookingDate"]'); //our date input has the name "bookingDate"
-//        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-//        var options={
-//            format: 'dd/mm/yyyy',
-//            startDate: "new Date()",
-//            todayBtn: "linked",
-//            daysOfWeekDisabled: "0,6",
-//            container: container,
-//            todayHighlight: true,
-//            autoclose: true,
-//        };
-//        date_input.datepicker(options);
-//    })
-</script>
+
 <script src="webjars/jquery/3.1.1/jquery.min.js"></script>
 <script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
