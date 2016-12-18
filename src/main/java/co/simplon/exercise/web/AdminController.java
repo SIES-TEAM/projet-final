@@ -23,10 +23,10 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(path = "/dashboard")
-    public ModelAndView dashboard(ModelMap model) {
-        return new ModelAndView("admin/dashboard");
-    }
+//    @RequestMapping(path = "/dashboard")
+//    public ModelAndView dashboard(ModelMap model) {
+//        return new ModelAndView("admin/dashboard");
+//    }
 
     // Gestion des réservations
     @RequestMapping(path = "/bookings/historic")
@@ -92,14 +92,14 @@ public class AdminController {
     }
 
 
-    // Set a simple user to admin
-    @RequestMapping(path = "/user/set/admin")
-    public ModelAndView setUserAsAdmin(@RequestParam Integer id) {
-        User userToSet = userService.findById(id);
-        userToSet.setRole("ADMIN");
-        userService.addOrUpdate(userToSet);
-       return new ModelAndView("/admin/users");
-    }
+//    // Set a simple user to admin
+//    @RequestMapping(path = "/user/set/admin")
+//    public ModelAndView setUserAsAdmin(@RequestParam Integer id) {
+//        User userToSet = userService.findById(id);
+//        userToSet.setRole("ADMIN");
+//        userService.addOrUpdate(userToSet);
+//       return new ModelAndView("/admin/users");
+//    }
 
     // Delete u user
     @RequestMapping(path = "/user/delete")
