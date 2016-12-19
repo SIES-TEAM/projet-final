@@ -31,13 +31,13 @@ public class AdminController {
     // Gestion des réservations
     @RequestMapping(path = "/bookings/historic")
     public ModelAndView showAllReservations(ModelMap model) {
-        model.addAttribute("reservations", reservationService.getAll());
+        model.addAttribute("reservations", reservationService.getAllBookingsHistory());
         return new ModelAndView("admin/bookings-historic");
     }
 
     @RequestMapping(path = "/bookings/current")
     public ModelAndView getCurrentReservations(ModelMap model) {
-        model.addAttribute("reservations", reservationService.findByCurrentDate());
+        model.addAttribute("reservations", reservationService.getAllCurentBookings());
         return new ModelAndView("reservation/reservations");
     }
 
