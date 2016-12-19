@@ -34,8 +34,8 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
                          " ORDER BY r.bookingDate, r.startTime ")
     List<Reservation> getAllReservationsHistory();
 
-    @Query("")
-    List<Reservation> getMyReservationsHistory(@Param ("user_id") Integer user_id);
+//    @Query("")
+//    List<Reservation> getMyReservationsHistory(@Param ("user_id") Integer user_id);
 
 
 }

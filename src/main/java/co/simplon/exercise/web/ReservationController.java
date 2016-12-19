@@ -47,7 +47,7 @@ public class ReservationController {
 
 	@RequestMapping
 	public ModelAndView showAllReservations(ModelMap model) {
-		model.addAttribute("reservations", reservationService.getAll());
+		model.addAttribute("reservations", reservationService.getMyCurentBookings(1));
 		return new ModelAndView("reservation/reservations");
 	}
 
