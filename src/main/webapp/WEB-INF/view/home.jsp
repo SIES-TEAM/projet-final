@@ -62,9 +62,8 @@
                                                 data-toggle="dropdown">Mon compte
                                             <span class="caret"></span></button>
                                         <ul class="dropdown-menu">
+                                            <li><a href="/reservations" class="btn btn-lg ">Mes réservations</a></li>
                                             <li><a href="/users/profil" class="btn btn-lg ">Mon profil</a></li>
-
-
                                             <li><a href="/mail/formSend" class="btn btn-lg "> Contact </a></li>
                                             <li><a href="/logout" class="btn btn-lg btn-danger"> Logout </a></li>
                                         </ul>

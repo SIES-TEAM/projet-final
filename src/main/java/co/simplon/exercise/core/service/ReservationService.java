@@ -42,5 +42,25 @@ public class ReservationService extends GenericService< Reservation, Reservation
         return repository.getMyCurrentBookings(id);
     }
 
+    public boolean checkIsPossible(Reservation resToUpdate) {
+        if( resToUpdate.getLaptop() != null && repository.findReservationForLaptop(
+                resToUpdate.getLaptop().getId(),
+                resToUpdate.getBookingDate(),
+                resToUpdate.getStartTime(),
+                resToUpdate.getEndTime() ) > 0 )
+        {
+            return false;
+        }
+        if( resToUpdate.getClassroom() != null && repository.findReservationForClassroom(
+                resToUpdate.getClassroom().getId(),
+                resToUpdate.getBookingDate(),
+                resToUpdate.getStartTime(),
+                resToUpdate.getEndTime() ) > 0 )
+        {
+            return false;
+        }
+        return true;
+    }
+
 
 }

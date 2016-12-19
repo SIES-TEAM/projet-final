@@ -37,5 +37,22 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
 //    @Query("")
 //    List<Reservation> getMyReservationsHistory(@Param ("user_id") Integer user_id);
 
+    @Query("SELECT COUNT(r.id) " +
+                        "FROM Reservation r " +
+                        "WHERE r.bookingDate = :bookingDate AND " +
+                        "r.startTime < :endTime AND :startTime < r.endTime AND laptop.id = :laptopId" )
+     Integer findReservationForLaptop(@Param("laptopId") Integer laptopId,
+     								 @Param("bookingDate") LocalDate bookingDate,
+                                      @Param("startTime") LocalTime startTime,
+                                      @Param("endTime") LocalTime endTime);
+
+             @Query("SELECT COUNT(r.id) " +
+                        "FROM Reservation r " +
+                        "WHERE r.bookingDate = :bookingDate AND " +
+                        "r.startTime < :endTime AND :startTime < r.endTime AND classroom.id = :classroomId" )
+     Integer findReservationForClassroom(@Param("classroomId") Integer classroomId,
+     								 @Param("bookingDate") LocalDate bookingDate,
+                                      @Param("startTime") LocalTime startTime,
+                                      @Param("endTime") LocalTime endTime);
 
 }
