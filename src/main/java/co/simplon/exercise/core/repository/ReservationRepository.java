@@ -17,14 +17,25 @@ import java.util.List;
 @Resource
 public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
 
-    @Query("SELECT r from Reservation r where r.bookingDate >= current_date" +
-            " and r.startTime >= current_time ")
+    @Query("SELECT r from Reservation r where r.bookingDate > current_date" +
+                         " or (r.bookingDate =  current_date and r.startTime >= current_time) "+
+                         " ORDER BY r.bookingDate, r.startTime ")
     List<Reservation> getAllCurentBookings();
 
-    @Query("select r from Reservation r left join User u" +
-            " where r.bookingDate >= current_date " +
-            "and r.startTime >= current_time " )
-    List<Reservation> getMyCurrentBookings(@Param ("endOfCurrentMonth") LocalDate endOfCurrentMonth);
+    @Query("select r from Reservation r" +
+                        " where (r.bookingDate > current_date" +
+                        " OR (r.bookingDate = current_date and r.startTime >= current_time )) " +
+                        " AND r.user.id = :user_id" +
+                        " ORDER BY r.bookingDate, r.startTime ")
+    List<Reservation> getMyCurrentBookings(@Param ("user_id") Integer user_id);
+
+    @Query("SELECT r from Reservation r where r.bookingDate < current_date" +
+                         " or (r.bookingDate =  current_date and r.startTime < current_time)" +
+                         " ORDER BY r.bookingDate, r.startTime ")
+    List<Reservation> getAllReservationsHistory();
+
+//    @Query("")
+//    List<Reservation> getMyReservationsHistory(@Param ("user_id") Integer user_id);
 
 
 }

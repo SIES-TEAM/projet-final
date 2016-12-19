@@ -6,6 +6,7 @@ RemoteSystemsTempFiles
 .settings
 .idea
 *.iml
+env.properties
 /bin/
 /src/main/webapp/node_modules/
 /src/main/webapp/typings/

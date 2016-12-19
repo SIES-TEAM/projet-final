@@ -29,14 +29,18 @@ public class ReservationService extends GenericService< Reservation, Reservation
     @Autowired
     private ReservationService reservationService;
 
+    public List<Reservation> getAllBookingsHistory() {
 
-    public List<Reservation> findByCurrentDate() {
+        		return repository.getAllReservationsHistory();
+    }
+
+    public List<Reservation> getAllCurentBookings() {
         return reservationRepository.getAllCurentBookings();
     }
 
-//    public List<Reservation> getMyCurentBookings(String email) {
-//        return reservationRepository.getMyCurrentBookings(email);
-//    }
+    public List<Reservation> getMyCurentBookings(Integer id) {
+        return repository.getMyCurrentBookings(id);
+    }
 
 
 }

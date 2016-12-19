@@ -11,6 +11,7 @@
 
 	<context:component-scan base-package="co.simplon.exercise.core" />
 	<context:annotation-config />
+	<context:property-placeholder location="classpath:META-INF/env.properties"/>
 	<jpa:repositories base-package="co.simplon.exercise.core.repository" />
     <import resource="spring-security-config.xml"></import>
 	<import resource="spring-email-config.xml"></import>
@@ -20,11 +21,11 @@
 	<bean id="dataSource"
 
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="driverClassName" value="${mysql.driver}" />
 
-		<property name="url" value="jdbc:mysql://localhost:3306/gestion_ressources" />
-		<property name="username" value="root" />
-		<property name="password" value="1234" />
+		<property name="url" value="${mysql.url}" />
+		<property name="username" value="${mysql.username}" />
+		<property name="password" value="${mysql.password}" />
 
 	</bean>
 
