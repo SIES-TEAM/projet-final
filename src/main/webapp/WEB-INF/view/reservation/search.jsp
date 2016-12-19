@@ -41,7 +41,9 @@
             <form class="form-inline" method="get" action="/reservations/resources/search">
                 <div class="form-group"> <!-- Date input -->
                     <label class="control-label" for="bookingDate">Date de réservation</label>
-                    <input class="form-control" id="bookingDate" name="bookingDate" placeholder="DD/MM/YYYY" type="date"/>
+                    <input class="form-control" id="bookingDate" name="bookingDate" placeholder="YYYY-MM-DD" 
+                    pattern="[0-9]{4}-[0-1][0-9]-[0-3][0-9]" title="Entrez une date au format YYYY-MM-DD"
+                    type="date"/>
                 </div>
                 <select class="carousel form-control" id="startTime" name="startTime">
                     <option>09:00</option>

@@ -29,23 +29,23 @@ import co.simplon.exercise.core.service.ReservationService;
 @Controller
 @RequestMapping("/reservations")
 public class ReservationController {
-	
+
 	@Autowired
 	private ReservationService reservationService;
 
-    @Autowired
-    private UserService userService;
+	@Autowired
+	private UserService userService;
 
-    @Autowired
+	@Autowired
 	private LaptopService laptopService;
 
-    @Autowired
+	@Autowired
 	private ClassroomService classroomService;
 
-    @Autowired
+	@Autowired
 	private EmailAPI emailAPI;
 
-    @RequestMapping
+	@RequestMapping
 	public ModelAndView showAllReservations(ModelMap model) {
 		model.addAttribute("reservations", reservationService.getAll());
 		return new ModelAndView("reservation/reservations");
@@ -60,22 +60,22 @@ public class ReservationController {
 
 	@RequestMapping(value = "resources/search")
 	public ModelAndView search(
-						@RequestParam(required = false, defaultValue = "0") int id,
-						@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate bookingDate,
-						@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime startTime,
-						@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime endTime,
-						ModelMap model,
-						final RedirectAttributes redirectAttribute
-						)
+			@RequestParam(required = false, defaultValue = "0") int id,
+			@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate bookingDate,
+			@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime startTime,
+			@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime endTime,
+			ModelMap model,
+			final RedirectAttributes redirectAttribute
+			)
 	{
-//		if (bookingDate.isAfter(LocalDate.now()) || startTime.isBefore(endTime) || startTime.getHour()== endTime.getHour()) {
-//			redirectAttribute.addFlashAttribute("info", "L'heure de réservation ne doit pas être antérieure à la date d'aujord'hui");
-//
-//			return new ModelAndView("redirect:/reservations/resources/searchform");
-//
-//		}
+		//		if (bookingDate.isAfter(LocalDate.now()) || startTime.isBefore(endTime) || startTime.getHour()== endTime.getHour()) {
+		//			redirectAttribute.addFlashAttribute("info", "L'heure de réservation ne doit pas être antérieure à la date d'aujord'hui");
+		//
+		//			return new ModelAndView("redirect:/reservations/resources/searchform");
+		//
+		//		}
 
-	    // Get the list of available items for a given date
+		// Get the list of available items for a given date
 		List<Laptop>availableLaptops   = laptopService.getAvailableLaptops(bookingDate, startTime, endTime);
 		List<Classroom> availableRooms = classroomService.getAvailableRooms(bookingDate, startTime, endTime);
 
@@ -106,14 +106,14 @@ public class ReservationController {
 
 	@RequestMapping(path = "/resource/add", method = RequestMethod.GET)
 	public ModelAndView addOrUpdateReservation(
-									   @RequestParam(required = false, defaultValue = "0") int bookingId,
-			                           @RequestParam(name = "laptopId") Integer laptopId,
-									   @RequestParam(name = "roomId") Integer roomId,
-							           @RequestParam(name = "bookingDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)LocalDate bookingDate,
-									   @RequestParam(name = "startTime") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)LocalTime startTime,
-									   @RequestParam(name = "endTime") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)LocalTime endTime,
-	                                   ModelMap model,
-									   final RedirectAttributes redirectAttribute) {
+			@RequestParam(required = false, defaultValue = "0") int bookingId,
+			@RequestParam(name = "laptopId") Integer laptopId,
+			@RequestParam(name = "roomId") Integer roomId,
+			@RequestParam(name = "bookingDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)LocalDate bookingDate,
+			@RequestParam(name = "startTime") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)LocalTime startTime,
+			@RequestParam(name = "endTime") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)LocalTime endTime,
+			ModelMap model,
+			final RedirectAttributes redirectAttribute) {
 		Laptop bookedLaptop = laptopService.findById(laptopId);
 		Classroom bookedRoom = classroomService.findById(roomId);
 
@@ -130,10 +130,10 @@ public class ReservationController {
 		Reservation res;
 		if (bookingId > 0) {
 			// Update if id is not null
-			 res = updateReservation(bookingId, bookingDate, startTime, endTime);
+			res = updateReservation(bookingId, bookingDate, startTime, endTime);
 		} else {
 
-			 res = new Reservation(createdAt, bookingDate, startTime, endTime, currentUser,bookedLaptop, bookedRoom );
+			res = new Reservation(createdAt, bookingDate, startTime, endTime, currentUser,bookedLaptop, bookedRoom );
 		}
 
 		// Add the resrvation to DB
@@ -173,18 +173,36 @@ public class ReservationController {
 	@RequestMapping(path= "/updateForm")
 	public ModelAndView getUpdateForm(@RequestParam Integer id, ModelMap model)
 	{
-		model.addAttribute("bookToUpdate", reservationService.findById(id));
+		Reservation resa = reservationService.findById(id);
+		model.addAttribute("reservation", resa);
+		List<String> liste_start_time_selected = getSelectedList(resa.getStartTime().getHour() - 9);
+		List<String> liste_end_time_selected   = getSelectedList(resa.getEndTime().getHour()  - 10);
+		model.addAttribute("start_time_preselected", liste_start_time_selected);
+		model.addAttribute("end_time_preselected"  , liste_end_time_selected);
 		return new ModelAndView("reservation/updateReservationForm", model);
 	}
 
+	private List<String> getSelectedList(int selected)
+	{
+		List<String> liste_selected = new ArrayList<>();
+		for(int i = 0; i < 10 ; ++i)
+		{
+			if( selected == i ) 
+			{
+				liste_selected.add("selected");	
+			}
+			else { liste_selected.add(""); }
+		}
+		return liste_selected;
+	}
 
 	@RequestMapping(path = "/delete")
 	public ModelAndView  deleteReservation(@RequestParam Integer id, ModelMap model)
 	{
 		reservationService.delete(id);
 		return new ModelAndView("redirect:/reservations");
-		
+
 	}
-	
+
 }
 
