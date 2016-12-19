@@ -104,7 +104,7 @@ public class ReservationController {
 
 	@RequestMapping(path = "/resource/add", method = RequestMethod.GET)
 	public ModelAndView addOrUpdateReservation(
-			@RequestParam(required = false, defaultValue = "-1") int bookingId,
+			@RequestParam(name = "bookingId", required = false, defaultValue = "-1") int bookingId,
 			@RequestParam(name = "laptopId") Integer laptopId,
 			@RequestParam(name = "roomId", required = false, defaultValue = "-1") Integer roomId,
 			@RequestParam(name = "bookingDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)LocalDate bookingDate,
